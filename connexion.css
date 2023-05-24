@@ -178,11 +178,11 @@ margin-bottom: 10px;
 
 i
 {
-    position: absolute;
+    position: fixed;
     color: #949495;
     cursor: pointer;
-    top:385px;
-    right: 160px;
+    top:410px;
+    right: 200px;
 }
 
 #eye

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <title>Fichiers</title>
+<!--  liens CSS-->
+  <link rel="stylesheet" href="fichiers.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!--  fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="sidebar ">
+    <div class="logo-container">
+      <div class="logo">
+        <ion-icon name="eye" class="i"></ion-icon>
+        <h3>Lab2View</h3>
+      </div>
+      <i class='bx bx-menu' id="btn" ></i>
+    </div>
+
+    <ul class="list">
+      <li class="list-item active" >
+        <a href="#">
+          <ion-icon name="file-tray-stacked-outline" class="in"></ion-icon>
+          <span class="links-name" id="fich">Fichiers</span>
+        </a>
+        <span class="tooltip">Fichiers</span>
+      </li>
+      <li class="list-item" >
+        <a href="#">
+          <i class='bx bx-user'></i>
+          <span class="links-name">Profil</span>
+        </a>
+        <span class="tooltip">Profil</span>
+      </li>
+    </ul>
+
+  </div>
+
+  <div class="nav-bar"></div>
+
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script>
+    let btn = document.querySelector('#btn');
+    let sidebar =document.querySelector('.sidebar');
+    let listItem = document.querySelectorAll('.list-item');
+
+    btn.onclick = function ()
+    {
+      sidebar.classList.toggle('active');
+    }
+
+    function activeLink(){
+      listItem.forEach(item =>
+      item.classList.remove('active'));
+      this.classList.add('active');
+
+    }
+    listItem.forEach(item =>
+    item.onclick = activeLink);
+
+  </script>
+
+</body>
+</html>
