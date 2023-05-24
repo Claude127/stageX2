@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>Connexion</title>
+    <link rel="stylesheet" href="connexion.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+<section>
+    <div class="img-container">
+        <img src="img/6025986.jpg">
+        <h3>Hello :) </h3>
+    </div>
+
+    <div class="glass">
+        <div class="form">
+                <div class="logo">
+                    <img src="img/logo-ori.png" alt="lab2view">
+                </div>
+                <h2> Connectez-vous!</h2>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email :</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre email" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mot de passe :</label>
+                    <input type="password" class="form-control" id="password" name="Mot de passe" placeholder=" Entrez votre mot de passe"  required>
+                    <div class="eye-area">
+                        <div class="eye-box" onclick="mypassword()">
+                            <i class="fa-regular fa-eye" id="eye"></i>
+                            <i class="fa-regular fa-eye-slash" id="eye-slash"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="remember">
+                    <input type="checkbox" class="check" id="formcheck" >
+                    <label for="formcheck" class="form-label"> Remember Me</label>
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="input-submit">Connexion</button>
+                </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+    function mypassword()
+    {
+        var a =document.getElementById('password');
+        var b =document.getElementById('eye');
+        var c =document.getElementById('eye-slash');
+
+        if (a.type === "password"){
+            a.type = "text"
+            b.style.opacity = "0";
+            c.style.opacity ="1";
+        }
+        else{
+            a.type = "password"
+            b.style.opacity="1";
+            c.style.opacity="0";
+        }
+    }
+
+</script>
+
+</body>
+</html>

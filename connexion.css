@@ -1,0 +1,314 @@
+*
+{
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+
+}
+
+body
+{
+    min-height: 100%;
+}
+
+section
+{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display:flex;
+}
+
+
+ section .img-container
+{
+    position: relative;
+     width: 50%;
+     height: 100%;
+}
+
+ section .img-container img
+ {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+
+
+ }
+
+section .img-container h3
+{
+    text-align: center;
+    color: black;
+    position: absolute;
+    top: 270px;
+    width: 100%;
+    font-weight: bolder;
+    font-size:1.5em ;
+
+}
+
+
+
+ section .glass
+{
+    display: flex;
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+     align-items: center;
+     background-color: #f1fafd;
+     -webkit-backdrop-filter: blur(15px);
+     backdrop-filter: blur(15px);
+     border-left: 3px  solid rgb(232, 242, 243);
+     overflow: hidden;
+
+}
+
+ section .glass .form
+ {
+     width: 50%;
+ }
+
+ section .glass .form .logo img
+ {
+     width: 150px;
+     height:135px;
+     position: relative;
+     left: 340px;
+     bottom: 95px;
+     margin: 10px;
+ }
+
+section .glass .form h2
+{
+    color: black;
+    font-weight: 600;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom:4px solid #69CFF4;
+    display: inline-block;
+    letter-spacing: 1px;
+    position: relative;
+    left: 50px;
+
+}
+
+
+section .glass .form .mb-3
+{
+    margin-bottom: 20px;
+
+}
+
+section .glass .form .mb-3 .form-label
+{
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: #949495;
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+section .glass .form .mb-3 .form-control
+{
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight:400;
+    border: 1px solid #949495;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #949495;
+    background: transparent;
+    border-radius: 30px;
+}
+
+section .glass .form .mb-3 .input-submit
+{
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight:500;
+    border: none;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #ffff;
+    background: #3CC4F4;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 5px;
+    
+}
+section .glass .form .mb-3 .input-submit:hover
+{
+    opacity: 0.8;
+}
+
+section .glass .form .remember
+{
+margin-bottom: 10px;
+    color: #949495;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.eye-area
+{
+    position:absolute;
+    top: 25px;
+    right: 25px;
+}
+
+.eye-box
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+i
+{
+    position: absolute;
+    color: #949495;
+    cursor: pointer;
+    top:385px;
+    right: 160px;
+}
+
+#eye
+{
+    opacity: 1;
+}
+
+#eye-slash
+{
+    opacity: 0;
+}
+
+
+/* ----------------- media queries---------------------------*/
+@media (max-width: 763px) {
+
+    section .img-container
+    {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+    }
+
+
+    section .glass
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        heigth: 100%;
+        z-index: 1;
+        background: url("img/6025986.jpg");
+        background-position: 60% 10%;
+
+    }
+
+    section .glass .form
+    {
+        width: 100%;
+        padding: 40px;
+        background: rgb(255 255 255 /0.8);
+        margin: 50px;
+    }
+
+    i
+    {
+        position: absolute;
+        color: #949495;
+        cursor: pointer;
+        top:375px;
+        right: 100px;
+    }
+
+    section .glass .form .logo img
+    {
+        width: 150px;
+        height:135px;
+        position: relative;
+        left: 320px;
+        bottom: 80px;
+        margin: 5px;
+    }
+
+
+}
+
+@media (max-width: 422px)
+{
+    section .glass .form .logo img
+    {
+        width: 150px;
+        height:135px;
+        position: relative;
+        left: 175px;
+        bottom: 60px;
+        margin: 5px;
+    }
+    section .glass .form
+    {
+        width: 100%;
+        padding: 40px;
+        background: rgb(255 255 255 /0.8);
+        margin: 20px;
+    }
+
+    i
+    {
+        position: absolute;
+        color: #949495;
+        cursor: pointer;
+        top:340px;
+        right: 50px;
+    }
+
+}
+@media (max-width:623px)
+{
+
+    section .glass .form .logo img
+    {
+        width: 150px;
+        height:135px;
+        position: relative;
+        left: 280px;
+        bottom: 50px;
+        margin: 5px;
+    }
+
+    section .glass .form
+    {
+        width: 100%;
+        padding: 50px;
+        background: rgb(255 255 255 /0.8);
+        margin: 60px;
+    }
+
+    i
+    {
+        position: absolute;
+        color: #949495;
+        cursor: pointer;
+        top:340px;
+        right: 100px;
+    }
+}
