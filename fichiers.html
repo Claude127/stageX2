@@ -46,7 +46,39 @@
 
   </div>
 
-  <div class="nav-bar"></div>
+  <div class="main-content">
+    <header>
+          <div class="title">
+            <h1>Fichiers</h1>
+          </div>
+
+          <div class="user">
+            <i class='bx bx-log-out'>
+              <span class="tooltip">log-out</span>
+            </i>
+
+            <div class="bg-img"></div>
+          </div>
+
+    </header>
+
+    <main>
+
+      <div class="page-header">
+
+        <h2>Welcome</h2>
+
+        <div class="search">
+          <i class='bx bx-search'></i>
+          <input type="text" placeholder="Search...">
+        </div>
+
+      </div>
+    </main>
+
+
+  </div>
+
 
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -55,10 +87,12 @@
     let btn = document.querySelector('#btn');
     let sidebar =document.querySelector('.sidebar');
     let listItem = document.querySelectorAll('.list-item');
+    let main =document.querySelector('.main-content');
 
     btn.onclick = function ()
     {
       sidebar.classList.toggle('active');
+      main.classList.toggle('active');
     }
 
     function activeLink(){
