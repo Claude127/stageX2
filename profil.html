@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <title>Profil</title>
+  <!--  liens CSS-->
+  <link rel="stylesheet" href="profil.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!--  fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="sidebar ">
+  <div class="logo-container">
+    <div class="logo">
+      <ion-icon name="eye" class="i"></ion-icon>
+      <h3>Lab2View</h3>
+    </div>
+    <i class='bx bx-menu' id="btn" ></i>
+  </div>
+
+  <ul class="list">
+    <li class="list-item " >
+      <a href="fichiers.html">
+        <ion-icon name="file-tray-stacked-outline" class="in"></ion-icon>
+        <span class="links-name" id="fich">Fichiers</span>
+      </a>
+      <span class="tooltip">Fichiers</span>
+    </li>
+    <li class="list-item active" >
+      <a href="#">
+        <i class='bx bx-user'></i>
+        <span class="links-name">Profil</span>
+      </a>
+      <span class="tooltip">Profil</span>
+    </li>
+  </ul>
+
+</div>
+
+<div class="main-content">
+  <header>
+    <div class="title">
+      <h1>Profil</h1>
+    </div>
+
+    <div class="user">
+      <i class='bx bx-log-out'>
+        <span class="tooltip">log-out</span>
+      </i>
+
+      <div class="bg-img"></div>
+      <div class="nom">DJIOJIP Rowane</div>
+    </div>
+
+  </header>
+
+  <main>
+    <div class="infos">
+      <img src="img/5816231.jpg" alt="user">
+      <span class="name">
+        DJIOJIP OUANKAP Claude Rowane
+      </span>
+    </div>
+    <div class="info-data">
+      <div class="box">
+        <h4 class="cles">Adresse courriel</h4>
+        <span class="valeurs"> ouankaprowane@gmail.com</span>
+      </div>
+      <div class="box">
+        <h4 class="cles">ville</h4>
+        <span class="valeurs"> Douala</span>
+      </div>
+      <div class="box">
+        <h4 class="cles">Protection des donnees et politiques</h4>
+        <span class="valeurs"><a href="#">Politiques de confidentialites et contraintes d'utilisation</a></span>
+      </div>
+    </div>
+    <button type="submit" class="mod">Modifier le profil</button>
+  </main>
+</div>
+
+
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script>
+  let btn = document.querySelector('#btn');
+  let sidebar =document.querySelector('.sidebar');
+  let listItem = document.querySelectorAll('.list-item');
+  let main =document.querySelector('.main-content');
+
+  btn.onclick = function ()
+  {
+    sidebar.classList.toggle('active');
+    main.classList.toggle('active');
+  }
+
+  function activeLink(){
+    listItem.forEach(item =>
+            item.classList.remove('active'));
+    this.classList.add('active');
+
+  }
+  listItem.forEach(item =>
+          item.onclick = activeLink);
+
+</script>
+
+</body>
+</html>
