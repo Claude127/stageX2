@@ -311,11 +311,21 @@ margin-left: 15px;
 }
 
 main .mod{
+    text-decoration: none;
     background: rgb(80, 199, 241);
     border-radius: 20px;
     height: 30px;
-    width: 130px;
+    width: 150px;
     border-color: #D9EAF0;
+    color: black;
     position: relative;
     left: 550px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 5px 5px 5px rgb(0, 0, 0, .1);
+}
+
+main .mod:hover{
+    opacity: 0.8;
 }
