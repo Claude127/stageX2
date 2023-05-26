@@ -284,12 +284,43 @@ main{
     width: calc(100% - 80px);
 }
 
-.infos{
+.edit-img{
+
     display:flex;
     align-items: center;
 }
 
-.infos img{
+.box .edit-img input{
+    display: none;
+}
+
+.box .edit-img label{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-sizing: border-box;
+    font-size: 20px;
+    background: rgb(80, 199, 241);
+    color: black;
+    border: 1px solid rgb(115, 210, 244);
+    box-shadow: 2px 3px 2px rgb(0, 0, 0, .2);
+    border-radius: 10px;
+    padding: 2px 15px ;
+    transition: all 0.3s;
+    margin-left:50px ;
+
+}
+
+.box .edit-img label:hover{
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.edit-form{
+   margin-top: 40px;
+}
+
+.edit-img img{
     height: 175px;
     width: 175px;
     background-size: cover;
@@ -299,47 +330,117 @@ main{
     box-shadow: 5px 5px 5px rgb(0, 0, 0, .1);
 }
 
-.infos .name{
-    margin: 50px;
-    font-weight: 700;
-    font-size: 1.5rem;
+.form-control{
+    display: block;
+    box-sizing: border-box;
+    background: none;
+    outline: none;
+    color: #3b3535;
+    margin-bottom: 30px;
+    padding: 4px;
+    width: 300px;
+    height: 32px;
+    border: none;
+    border-bottom: 1px solid #0082e6;
+    font-weight: 400;
+    font-size: 15px;
+    transition: 0.2s ease;
 }
 
-.info-data{
-    margin-top: 25px;
-    min-height: 90%;
-    padding: 1rem;
+.form-control:focus{
+    border-bottom: 2px solid #3498db;
+    border-bottom-right-radius: 20px;
+    color: #3b3535;
+    transition: 0.2s ease;
 }
 
-.info-data .box{
-    margin-top: 20px;
+.form-label{
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: #151414;
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: 1px;
 }
 
-.info-data .box .cles{
-    font-size: 1.3rem;
+.wrapper{
+    display: flex;
+    padding-top:10px;
 }
 
-.info-data .box .valeurs{
-margin-left: 15px;
+.collapsible{
+    max-width: 450px;
+    overflow: hidden;
+    font-weight: 500;
+    margin-bottom: 15px;
 }
 
-main .mod{
-    text-decoration: none;
+.collapsible .check{
+    display: none;
+}
+
+.collapsible .maj{
+    position: relative;
+    font-weight: 600;
+    background: transparent;
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .1), 0 4px 11px 0 rgba(0, 0, 0, .08);
+    color: black;
+    display: block;
+    margin-bottom: 10px;
+    cursor:pointer;
+    padding: 15px;
+    border-radius: 4px;
+    z-index: 1;
+
+}
+
+.collapsible .maj:after{
+    content: "";
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 18px;
+    height: 18px;
+    background: url("img/chevron-right-regular-24.png") no-repeat 0 0;
+    transition: all 0.3s ease;
+}
+
+.collapsible .check:checked + label:after{
+    transform: rotate(90deg);
+}
+
+.collapisble-text{
+    max-height: 1px;
+    overflow: hidden;
+    border-radius: 4px;
+    line-height: 1.4;
+    position: relative;
+    top: -100%;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.collapsible input:checked ~ .collapisble-text{
+    max-height: 300px;
+    padding-bottom: 25px;
+    background: transparent;
+    opacity: 1;
+    top: 0;
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .1), 0 4px 11px 0 rgba(0, 0, 0, .08);
+}
+
+.edit-form .btn-valid{
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.edit-form .btn-valid .btn{
     background: rgb(80, 199, 241);
     border-radius: 20px;
     height: 30px;
-    width: 150px;
-    border: 2px solid rgb(115, 210, 244);
-    color: black;
-    position: relative;
-    left: 550px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 2px 3px 2px rgb(0, 0, 0, .2);
-}
-
-main .mod:hover{
-    opacity: 0.8;
-    letter-spacing: 1px;
+    width: 130px;
+    border-color: #b4b4b4;
 }
