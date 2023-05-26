@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-    <title>view-file</title>
+    <title>modifier un fichier</title>
     <!--  liens CSS-->
-    <link rel="stylesheet" href="view-file.css">
+    <link rel="stylesheet" href="file-mod.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!--  fonts -->
@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
@@ -35,8 +36,8 @@
             </a>
             <span class="tooltip">Fichiers</span>
         </li>
-        <li class="list-item" >
-            <a href="#">
+        <li class="list-item " >
+            <a href="profil.html">
                 <i class='bx bx-user'></i>
                 <span class="links-name">Profil</span>
             </a>
@@ -49,7 +50,7 @@
 <div class="main-content">
     <header>
         <div class="title">
-            <h1>Contenu du fichier</h1>
+            <h1>Modifier un fichier</h1>
         </div>
 
         <div class="user">
@@ -65,12 +66,36 @@
         </div>
 
     </header>
+
     <main>
+        <div class="box">
+            <div class="edit-form">
 
+                <div class="mb-3">
+                    <label for="name" class="form-label">nom :</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Entrez le nom du fichier" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="category" class="form-label">Categorie :</label>
+                    <input type="text" class="form-control" id="category" name="category" placeholder="Entrez la categorie " required>
+                </div>
+
+
+                <div class="mb-3e">
+                    <a href="#">Acceder au fichier</a>
+                </div>
+            </div>
+
+            <div class="btn-valid">
+                <a href="fichiers.html" class="btn">Ajouter</a>
+                <a href="fichiers.html" class="btn" id="annuler">Annuler</a>
+            </div>
+        </div>
     </main>
-
-
 </div>
+
+
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script>
