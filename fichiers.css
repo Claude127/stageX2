@@ -329,9 +329,10 @@ main .page-header{
 .files-grid{
     display: grid;
     grid-template-columns: 75% 25%;
-    grid-column-gap: 3rem;
+    grid-column-gap: 4.3rem;
+    width: 100%;
 }
-.files-card, .filter-grid{
+.files-card, .filter{
     background: rgba(119, 151, 152, 0.58);
     border-radius: 7px;
 }
@@ -343,14 +344,30 @@ main .page-header{
 
 }
 
+.files-card .utils a{
+    text-decoration: none;
+    color: black;
+}
+
+.files-card .utils a:hover{
+    opacity: 0.8;
+    letter-spacing: 1px;
+}
+
 .files-card .utils .ajout{
 
     background: rgba(156, 162, 162, 0.6);
     border-radius: 20px;
     height: 30px;
-    width: 130px;
+    width: 160px;
     border-color: #D9EAF0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-left: 10px;
+    box-shadow: 2px 3px 2px rgb(0, 0, 0, .2);
 }
+
 
 .files-card table{
     width: 100%;
@@ -389,10 +406,10 @@ tbody tr:nth-child(even){
 }
 
 .action1, .action2, .action3 {
-    margin-right: 8px;
     font-size: 1.2rem;
     display: flex;
     align-items: center;
+    justify-content: space-around;
 }
 
 .actions .iv{
@@ -406,28 +423,28 @@ tbody tr:nth-child(even){
     background: rgba(0, 0, 0, .1);
 }
 
-.filter-grid{
+.filter{
 
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
-.filter-grid .items {
+.filter .items {
     border-bottom: 1px solid black;
     padding: 5px;
 }
 
-.filter-grid .word{
+.filter .word{
     font-size: 1.2rem;
     font-weight: 700;
 
 }
 
 
-.filter-grid ul{
+.filter ul{
     margin-top: 5px;
 }
 
-.filter-grid ul li{
+.filter ul li{
     position:relative;
     width: 100%;
     height: 50px;
@@ -436,7 +453,7 @@ tbody tr:nth-child(even){
     line-height: 50px;
 }
 
-.filter-grid ul li a {
+.filter ul li a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -447,11 +464,11 @@ tbody tr:nth-child(even){
 
 }
 
-.filter-grid ul li:nth-child(even){
+.filter ul li:nth-child(even){
     background: rgba(134, 170, 178, 0.49);
 }
 
-.filter-grid li a:hover{
+.filter li a:hover{
     background: rgba(0, 0, 0, .1);
 
 }

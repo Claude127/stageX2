@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>view-file</title>
+    <!--  liens CSS-->
+    <link rel="stylesheet" href="view-file.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!--  fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="sidebar ">
+    <div class="logo-container">
+        <div class="logo">
+            <ion-icon name="eye" class="i"></ion-icon>
+            <h3>Lab2View</h3>
+        </div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+
+    <ul class="list">
+        <li class="list-item active " >
+            <a href="fichiers.html">
+                <ion-icon name="file-tray-stacked-outline" class="in"></ion-icon>
+                <span class="links-name" id="fich">Fichiers</span>
+            </a>
+            <span class="tooltip">Fichiers</span>
+        </li>
+        <li class="list-item" >
+            <a href="#">
+                <i class='bx bx-user'></i>
+                <span class="links-name">Profil</span>
+            </a>
+            <span class="tooltip">Profil</span>
+        </li>
+    </ul>
+
+</div>
+
+<div class="main-content">
+    <header>
+        <div class="title">
+            <h1>Contenu du fichier</h1>
+        </div>
+
+        <div class="user">
+            <a href="connexion.html">
+                <i class='bx bx-log-out'>
+                    <span class="tooltip">log-out</span>
+                </i>
+
+            </a>
+
+            <div class="bg-img"></div>
+            <div class="nom">DJIOJIP Rowane</div>
+        </div>
+
+    </header>
+    <main>
+<div class="file">
+    <div class="data">
+        <h4 class="cles">Nom du fichier</h4>
+        <span class="valeurs"> Proces verbal N367</span>
+    </div>
+    <div class="data">
+        <h4 class="cles" >category</h4>
+        <span class="valeurs" id="category"> juridique</span>
+    </div>
+    <div class="data">
+        <h4 class="cles" >Contenu</h4>
+        <p class="valeurs">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto assumenda aut blanditiis, corporis debitis dolores earum expedita facere iste nulla saepe totam unde vel? Dolores eaque id pariatur porro sint? Accusantium corporis cumque delectus dignissimos doloremque, et eveniet exercitationem illo illum impedit ipsum iure labore libero magni modi molestias mollitia natus nesciunt odio perspiciatis quas quos reiciendis repellat, soluta, vero! Aut commodi dolore est expedita fugiat quae temporibus vel. A, alias assumenda at corporis cumque doloribus eveniet excepturi ipsum labore, provident quo tempora, vel? Distinctio facere non perferendis quo vero.
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur delectus deserunt distinctio dolor, doloremque dolores eius error in labore, maxime minima officiis perspiciatis quam recusandae reprehenderit repudiandae sed sint voluptatibus.</span><span>Ab commodi dolor dolores, dolorum eligendi fugiat fugit illum in ipsum laboriosam laudantium modi nam necessitatibus, neque nihil officiis pariatur quod repudiandae sint, unde. Cumque dolorum odit quod reiciendis sit.</span><span>Ab aspernatur consectetur consequatur cupiditate deleniti dicta distinctio dolor dolorem doloribus ducimus esse ex, in ipsum itaque minus nihil nisi officia optio qui repudiandae saepe sapiente sit vel voluptas voluptatum?</span><span>Architecto asperiores culpa cumque distinctio ea eaque esse, eveniet hic itaque laboriosam libero, maxime nihil non officiis optio quam quasi quod, tempore tenetur vero? Aperiam delectus distinctio eius ipsa ipsam.</span><span>Ad in nisi numquam odit voluptates? Cum, cupiditate delectus, distinctio dolorem impedit modi neque nisi possimus praesentium quaerat, ratione sunt? Esse eveniet iusto nam quis repellendus reprehenderit soluta voluptas voluptatem.</span>
+        </p>
+    </div>
+    <a href="fichiers.html">Annuler</a>
+</div>
+    </main>
+</div>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script>
+    let btn = document.querySelector('#btn');
+    let sidebar =document.querySelector('.sidebar');
+    let listItem = document.querySelectorAll('.list-item');
+    let main =document.querySelector('.main-content');
+
+    btn.onclick = function ()
+    {
+        sidebar.classList.toggle('active');
+        main.classList.toggle('active');
+    }
+
+    function activeLink(){
+        listItem.forEach(item =>
+            item.classList.remove('active'));
+        this.classList.add('active');
+
+    }
+    listItem.forEach(item =>
+        item.onclick = activeLink);
+
+</script>
+</body>
+</html>
