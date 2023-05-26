@@ -81,7 +81,7 @@ section .img-container h3
      height:135px;
      position: relative;
      left: 340px;
-     bottom: 75px;
+     bottom: 95px;
      margin: 10px;
  }
 
@@ -181,7 +181,7 @@ i
     position: fixed;
     color: #949495;
     cursor: pointer;
-    top:385px;
+    top:410px;
     right: 200px;
 }
 
