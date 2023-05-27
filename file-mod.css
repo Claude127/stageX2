@@ -353,6 +353,13 @@ main{
     width: 160px;
 }
 
+.mb-3e a:hover{
+    letter-spacing: 1px;
+    width: 165px;
+    opacity: 0.8;
+}
+
+
 .box .btn-valid a{
     text-decoration: none;
     color: black;
