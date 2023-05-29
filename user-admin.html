@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <title>liste-utilisateurs</title>
+  <!--  liens CSS-->
+  <link rel="stylesheet" href="user-admin.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!--  fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="sidebar ">
+  <div class="logo-container">
+    <div class="logo">
+      <ion-icon name="eye" class="i"></ion-icon>
+      <h3>Lab2View</h3>
+    </div>
+    <i class='bx bx-menu' id="btn" ></i>
+  </div>
+
+  <ul class="list">
+
+
+    <li class="list-item" id="dash" >
+      <a href="#">
+        <i class='bx bxs-dashboard'></i>
+        <span class="links-name"  >Tableau de bord</span>
+      </a>
+      <span class="tooltip" >Tableau de bord</span>
+    </li>
+
+    <li class="list-item" >
+      <a href=fichiers.html>
+        <ion-icon name="file-tray-stacked-outline" class="in"></ion-icon>
+        <span class="links-name" id="fich">Fichiers</span>
+      </a>
+      <span class="tooltip">Fichiers</span>
+    </li>
+
+    <li class="list-item active" id="list-users" >
+      <a href="user-admin.html">
+        <i class='bx bxs-user-detail'></i>
+        <span class="links-name" >Liste-Utilisateurs</span>
+      </a>
+      <span class="tooltip">Liste-Utilisateurs</span>
+    </li>
+
+    <li class="list-item" >
+      <a href="profil.html">
+        <i class='bx bx-user'></i>
+        <span class="links-name">Profil</span>
+      </a>
+      <span class="tooltip">Profil</span>
+    </li>
+  </ul>
+</div>
+
+<div class="main-content">
+  <header>
+    <div class="title">
+      <h1>liste-Utilisateurs</h1>
+    </div>
+
+    <div class="user">
+      <a href="connexion.html">
+        <i class='bx bx-log-out'>
+          <span class="tooltip">log-out</span>
+        </i>
+
+      </a>
+
+      <div class="bg-img"></div>
+      <div class="nom">DJIOJIP Rowane</div>
+    </div>
+
+  </header>
+
+  <main>
+
+    <div class="page-header">
+
+      <h2>Welcome</h2>
+
+      <div class="search">
+        <i class='bx bx-search'></i>
+        <input type="text" placeholder="Search...">
+      </div>
+    </div>
+
+    <section class="files-content">
+      <div class="files-grid">
+        <div class="files-card">
+          <div class="utils">
+            <h3>Liste-Utilisateurs</h3>
+            <a  href="add-user.html" class="ajout">Ajouter un utilisateur </a>
+          </div>
+          <table>
+            <thead>
+            <tr>
+              <th>Nom</th>
+              <th>role</th>
+              <th>Accès-modification</th>
+              <th>Accès-telechargement</th>
+              <th>Placer-administrateur</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td> Rayan Ghomsi</td>
+              <td ><span class="category-user">utilisateur</span></td>
+              <td class="acces-m">
+                <div class="action1"><a href="#"><ion-icon name="checkmark-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="close-outline" class="iv"></ion-icon></a></div>
+              </td>
+              <td class="acces-m">
+                <div class="action1"><a href="#"><ion-icon name="checkmark-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="close-outline" class="iv"></ion-icon></a></div>
+              </td>
+              <td class="acces-m">
+                <div class="action1"><a href="#"><ion-icon name="checkmark-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="close-outline" class="iv"></ion-icon></a></div>
+              </td>
+            </tr>
+            <tr>
+              <td> claude Djiojip</td>
+              <td ><span class="category-user">admin</span></td>
+              <td class="acces-m">
+                <div class="action1"><a href="#"><ion-icon name="checkmark-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="close-outline" class="iv"></ion-icon></a></div>
+              </td>
+              <td class="acces-m">
+                <div class="action1"><a href="#"><ion-icon name="checkmark-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="close-outline" class="iv"></ion-icon></a></div>
+              </td>
+              <td class="acces-m">
+                <div class="action1"><a href="#"><ion-icon name="checkmark-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="close-outline" class="iv"></ion-icon></a></div>
+              </td>
+            </tr>
+            <tr>
+              <td> Patricia Manoie</td>
+              <td ><span class="category-user">salarié</span></td>
+              <td class="acces-m">
+                <div class="action1"><a href="#"><ion-icon name="checkmark-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="close-outline" class="iv"></ion-icon></a></div>
+              </td>
+              <td class="acces-m">
+                <div class="action1"><a href="#"><ion-icon name="checkmark-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="close-outline" class="iv"></ion-icon></a></div>
+              </td>
+              <td class="acces-m">
+                <div class="action1"><a href="#"><ion-icon name="checkmark-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="close-outline" class="iv"></ion-icon></a></div>
+              </td>
+            </tr>
+            <tr>
+              <td> Farel James</td>
+              <td ><span class="category-user">utilisateur</span></td>
+              <td class="acces-m">
+                <div class="action1"><a href="#"><ion-icon name="checkmark-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="close-outline" class="iv"></ion-icon></a></div>
+              </td>
+              <td class="acces-m">
+                <div class="action1"><a href="#"><ion-icon name="checkmark-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="close-outline" class="iv"></ion-icon></a></div>
+              </td>
+              <td class="acces-m">
+                <div class="action1"><a href="#"><ion-icon name="checkmark-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="close-outline" class="iv"></ion-icon></a></div>
+              </td>
+            </tr>
+            <tr>
+              <td> Charles Desmond</td>
+              <td ><span class="category-user">salarié</span></td>
+              <td class="acces-m">
+                <div class="action1"><a href="#"><ion-icon name="checkmark-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="close-outline" class="iv"></ion-icon></a></div>
+              </td>
+              <td class="acces-m">
+                <div class="action1"><a href="#"><ion-icon name="checkmark-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="close-outline" class="iv"></ion-icon></a></div>
+              </td>
+              <td class="acces-m">
+                <div class="action1"><a href="#"><ion-icon name="checkmark-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="close-outline" class="iv"></ion-icon></a></div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="filter">
+          <div class="items">
+            <i class='bx bx-filter-alt' ></i>
+            <span class="word">Trier par : </span>
+          </div>
+          <ul class="filter-list">
+            <li class="list-filter"><a href="#">admin</a></li>
+            <li class="list-filter"><a href="#">utilisateur</a></li>
+            <li class="list-filter"><a href="#">salarié</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script>
+  let btn = document.querySelector('#btn');
+  let sidebar =document.querySelector('.sidebar');
+  let listItem = document.querySelectorAll('.list-item');
+  let main =document.querySelector('.main-content');
+
+  btn.onclick = function ()
+  {
+    sidebar.classList.toggle('active');
+    main.classList.toggle('active');
+  }
+
+  function activeLink(){
+    listItem.forEach(item =>
+            item.classList.remove('active'));
+    this.classList.add('active');
+
+  }
+  listItem.forEach(item =>
+          item.onclick = activeLink);
+
+</script>
+
+</body>
+</html>

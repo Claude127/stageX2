@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <!--  liens CSS-->
+  <link rel="stylesheet" href="add-user.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!--  fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+
+  <title>ajouter-utilisateur</title>
+</head>
+<body>
+<div class="sidebar ">
+  <div class="logo-container">
+    <div class="logo">
+      <ion-icon name="eye" class="i"></ion-icon>
+      <h3>Lab2View</h3>
+    </div>
+    <i class='bx bx-menu' id="btn" ></i>
+  </div>
+
+  <ul class="list">
+
+
+    <li class="list-item" id="dash" >
+      <a href="#">
+        <i class='bx bxs-dashboard'></i>
+        <span class="links-name"  >Tableau de bord</span>
+      </a>
+      <span class="tooltip" >Tableau de bord</span>
+    </li>
+
+    <li class="list-item" >
+      <a href=fichiers.html>
+        <ion-icon name="file-tray-stacked-outline" class="in"></ion-icon>
+        <span class="links-name" id="fich">Fichiers</span>
+      </a>
+      <span class="tooltip">Fichiers</span>
+    </li>
+
+    <li class="list-item active" id="list-users" >
+      <a href="user-admin.html">
+        <i class='bx bxs-user-detail'></i>
+        <span class="links-name" >Liste-Utilisateurs</span>
+      </a>
+      <span class="tooltip">Liste-Utilisateurs</span>
+    </li>
+
+    <li class="list-item" >
+      <a href="profil.html">
+        <i class='bx bx-user'></i>
+        <span class="links-name">Profil</span>
+      </a>
+      <span class="tooltip">Profil</span>
+    </li>
+  </ul>
+</div>
+
+<div class="main-content">
+  <header>
+    <div class="title">
+      <h1>Ajouter un utilisateur</h1>
+    </div>
+
+    <div class="user">
+      <a href="connexion.html">
+        <i class='bx bx-log-out'>
+          <span class="tooltip">log-out</span>
+        </i>
+
+      </a>
+
+      <div class="bg-img"></div>
+      <div class="nom">DJIOJIP Rowane</div>
+    </div>
+
+  </header>
+  <main>
+    <div class="box">
+      <div class="edit-form">
+
+        <div class="mb-3">
+          <label for="name" class="form-label">nom :</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Entrez le nom de l'utilisateur" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="surname" class="form-label">prenom :</label>
+          <input type="text" class="form-control" id="surname" name="surname" placeholder="Entrez le prenom de l'utilisateur " required>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">adresse courriel :</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Entrez l'email de l'utilisateur " required>
+        </div>
+
+        <div class="mb-3">
+          <label for="ville" class="form-label">ville :</label>
+          <input type="text" class="form-control" id="ville" name="ville" placeholder="Entrez la ville ">
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">mot de passe :</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Entrez le mot de passe " required>
+        </div>
+
+        <div class="mb-3">
+          <label for="confirm-pass" class="form-label">confirmer le mot de passe :</label>
+          <input type="password" class="form-control" id="confirm-pass" name="confirm-pass" placeholder="" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="role" class="form-label">role :</label>
+          <input type="text" class="form-control" id="role" name="role" placeholder="Entrez le role de l'utilisateur " required>
+        </div>
+
+      <div class="btn-valid">
+        <a href="fichiers.html" class="btn" id="annuler">Annuler</a>
+        <a href="fichiers.html" class="btn">Ajouter</a>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script>
+  let btn = document.querySelector('#btn');
+  let sidebar =document.querySelector('.sidebar');
+  let listItem = document.querySelectorAll('.list-item');
+  let main =document.querySelector('.main-content');
+
+  btn.onclick = function ()
+  {
+    sidebar.classList.toggle('active');
+    main.classList.toggle('active');
+  }
+
+  function activeLink(){
+    listItem.forEach(item =>
+            item.classList.remove('active'));
+    this.classList.add('active');
+
+  }
+  listItem.forEach(item =>
+          item.onclick = activeLink);
+
+</script>
+
+</body>
+</html>

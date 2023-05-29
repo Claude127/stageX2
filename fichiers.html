@@ -18,33 +18,52 @@
 </head>
 <body>
 
-  <div class="sidebar ">
-    <div class="logo-container">
-      <div class="logo">
-        <ion-icon name="eye" class="i"></ion-icon>
-        <h3>Lab2View</h3>
-      </div>
-      <i class='bx bx-menu' id="btn" ></i>
+
+<div class="sidebar ">
+  <div class="logo-container">
+    <div class="logo">
+      <ion-icon name="eye" class="i"></ion-icon>
+      <h3>Lab2View</h3>
     </div>
-
-    <ul class="list">
-      <li class="list-item active" >
-        <a href="#">
-          <ion-icon name="file-tray-stacked-outline" class="in"></ion-icon>
-          <span class="links-name" id="fich">Fichiers</span>
-        </a>
-        <span class="tooltip">Fichiers</span>
-      </li>
-      <li class="list-item" >
-        <a href="profil.html">
-          <i class='bx bx-user'></i>
-          <span class="links-name">Profil</span>
-        </a>
-        <span class="tooltip">Profil</span>
-      </li>
-    </ul>
-
+    <i class='bx bx-menu' id="btn" ></i>
   </div>
+
+  <ul class="list">
+
+
+    <li class="list-item" id="dash" >
+      <a href="#">
+        <i class='bx bxs-dashboard'></i>
+        <span class="links-name"  >Tableau de bord</span>
+      </a>
+      <span class="tooltip" >Tableau de bord</span>
+    </li>
+
+    <li class="list-item active" >
+      <a href=fichiers.html>
+        <ion-icon name="file-tray-stacked-outline" class="in"></ion-icon>
+        <span class="links-name" id="fich">Fichiers</span>
+      </a>
+      <span class="tooltip">Fichiers</span>
+    </li>
+
+    <li class="list-item" id="list-users" >
+      <a href="user-admin.html">
+        <i class='bx bxs-user-detail'></i>
+        <span class="links-name" >Liste-Utilisateurs</span>
+      </a>
+      <span class="tooltip">Liste-Utilisateurs</span>
+    </li>
+
+    <li class="list-item" >
+      <a href="profil.html">
+        <i class='bx bx-user'></i>
+        <span class="links-name">Profil</span>
+      </a>
+      <span class="tooltip">Profil</span>
+    </li>
+  </ul>
+</div>
 
   <div class="main-content">
     <header>
@@ -104,6 +123,8 @@
                 <div class="action1"><a href="view-file.html"><ion-icon name="eye-outline" class="iv"></ion-icon></a></div>
                 <div class="action2"><a href="#"><ion-icon name="download-outline" class="iv"></ion-icon></a></div>
                 <div class="action3"><a href="file-mod.html"><ion-icon name="create-outline" class="iv"></ion-icon></a></div>
+                <div class="action4"><a href="#"><ion-icon name="trash-outline"class="iv" ></ion-icon></a></div>
+
                 </td>
               </tr>
               <tr>
@@ -113,6 +134,7 @@
                   <div class="action1"><a href="view-file.html"><ion-icon name="eye-outline" class="iv"></ion-icon></a></div>
                   <div class="action2"><a href="#"><ion-icon name="download-outline" class="iv"></ion-icon></a></div>
                   <div class="action3"><a href="#"><ion-icon name="create-outline" class="iv"></ion-icon></a></div>
+                  <div class="action4"><a href="#"><ion-icon name="trash-outline"class="iv" ></ion-icon></a></div>
                 </td>
               </tr>
               <tr>
@@ -122,6 +144,7 @@
                   <div class="action1"><a href="view-file.html"><ion-icon name="eye-outline" class="iv"></ion-icon></a></div>
                   <div class="action2"><a href="#"><ion-icon name="download-outline" class="iv"></ion-icon></a></div>
                   <div class="action3"><a href="#"><ion-icon name="create-outline" class="iv"></ion-icon></a></div>
+                  <div class="action4"><a href="#"><ion-icon name="trash-outline"class="iv" ></ion-icon></a></div>
                 </td>
               </tr>
               <tr>
@@ -131,6 +154,7 @@
                   <div class="action1"><a href="view-file.html"><ion-icon name="eye-outline" class="iv"></ion-icon></a></div>
                   <div class="action2"><a href="#"><ion-icon name="download-outline" class="iv"></ion-icon></a></div>
                   <div class="action3"><a href="#"><ion-icon name="create-outline" class="iv"></ion-icon></a></div>
+                  <div class="action4"><a href="#"><ion-icon name="trash-outline"class="iv" ></ion-icon></a></div>
                 </td>
               </tr>
               <tr>
@@ -140,6 +164,7 @@
                   <div class="action1"><a href="view-file.html"><ion-icon name="eye-outline" class="iv"></ion-icon></a></div>
                   <div class="action2"><a href="#"><ion-icon name="download-outline" class="iv"></ion-icon></a></div>
                   <div class="action3"><a href="#"><ion-icon name="create-outline" class="iv"></ion-icon></a></div>
+                  <div class="action4"><a href="#"><ion-icon name="trash-outline"class="iv" ></ion-icon></a></div>
                 </td>
               </tr>
               </tbody>
