@@ -212,7 +212,9 @@ body{
 
 .main-content{
     position: absolute;
-    width: calc(100% - 80px);
+    max-width: calc(100% - 80px);
+    min-width: calc(100% - 80px);
+    overflow-x:hidden ;
     margin-left: 80px;
     min-height: 100vh;
     transition: .5s;
@@ -327,16 +329,19 @@ main{
     min-height: 90%;
     padding: 1rem;
 
-
 }
 
 
 main .page-header{
     display:flex;
-    align-items: center;
-    justify-content: space-between;
+    /*align-items: center;*/
+    /*justify-content: space-between;*/
+    width:100%;
 }
 
+.page-header .title{
+    margin-right: auto;
+}
 .page-header .search{
     position: relative;
     left:120px;
@@ -347,7 +352,7 @@ main .page-header{
     top: 0;
     left: 0;
     width: 50%;
-    height: 50%;
+    height: 70%;
     background: rgba(180, 180, 180, 0.59);
     border-radius: 6px;
     border: none;
@@ -371,6 +376,7 @@ main .page-header{
     margin-bottom: 3rem;
     width: calc(100% - 80px);
 }
+
 
 .files-grid{
     display: grid;
