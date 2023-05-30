@@ -7,7 +7,7 @@
 }
 body{
     min-height: 100vh;
-    background-color: #D9EAF0;
+    background-color: white;
     min-width: 100%;
 }
 
@@ -17,7 +17,7 @@ body{
     left: 0;
     width: 80px;
     height: 100%;
-    background: rgba(175, 181, 187, 0.4);
+    background: #E3F4FE;
     backdrop-filter: blur(5px);
     border-right: 2px solid rgba(255, 255, 255, .07);
     padding: 6px 14px;
@@ -53,6 +53,7 @@ body{
 .logo-container .logo .i{
     font-size: 28px;
     margin-right: 5px;
+    color: #494848;
 }
 
 .sidebar #btn{
@@ -88,7 +89,7 @@ body{
 .sidebar ul li a {
     display: flex;
     align-items: center;
-    color: black;
+    color: #494848;
     text-decoration: none;
     border-radius: 6px;
     white-space: nowrap;
@@ -97,12 +98,14 @@ body{
 }
 
 .sidebar ul li a:hover{
-    background: rgba(0, 0, 0, .1);
+    background: #C6E9FC;
+    color:#34bbf8 ;
 
 }
 
 .sidebar ul .list-item.active a{
-    background: #949495;
+    background: #C6E9FC;
+    color: #34bbf8;
 }
 
 .sidebar ul li i{
@@ -377,16 +380,16 @@ main .page-header{
     width: calc(100% - 80px);
 }
 
-
 .files-grid{
     display: grid;
     grid-template-columns: 75% 25%;
-    grid-column-gap:4.3rem;
+    grid-column-gap: 4.3rem;
     width: 100%;
 }
 .files-card, .filter{
-    background: rgba(119, 151, 152, 0.58);
+    background: white;
     border-radius: 7px;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.5);
 }
 .files-card .utils{
     margin: 1rem;
@@ -399,20 +402,20 @@ main .page-header{
 .files-card .utils a{
     text-decoration: none;
     color: black;
+    font-weight: 700;
 }
 
 .files-card .utils a:hover{
     opacity: 0.8;
     letter-spacing: 1px;
-    width: 185px;
 }
 
 .files-card .utils .ajout{
 
-    background: rgba(156, 162, 162, 0.6);
+    background: #6FCBFF;
     border-radius: 20px;
     height: 30px;
-    width: 175px;
+    width: 185px;
     border-color: #D9EAF0;
     display: flex;
     align-items: center;
@@ -428,7 +431,7 @@ main .page-header{
 }
 
 .files-card thead{
-    background: rgba(122, 167, 178, 0.82);
+    background: #E3F4FE;
     text-align: left;
 }
 th,td{
@@ -442,8 +445,13 @@ td{
 }
 
 tbody tr:nth-child(even){
-    background: rgba(134, 170, 178, 0.49);
+    background: #E3F4FE;
 }
+
+.nom{
+    font-weight: 700;
+}
+
 
 .category-user{
     padding: .2rem 1rem;
@@ -527,10 +535,11 @@ tbody tr:nth-child(even){
 }
 
 .filter ul li:nth-child(even){
-    background: rgba(134, 170, 178, 0.49);
+    background: #E3F4FE;
 }
 
 .filter li a:hover {
-    background: rgba(0, 0, 0, .1);
+    background: #C6E9FC;
+    color: #34bbf8;
 
 }

@@ -7,7 +7,7 @@
 }
 body{
     min-height: 100vh;
-    background-color: #D9EAF0;
+    background-color: white;
     min-width: 100%;
 }
 
@@ -17,7 +17,7 @@ body{
     left: 0;
     width: 80px;
     height: 100%;
-    background: rgba(175, 181, 187, 0.4);
+    background: #E3F4FE;
     backdrop-filter: blur(5px);
     border-right: 2px solid rgba(255, 255, 255, .07);
     padding: 6px 14px;
@@ -53,6 +53,7 @@ body{
 .logo-container .logo .i{
     font-size: 28px;
     margin-right: 5px;
+    color: #494848;
 }
 
 .sidebar #btn{
@@ -88,7 +89,7 @@ body{
 .sidebar ul li a {
     display: flex;
     align-items: center;
-    color: black;
+    color: #494848;
     text-decoration: none;
     border-radius: 6px;
     white-space: nowrap;
@@ -97,12 +98,14 @@ body{
 }
 
 .sidebar ul li a:hover{
-    background: rgba(0, 0, 0, .1);
+    background: #C6E9FC;
+    color:#34bbf8 ;
 
 }
 
 .sidebar ul .list-item.active a{
-    background: #949495;
+    background: #C6E9FC;
+    color: #34bbf8;
 }
 
 .sidebar ul li i{
@@ -210,10 +213,11 @@ body{
     display: none;
 }
 
-
 .main-content{
     position: absolute;
-    width: calc(100% - 80px);
+    max-width: calc(100% - 80px);
+    min-width: calc(100% - 80px);
+    overflow-x:hidden ;
     margin-left: 80px;
     min-height: 100vh;
     transition: .5s;
@@ -322,7 +326,6 @@ header{
     top: 90%;
     opacity: 1;
 }
-
 
 main{
     margin-top: 70px;
