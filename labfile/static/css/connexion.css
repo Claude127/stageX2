@@ -82,7 +82,7 @@ section .glass .form .logo img
     height:135px;
     position: relative;
     left: 320px;
-    bottom: 55px;
+    bottom: 75px;
     margin: 10px;
 }
 
@@ -182,7 +182,7 @@ i
     position: fixed;
     color: #949495;
     cursor: pointer;
-    top:370px;
+    top:385px;
     right: 200px;
 }
 

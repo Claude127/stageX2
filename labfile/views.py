@@ -33,3 +33,11 @@ def file_mod(request):
 
 def login(request):
     return render(request, 'login.html')
+
+
+def add_user(request):
+    return render(request, 'add_user.html')
+
+
+def profile_mod(request):
+    return render(request, 'profile_mod.html')

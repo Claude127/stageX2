@@ -277,14 +277,14 @@ header{
     width: 38px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("img/5816231.jpg");
+    background-image: url("/static/img/5816231.jpg");
     border-radius: 50%;
 
 }
 
-.user .nom{
-    background: rgba(180, 180, 180, 0.59);
-    color: white;
+.user .nom-u{
+     background: #E3F4FE;
+    color: black;
     border-radius: 30px;
     font-size: 1em;
     width: 150px;
@@ -375,7 +375,7 @@ main{
     width: 175px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("img/5816231.jpg");
+    background-image: url("/static/img/5816231.jpg");
     border-radius: 30px;
     box-shadow: 5px 5px 5px rgb(0, 0, 0, .1);
 }
@@ -452,7 +452,7 @@ main{
     top: 15px;
     width: 18px;
     height: 18px;
-    background: url("img/chevron-right-regular-24.png") no-repeat 0 0;
+    background: url("/static/img/chevron-right-regular-24.png") no-repeat 0 0;
     transition: all 0.3s ease;
 }
 

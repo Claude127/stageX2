@@ -277,14 +277,15 @@ header{
     width: 38px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("img/5816231.jpg");
+    background-image: url("/static/img/5816231.jpg");
     border-radius: 50%;
 
 }
 
 .user .nom{
-    background: rgba(180, 180, 180, 0.59);
-    color: white;
+
+    background: #E3F4FE;
+    color: black;
     border-radius: 30px;
     font-size: 1em;
     width: 150px;

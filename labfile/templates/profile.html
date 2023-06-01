@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block title %}Fichiers{% endblock %}
+{% block title %}profil{% endblock %}
 {% load static %}
 {% block link %}  <link rel="stylesheet" type="text/css" href="{% static 'css/profil.css' %}">{% endblock %}
 
@@ -26,7 +26,7 @@
       <span class="tooltip" >Tableau de bord</span>
     </li>
 
-    <li class="list-item active" >
+    <li class="list-item" >
       <a href="{% url 'file' %}">
         <ion-icon name="file-tray-stacked-outline" class="in"></ion-icon>
         <span class="links-name" id="fich">Fichiers</span>
@@ -35,15 +35,15 @@
     </li>
 
     <li class="list-item" id="list-users" >
-      <a href="{% url 'user-admin' %}">
+      <a href="{% url 'user_admin' %}">
         <i class='bx bxs-user-detail'></i>
         <span class="links-name" >Liste-Utilisateurs</span>
       </a>
       <span class="tooltip">Liste-Utilisateurs</span>
     </li>
 
-    <li class="list-item" >
-      <a href="{% url 'profil' %}">
+    <li class="list-item active" >
+      <a href="{% url 'profile' %}">
         <i class='bx bx-user'></i>
         <span class="links-name">Profil</span>
       </a>
@@ -96,7 +96,7 @@
         <span class="valeurs"><a href="#">Politiques de confidentialites et contraintes d'utilisation</a></span>
       </div>
     </div>
-    <a href="{% profile_mod %}" class="mod">Modifier le profil</a>
+    <a href="{% url 'profile_mod' %}" class="mod">Modifier le profil</a>
   </main>
 </div>
 
