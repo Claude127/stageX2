@@ -1,0 +1,185 @@
+{% extends 'layout.html' %}
+
+{% block title %}Fichiers{% endblock %}
+{% load static %}
+{% block link %}  <link rel="stylesheet" type="text/css" href="{% static 'css/fichiers.css' %}">{% endblock %}
+
+{% block content %}
+
+<div class="sidebar ">
+  <div class="logo-container">
+    <div class="logo">
+      <ion-icon name="eye" class="i"></ion-icon>
+      <h3>Lab2View</h3>
+    </div>
+    <i class='bx bx-menu' id="btn" ></i>
+  </div>
+
+  <ul class="list">
+
+
+    <li class="list-item" id="dash" >
+      <a href="{% url 'dashboard' %}">
+        <i class='bx bxs-dashboard'></i>
+        <span class="links-name"  >Tableau de bord</span>
+      </a>
+      <span class="tooltip" >Tableau de bord</span>
+    </li>
+
+    <li class="list-item active" >
+      <a href="{% url 'file' %}">
+        <ion-icon name="file-tray-stacked-outline" class="in"></ion-icon>
+        <span class="links-name" id="fich">Fichiers</span>
+      </a>
+      <span class="tooltip">Fichiers</span>
+    </li>
+
+    <li class="list-item" id="list-users" >
+      <a href="{% url 'user_admin' %}">
+        <i class='bx bxs-user-detail'></i>
+        <span class="links-name" >Liste-Utilisateurs</span>
+      </a>
+      <span class="tooltip">Liste-Utilisateurs</span>
+    </li>
+
+    <li class="list-item" >
+      <a href="{% url 'profile' %}">
+        <i class='bx bx-user'></i>
+        <span class="links-name">Profil</span>
+      </a>
+      <span class="tooltip">Profil</span>
+    </li>
+  </ul>
+</div>
+
+  <div class="main-content">
+    <header>
+          <div class="title">
+            <h1>Fichiers</h1>
+          </div>
+
+          <div class="user">
+            <a href="{% url 'login' %}">
+              <i class='bx bx-log-out'>
+                <span class="tooltip">log-out</span>
+              </i>
+
+            </a>
+
+
+
+            <div class="bg-img"></div>
+            <div class="nom">DJIOJIP Rowane</div>
+          </div>
+
+    </header>
+
+    <main>
+
+      <div class="page-header">
+
+        <h2 class="title">Welcome</h2>
+
+        <div class="search">
+          <i class='bx bx-search'></i>
+          <input type="text" placeholder="Search...">
+        </div>
+
+      </div>
+
+      <section class="files-content">
+        <div class="files-grid">
+          <div class="files-card">
+            <div class="utils">
+              <h3>Gestionnaires de fichiers</h3>
+              <a  href="{% url 'add_file' %}" class="ajout">Ajouter un fichier </a>
+            </div>
+            <table>
+              <thead>
+              <tr>
+                <th>Nom</th>
+                <th>categories</th>
+                <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td class="nom"> proces verbal N367</td>
+                <td ><span class="category-filter">juridique</span></td>
+                <td class="actions">
+                <div class="action1"><a href="{% url 'view_file' %}"><ion-icon name="eye-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="download-outline" class="iv"></ion-icon></a></div>
+                <div class="action3"><a href="{% url 'file_mod' %}"><ion-icon name="create-outline" class="iv"></ion-icon></a></div>
+                <div class="action4"><a href="#"><ion-icon name="trash-outline"class="iv" ></ion-icon></a></div>
+
+                </td>
+              </tr>
+              <tr>
+                <td class="nom"> rapport de stage -Ghomsi Rayan</td>
+                <td ><span class="category-filter">rapport de stage</span></td>
+                <td class="actions">
+                  <div class="action1"><a href="{% url 'view_file' %}"><ion-icon name="eye-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="download-outline" class="iv"></ion-icon></a></div>
+                <div class="action3"><a href="{% url 'file_mod' %}"><ion-icon name="create-outline" class="iv"></ion-icon></a></div>
+                <div class="action4"><a href="#"><ion-icon name="trash-outline"class="iv" ></ion-icon></a></div>
+                </td>
+              </tr>
+              <tr>
+                <td class="nom"> design -client Rose</td>
+                <td ><span class="category-filter">infographie</span></td>
+                <td class="actions">
+                   <div class="action1"><a href="{% url 'view_file' %}"><ion-icon name="eye-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="download-outline" class="iv"></ion-icon></a></div>
+                <div class="action3"><a href="{% url 'file_mod' %}"><ion-icon name="create-outline" class="iv"></ion-icon></a></div>
+                <div class="action4"><a href="#"><ion-icon name="trash-outline"class="iv" ></ion-icon></a></div>
+                </td>
+              </tr>
+              <tr class="nom">
+                <td> memoire -etude d'un erd </td>
+                <td ><span class="category-filter">memoire</span></td>
+                <td class="actions">
+                   <div class="action1"><a href="{% url 'view_file' %}"><ion-icon name="eye-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="download-outline" class="iv"></ion-icon></a></div>
+                <div class="action3"><a href="{% url 'file_mod' %}"><ion-icon name="create-outline" class="iv"></ion-icon></a></div>
+                <div class="action4"><a href="#"><ion-icon name="trash-outline"class="iv" ></ion-icon></a></div>
+                </td>
+              </tr>
+              <tr>
+                <td class="nom">charge procedurale N405</td>
+                <td ><span class="category-filter">juridirque</span></td>
+                <td class="actions">
+                   <div class="action1"><a href="{% url 'view_file' %}"><ion-icon name="eye-outline" class="iv"></ion-icon></a></div>
+                <div class="action2"><a href="#"><ion-icon name="download-outline" class="iv"></ion-icon></a></div>
+                <div class="action3"><a href="{% url 'file_mod' %}"><ion-icon name="create-outline" class="iv"></ion-icon></a></div>
+                <div class="action4"><a href="#"><ion-icon name="trash-outline"class="iv" ></ion-icon></a></div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="filter">
+              <div class="items">
+                <i class='bx bx-filter-alt' ></i>
+                <span class="word">Trier par : </span>
+              </div>
+              <ul class="filter-list">
+                <li class="list-filter"><a href="#">juridique</a></li>
+                <li class="list-filter"><a href="#">Rapport de stage</a></li>
+                <li class="list-filter"><a href="#">Memoire</a></li>
+                <li class="list-filter"><a href="#">Infographie</a></li>
+                <li class="list-filter"><a href="#">recents</a></li>
+                <li class="list-filter"><a href="#">anciens</a></li>
+              </ul>
+          </div>
+
+        </div>
+
+      </section>
+    </main>
+
+
+  </div>
+
+
+{% endblock %}
