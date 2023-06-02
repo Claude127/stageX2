@@ -1,5 +1,3 @@
-
-
 from dash import html, dcc, Dash
 import dash_bootstrap_components as dbc
 import plotly.express as px
@@ -15,6 +13,8 @@ fl = pd.read_csv('claude_csv/projet.csv', parse_dates=['order_date'])
 
 # agreger les donnees par mois et par projet
 df = fl.groupby([pd.Grouper(key='order_date', freq='M'), 'poduct_name']).sum().reset_index()
+# agreger et sommer les montants par projet
+dp = fl.groupby('poduct_name')['Revenue_projet'].sum()
 
 # construction de composants
 header_component = html.H1("Visualiser vos données")
@@ -40,6 +40,26 @@ cumulfig.update_layout(
     )
 )
 
+# graphe 2
+
+piefig = go.FigureWidget(
+    px.pie(
+        labels=dp.index,
+        values=dp.values,
+        names=dp.index
+    )
+)
+
+piefig.update_layout(
+    legend=dict(
+        orientation="h",
+        yanchor="bottom",
+        y=1.02,
+        xanchor="right",
+        x=1
+    )
+)
+
 # liste des projets pour le widget Dropdown
 
 projectlist = [
@@ -59,7 +79,7 @@ yearlist = [
     Output('graph', 'figure'),
     [Input('list_dropdown', 'value'),
      Input('year_dropdown', 'value')])
-def update_figure(projet,year):
+def update_figure(projet, year):
     filter_df = df[df["poduct_name"] == projet]
     if year:
         filter_df = filter_df[filter_df["order_date"].dt.year == year]
@@ -76,6 +96,37 @@ def update_figure(projet,year):
         )
 
     return cumulfig
+
+
+# Callback pour mettre a jour le graphe 2 en fonction de l'annee selectionnee
+
+@app.callback(
+    Output('pie_graph', 'figure'),
+    [Input('year2_dropdown', 'value')]
+)
+def update_pie(year2):
+    if year2:
+        filter_fl = fl[fl["order_date"].dt.year == year2]
+    else:
+        filter_fl = fl
+    dp = filter_fl.groupby('poduct_name')['Revenue_projet'].sum()
+    piefig = go.FigureWidget(
+        px.pie(
+            labels=dp.index,
+            values=dp.values,
+            names=dp.index
+        )
+    )
+    piefig.update_layout(
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        )
+    )
+    return piefig
 
 
 # design du layout de l'application
@@ -103,7 +154,16 @@ app.layout = html.Div(
                     ),
                     dcc.Graph(id='graph', figure=cumulfig)
                 ]
-            ), dbc.Col(), dbc.Col()]
+            ), dbc.Col(
+                [html.Label('selectionnez une annee'),
+                 dcc.Dropdown(
+                     id='year2_dropdown',
+                     options=yearlist,
+                     value=default_year
+                 ),
+                 dcc.Graph(id='pie_graph', figure=piefig)
+                 ]
+            ), dbc.Col()]
         ),
         dbc.Row(
             [dbc.Col(), dbc.Col()]
