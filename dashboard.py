@@ -13,23 +13,25 @@ fl = pd.read_csv('claude_csv/projet.csv', parse_dates=['order_date'])
 
 em = pd.read_csv('claude_csv/note_projet.csv')
 
+sa = pd.read_csv('claude_csv/projects.csv', encoding='ISO-8859-1')
+
 # agreger les donnees par mois et par projet
 df = fl.groupby([pd.Grouper(key='order_date', freq='M'), 'poduct_name']).sum().reset_index()
 # agreger et sommer les montants par projet
 dp = fl.groupby('poduct_name')['Revenue_projet'].sum()
-# crier les donnees points du datarame
+# trier les donnees points du datarame
 em = em.sort_values('nombre_points', ascending=False)
 
 # construction de composants
 header_component = html.H1("Visualiser vos données")
 
-# graphe1
+# graphe1:evolution des revenus d'un projet par annee
 
 cumulfig = go.FigureWidget()
 
 for name, group in df.groupby("poduct_name"):
     cumulfig.add_scatter(
-        x=group["order_date"].dt.strftime("%Y %b"),
+        x=group["order_date"].dt.strftime("%b"),
         y=group["Revenue_projet"],
         mode="lines",
         name=name
@@ -44,7 +46,7 @@ cumulfig.update_layout(
     )
 )
 
-# graphe 2
+# graphe 2: performances des differents produits par annee
 
 piefig = go.FigureWidget(
     px.pie(
@@ -64,20 +66,42 @@ piefig.update_layout(
     )
 )
 
-# graphe 3
+# graphe 3: classement du personnels par nombres de points dans l'entreprise
+
 em['nombre_points'] = em['nombre_points'].apply(lambda x: round(x, 2))
 
+# declaration des classes bootstrap utilisees pour customizer le tableau
 table_header_class = 'table-header'
 table_data_class = 'table-data'
 table_row_odd_class = 'table-row-odd'
-
+# configuration du tableau , la boucle permet ici de remplir le tableauen parcourant les 5 premieres lignes du dataframe
 table_rows = []
-for i in range(max(5, len(em))):
+for i in range(min(5, len(em))):
     row_class = table_row_odd_class if i % 2 == 0 else ''
     table_rows.append(html.Tr([
         html.Td(em.iloc[i]['first_name'], className=table_data_class),
         html.Td(em.iloc[i]['lastname'], className=table_data_class),
         html.Td(em.iloc[i]['nombre_points'], className=table_data_class), ]
+        , className=row_class))
+
+# graphe 4: suivi des activites ; table qui presente les activites et leurs statuts
+
+
+sa['indice_rent'] = sa['indice_rent'].apply(lambda x: round(x, 2))
+
+# declaration des classes bootstrap utilisees pour customizer le tableau
+table_header_class = 'table-header'
+table_data_class = 'table-data'
+table_row_odd_class = 'table-row-odd'
+
+# configuration du tableau , la boucle permet ici de remplir le tableau en parcourant les 5 premieres lignes du dataframe
+table_rows1 = []
+for i in range(len(sa)):
+    row_class = table_row_odd_class if i % 2 == 0 else ''
+    table_rows1.append(html.Tr([
+        html.Td(sa.iloc[i]['product_name'], className=table_data_class),
+        html.Td(sa.iloc[i]['indice_rent'], className=table_data_class),
+        html.Td(sa.iloc[i]['statut'], className=table_data_class), ]
         , className=row_class))
 
 # liste des projets pour le widget Dropdown
@@ -109,7 +133,7 @@ def update_figure(projet, year):
 
     for name, group in filter_df.groupby("poduct_name"):
         cumulfig.add_scatter(
-            x=group["order_date"].dt.strftime("%Y %b"),
+            x=group["order_date"].dt.strftime("%b"),
             y=group["Revenue_projet"],
             mode="lines",
             name=name
@@ -197,7 +221,20 @@ app.layout = html.Div(
             )]
         ),
         dbc.Row(
-            [dbc.Col(), dbc.Col()]
+            [dbc.Col(
+                [html.H1('suivi des activités'),
+                 html.Table([
+                     html.Thead([
+                         html.Tr([
+                             html.Th('Activités', className=table_header_class),
+                             html.Th('indice de rentabilité', className=table_header_class),
+                             html.Th('Statut', className=table_header_class)])
+                     ]),
+                     html.Tbody(table_rows1)
+                 ], className='table')
+                 ]
+            ),
+                dbc.Col()]
         ),
     ]
 )
