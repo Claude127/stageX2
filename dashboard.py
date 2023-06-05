@@ -11,10 +11,14 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.BOOTS
 # lecture des donnees
 fl = pd.read_csv('claude_csv/projet.csv', parse_dates=['order_date'])
 
+em = pd.read_csv('claude_csv/note_projet.csv')
+
 # agreger les donnees par mois et par projet
 df = fl.groupby([pd.Grouper(key='order_date', freq='M'), 'poduct_name']).sum().reset_index()
 # agreger et sommer les montants par projet
 dp = fl.groupby('poduct_name')['Revenue_projet'].sum()
+# crier les donnees points du datarame
+em = em.sort_values('nombre_points', ascending=False)
 
 # construction de composants
 header_component = html.H1("Visualiser vos données")
@@ -59,6 +63,22 @@ piefig.update_layout(
         x=1
     )
 )
+
+# graphe 3
+em['nombre_points'] = em['nombre_points'].apply(lambda x: round(x, 2))
+
+table_header_class = 'table-header'
+table_data_class = 'table-data'
+table_row_odd_class = 'table-row-odd'
+
+table_rows = []
+for i in range(max(5, len(em))):
+    row_class = table_row_odd_class if i % 2 == 0 else ''
+    table_rows.append(html.Tr([
+        html.Td(em.iloc[i]['first_name'], className=table_data_class),
+        html.Td(em.iloc[i]['lastname'], className=table_data_class),
+        html.Td(em.iloc[i]['nombre_points'], className=table_data_class), ]
+        , className=row_class))
 
 # liste des projets pour le widget Dropdown
 
@@ -163,7 +183,18 @@ app.layout = html.Div(
                  ),
                  dcc.Graph(id='pie_graph', figure=piefig)
                  ]
-            ), dbc.Col()]
+            ), dbc.Col(
+                [html.H1('Classement du Personnel par performance'),
+                 html.Table([
+                     html.Thead([
+                         html.Tr([
+                             html.Th('Nom', className=table_header_class),
+                             html.Th('Prenom', className=table_header_class),
+                             html.Th('Nombre de points', className=table_header_class)])
+                     ]),
+                     html.Tbody(table_rows)
+                 ], className='table')]
+            )]
         ),
         dbc.Row(
             [dbc.Col(), dbc.Col()]
