@@ -1,0 +1,32 @@
+dash est un framework python qui permet de developper des applications web analytiques .en outre faire des tableaux de bords interaticfs .
+
+pour installer dash 'pip install dash 'dans le cmd .
+
+//debut 
+
+- apres avoir creer un fichier pour l'installation , importer les librairies "dash ; dash_core_components as dcc ;dash_html_componentsas html " pour visualiser les donnees sous des pages web .
+- lister ses donnees (faire une liste de donnees ): x pour les abscisses , y pour les ordonnees et puis definir le type du graphique avec 'type ': 'type_de_donnees'
+- puis creer une application dash pour visualiser les graphes avec : 'appb = dash.Dash(__name__)'. name est une variable python qui porte le nom du module courant 
+- creer une section de code html dans la page web ou l'on souhaite visualiser le graphique avec 
+'body=html.Div([
+html.H2('mnop'),html.H2('fdsa'),
+dcc.Graph(id='s', figure={'data':la listede donnees specifier plus haut })// ceci est utiliser pour specifier les donnees a utiliser pour l'affichage])
+
+appb.layout=html.Div([body])'
+
+- demarrer le serveur et specifier un port dans lequel demarrer l'application 
+'if __name__="__main__":
+	appb.run_server(debug="true",port=3003)
+
+
+
+a rendre : 
+
+- procedes pour rendre un graphe interactif avec chart js 
+
+
+o les étapes :
+
+* implementation dans Django ;
+l’implementation de chart.js se fait a partir d’un cdn ou un npm
+* configuration du graphe avec chart js;

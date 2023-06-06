@@ -14,6 +14,8 @@
 </head>
 <body>
 <section>
+
+
     <div class="img-container">
         <img src="{% static 'img/6025986.jpg' %}">
         <h3>Hello :) </h3>
@@ -25,15 +27,16 @@
                     <img src="{% static 'img/logo-ori.png' %}" alt="lab2view">
                 </div>
                 <h2> Connectez-vous!</h2>
-
+            <form action="" method="POST">
+                {% csrf_token %}
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email :</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre email" required>
+                    <label for="name" class="form-label">nom utilisateur :</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Entrez votre nom d'utilisateur" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="password" class="form-label">Mot de passe :</label>
-                    <input type="password" class="form-control" id="password" name="Mot de passe" placeholder=" Entrez votre mot de passe"  required>
+                    <input type="password" class="form-control" id="password" name="password" placeholder=" Entrez votre mot de passe"  required>
                     <div class="eye-area">
                         <div class="eye-box" onclick="mypassword()">
                             <i class="fa-regular fa-eye" id="eye"></i>
@@ -50,6 +53,16 @@
                 <div class="mb-3">
                     <button type="submit" class="input-submit">Connexion</button>
                 </div>
+
+            </form>
+
+          <div class="message-container">
+                {% if messages %}
+                    {% for message in messages %}
+                        {{message}}
+                    {% endfor %}
+                {% endif%}
+            </div>
 
         </div>
 

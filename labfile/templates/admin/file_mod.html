@@ -1,0 +1,106 @@
+{% extends 'layout.html' %}
+
+{% block title %}Modifier un fichier{% endblock %}
+{% load static %}
+{% block link %}  <link rel="stylesheet" type="text/css" href="{% static 'css/file-mod.css' %}">{% endblock %}
+
+{% block content %}
+
+<div class="sidebar ">
+  <div class="logo-container">
+    <div class="logo">
+      <ion-icon name="eye" class="i"></ion-icon>
+      <h3>Lab2View</h3>
+    </div>
+    <i class='bx bx-menu' id="btn" ></i>
+  </div>
+
+  <ul class="list">
+
+
+    <li class="list-item" id="dash" >
+      <a href="{% url 'dashboard' %}">
+        <i class='bx bxs-dashboard'></i>
+        <span class="links-name"  >Tableau de bord</span>
+      </a>
+      <span class="tooltip" >Tableau de bord</span>
+    </li>
+
+    <li class="list-item active" >
+      <a href="{% url 'file' %}">
+        <ion-icon name="file-tray-stacked-outline" class="in"></ion-icon>
+        <span class="links-name" id="fich">Fichiers</span>
+      </a>
+      <span class="tooltip">Fichiers</span>
+    </li>
+
+    <li class="list-item" id="list-users" >
+      <a href="{% url 'user_admin' %}">
+        <i class='bx bxs-user-detail'></i>
+        <span class="links-name" >Liste-Utilisateurs</span>
+      </a>
+      <span class="tooltip">Liste-Utilisateurs</span>
+    </li>
+
+    <li class="list-item" >
+      <a href="{% url 'profile' %}">
+        <i class='bx bx-user'></i>
+        <span class="links-name">Profil</span>
+      </a>
+      <span class="tooltip">Profil</span>
+    </li>
+  </ul>
+</div>
+
+  <div class="main-content">
+    <header>
+          <div class="title">
+            <h1>Modifier un fichier</h1>
+          </div>
+
+          <div class="user">
+            <a href="{% url 'login' %}">
+              <i class='bx bx-log-out'>
+                <span class="tooltip">log-out</span>
+              </i>
+
+            </a>
+
+
+
+            <div class="bg-img"></div>
+            <div class="nom">DJIOJIP Rowane</div>
+          </div>
+
+    </header>
+
+    <main>
+        <div class="box">
+            <div class="edit-form">
+
+                <div class="mb-3">
+                    <label for="name" class="form-label">nom :</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Entrez le nom du fichier" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="category" class="form-label">Categorie :</label>
+                    <input type="text" class="form-control" id="category" name="category" placeholder="Entrez la categorie " required>
+                </div>
+
+
+                <div class="mb-3e">
+                    <a href="#">Acceder au fichier</a>
+                </div>
+            </div>
+
+            <div class="btn-valid">
+                <a href="{% url 'file' %}" class="btn" id="annuler">Annuler</a>
+                <a href="{% url 'file' %}" class="btn">Ajouter</a>
+
+            </div>
+        </div>
+    </main>
+</div>
+
+{% endblock %}

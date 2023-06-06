@@ -82,7 +82,7 @@ section .glass .form .logo img
     height:135px;
     position: relative;
     left: 320px;
-    bottom: 75px;
+    bottom: 55px;
     margin: 10px;
 }
 
@@ -160,6 +160,12 @@ section .glass .form .remember
     color: #949495;
     font-weight: 400;
     font-size: 14px;
+}
+
+section .glass .form .message-container{
+        display:flex;
+        align-items: center;
+        background:#f1fafd;
 }
 
 .eye-area
