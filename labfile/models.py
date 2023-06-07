@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.hashers import check_password as django_check_password
 
 # Create your models here.
 
@@ -29,6 +29,8 @@ class Utilisateur(models.Model):
 
     def __str__(self):
         return self.nom
+
+
 
 
 

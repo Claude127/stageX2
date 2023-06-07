@@ -1,8 +1,65 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+import pymysql
+from django.contrib.auth import login
 from django.contrib import messages
 
+em = ''
+pwd = ''
+
+from .models import Utilisateur
+
+
 # Create your views here.
+
+#gestion de connexion et deconnexion de comptes
+def login_user(request):
+    global em, pwd
+    if request.method == 'POST':
+
+        # etablir la connexion a la base de donnees
+        conn = pymysql.connect(
+            host='localhost',
+            user='root',
+            password='',
+            db='labfile',
+            port=3306
+        )
+        # recupere les informations du formulaire
+        d = request.POST
+        for key, value in d.items():
+            if key == "email":
+                em = value
+            if key == "password":
+                pwd = value
+        c = "select * from labfile_utilisateur where email='{}' and password='{}' ".format(em, pwd)
+        # curseur pour executer la commande
+        cursor = conn.cursor()
+        cursor.execute(c)
+        t = tuple(cursor.fetchall())
+        if t == ():
+            messages.success(request, "une erreur est survenue , veuillez reesayer...")
+            return redirect('login')
+        else:
+            request.session['email'] = em
+            return redirect('file')
+            #verif session ouverte
+            # message = f"Bienvenue,{em}!"
+            # return HttpResponse(message)
+    else:
+        return render(request, 'login.html')
+
+def logout_user(request):
+    if 'em' in request.session:
+        del request.session['em']
+
+    return redirect('login')
+
+
+
+
+
+
 def file(request):
     return render(request, 'file.html')
 
@@ -31,19 +88,6 @@ def file_mod(request):
     return render(request, 'admin/file_mod.html')
 
 
-def login_user(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        password = request.POST.get('password')
-        user = authenticate(request, username=name, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('file')
-        else:
-            messages.success(request, "une erreur est survenue , veuilez reesayer...")
-            return redirect('login')
-    else:
-        return render(request, 'login.html')
 
 
 def add_user(request):
