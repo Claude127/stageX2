@@ -1,0 +1,22 @@
+<div class="col-md-2">
+    {% block sidebar %}
+    <div id="sidebar">
+        <div class="module" id="recent-actions-module">
+            <h2>Recent Actions</h2>
+            <h3>My Actions</h3>
+            <ul class="actionlist">
+                {% load admin_list %}
+                {% recent_actions 10 as adminactions %}
+                {% for action in adminactions %}
+                <li{% if action.is_current_user %} class="user"{% endif %}>
+                    {{ action }}
+                </li>
+                {% empty %}
+                <li class="empty">None available</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!-- ... -->
+    </div>
+    {% endblock %}
+</div>

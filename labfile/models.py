@@ -1,5 +1,8 @@
 from django.db import models
-from django.contrib.auth.hashers import check_password as django_check_password
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.utils import timezone
+from .manager import CustomAccountManager
+
 
 # Create your models here.
 
@@ -19,20 +22,25 @@ class Role(models.Model):
         return self.nom
 
 
-class Utilisateur(models.Model):
-    nom = models.CharField(max_length=30)
+class Utilisateur(AbstractBaseUser, PermissionsMixin):
+
+    email = models.EmailField(unique=True)
+    nom = models.CharField(max_length=30, unique=True)
     prenom = models.CharField(max_length=25)
-    email = models.EmailField(max_length=60)
-    password = models.CharField(max_length=8)
     image = models.FileField(upload_to='phots', null=True)
-    role = models.ForeignKey(Role, on_delete=models.CASCADE)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE, null=True)
+    date_creation = models.DateField(default=timezone.now)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
+
+    objects = CustomAccountManager()
+
+    USERNAME_FIELD = 'email'
+
+    REQUIRED_FIELDS = ['nom', 'prenom']
 
     def __str__(self):
         return self.nom
-
-
-
-
 
 
 class Document(models.Model):
