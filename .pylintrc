@@ -1,0 +1,7 @@
+[MAIN]
+init-hook=
+    import sys
+    sys.path.append("cl127/lib/python3.10/site-packages")
+    try: import pylint_venv
+    except ImportError: pass
+    else: pylint_venv.inithook(force_venv_activation=True)
