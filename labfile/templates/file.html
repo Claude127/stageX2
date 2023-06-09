@@ -36,14 +36,6 @@
       <span class="tooltip">Fichiers</span>
     </li>
 
-    <li class="list-item" id="list-users" >
-      <a href="{% url 'user_admin' %}">
-        <i class='bx bxs-user-detail'></i>
-        <span class="links-name" >Liste-Utilisateurs</span>
-      </a>
-      <span class="tooltip">Liste-Utilisateurs</span>
-    </li>
-
 
     <li class="list-item" >
       <a href="{% url 'profile' %}">
@@ -52,6 +44,16 @@
       </a>
       <span class="tooltip">Profil</span>
     </li>
+
+     <li class="list-item" id="list-users" >
+      <a href="{% url 'admin:index' %}">
+        <ion-icon name="id-card-outline" class="in"></ion-icon>
+        <span class="links-name" >Espace Admin</span>
+      </a>
+      <span class="tooltip">Espace Admin</span>
+    </li>
+
+
   </ul>
 </div>
 

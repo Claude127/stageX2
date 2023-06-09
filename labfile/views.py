@@ -78,34 +78,34 @@ def file(request):
         prenom = user.prenom
         return render(request, 'file.html', {'nom': nom, 'prenom': prenom})
 
-
+@login_required(login_url='/login')
 def dashboard(request):
     return render(request, 'admin/dashboard.html')
 
-
+@login_required(login_url='/login')
 def user_admin(request):
     return render(request, 'admin/user_admin.html')
 
-
+@login_required(login_url='/login')
 def profile(request):
     return render(request, 'profile.html')
 
-
+@login_required(login_url='/login')
 def add_file(request):
     return render(request, 'admin/add_file.html')
 
-
+@login_required(login_url='/login')
 def view_file(request):
     return render(request, 'view_file.html')
 
-
+@login_required(login_url='/login')
 def file_mod(request):
     return render(request, 'admin/file_mod.html')
 
-
+@login_required(login_url='/login')
 def add_user(request):
     return render(request, 'admin/add_user.html')
 
-
+@login_required(login_url='/login')
 def profile_mod(request):
     return render(request, 'profile_mod.html')
