@@ -55,7 +55,6 @@ def login_user(request):
                 login(request, user)
                 return redirect('file')  # rediriger l'utilisateur vers la page souhaitée
 
-
         return render(request, 'login.html')
 
 
@@ -70,12 +69,14 @@ def logout_user(request):
     messages.success(request, 'you were logged out :)')
     return response
 
-@login_required
+
+@login_required(login_url='/login')
 def file(request):
     user = request.user
-    nom = user.nom
-    prenom = user.prenom
-    return render(request, 'file.html', {'nom': nom, 'prenom': prenom})
+    if user:
+        nom = user.nom
+        prenom = user.prenom
+        return render(request, 'file.html', {'nom': nom, 'prenom': prenom})
 
 
 def dashboard(request):
