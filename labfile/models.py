@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import Group
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils import timezone
 from .manager import CustomAccountManager
@@ -15,7 +16,14 @@ class Action(models.Model):
 
 
 class Role(models.Model):
-    nom = models.CharField(max_length=15)
+    NOM_CHOICES = (
+        ("ADMIN", 'admin'),
+        ("STAFF", 'staff'),
+        ("STAGIAIRE", 'stagiaire')
+    )
+
+    nom = models.CharField(max_length=15, choices=NOM_CHOICES)
+    group = models.OneToOneField(Group, on_delete=models.CASCADE, null=True)
     actions = models.ManyToManyField(Action)
 
     def __str__(self):
@@ -23,9 +31,8 @@ class Role(models.Model):
 
 
 class Utilisateur(AbstractBaseUser, PermissionsMixin):
-
     email = models.EmailField(unique=True)
-    nom = models.CharField(max_length=30, unique=True)
+    nom = models.CharField(max_length=30)
     prenom = models.CharField(max_length=25)
     image = models.FileField(upload_to='phots', null=True)
     role = models.ForeignKey(Role, on_delete=models.CASCADE, null=True)
@@ -40,7 +47,18 @@ class Utilisateur(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['nom', 'prenom']
 
     def __str__(self):
-        return self.nom
+        return self.email
+
+    def has_perm(self, perm, obj=None):
+        # specifie s'il a une permission specifique
+        return True
+
+    def has_module_perms(self, app_label):
+        # Specifie s'il a les permissions de voir l'application('app_label')
+        return True
+
+
+
 
 
 class Document(models.Model):
