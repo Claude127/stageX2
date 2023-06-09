@@ -10,13 +10,13 @@ urlpatterns = [
     path('add_file/', add_file, name='add_file'),
     path('view_file/', view_file, name='view_file'),
     path('file_mod/', file_mod, name='file_mod'),
+    path('', login_user, name='login'),
     path('add_user/', add_user, name='add_user'),
     path('profile_mod/', profile_mod, name='profile_mod'),
 
-    #accounts_user
+
+    #account_user
     path('', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
-
-
 
 ]

@@ -31,7 +31,7 @@ class Utilisateur(AbstractBaseUser, PermissionsMixin):
     role = models.ForeignKey(Role, on_delete=models.CASCADE, null=True)
     date_creation = models.DateField(default=timezone.now)
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     objects = CustomAccountManager()
 

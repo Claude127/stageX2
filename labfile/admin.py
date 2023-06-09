@@ -5,26 +5,11 @@ from django.forms import Textarea
 from .models import Utilisateur, Role, Action, Document
 
 
-class UserAdminConfig(UserAdmin):
-    search_fields = ('email', 'role', 'nom', 'prenom',)
-    list_filter = ('email', 'role', 'is_active', 'is_staff')
-    ordering = ('date_creation',)
+class UserAdminConfig(admin.ModelAdmin):
     list_display = ('email', 'nom', 'prenom', 'role', 'is_active', 'is_staff')
-
-    fieldsets = (
-        (None, {'fields': ('email', 'nom', 'prenom', 'image', 'role',)}),
-        ('Permissions', {'fields': ('is_staff', 'is_active')}),
-
-    )
-
-    add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('email', 'nom', 'prenom', 'image', 'role', 'password1', 'password2', 'is_active', 'is_staff')
-        }
-
-         )
-    )
+    search_fields = ('email', 'role', 'nom', 'prenom',)
+    ordering = ('date_creation',)
+    list_filter = ('email', 'role', 'is_active', 'is_staff')
 
 
 class DocumentAdmin(admin.ModelAdmin):
