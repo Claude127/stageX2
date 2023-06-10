@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
@@ -8,6 +8,7 @@ from django.contrib import messages
 # Create your views here.
 
 # gestion de connexion et deconnexion de comptes
+
 def login_user(request):
     # recuperer les informations du formulaire
     if request.method == 'POST':
@@ -70,42 +71,107 @@ def logout_user(request):
     return response
 
 
+# gestion des fichiers
 @login_required(login_url='/login')
 def file(request):
     user = request.user
     if user:
         nom = user.nom
         prenom = user.prenom
-        return render(request, 'file.html', {'nom': nom, 'prenom': prenom})
+        img = user.image.name
+        return render(request, 'file.html', {'nom': nom, 'prenom': prenom, 'img': img})
+    else:
+        return redirect('login')
+
 
 @login_required(login_url='/login')
+@permission_required('labfile.can_view_site')
+def add_file(request):
+    # recuperer les informations de l'utilisateur connecté
+    user = request.user
+    if user:
+        nom = user.nom
+        prenom = user.prenom,
+        img = user.image.name
+        return render(request, 'admin/add_file.html', {'nom': nom, 'prenom': prenom, 'img': img})
+    else:
+        return redirect('login')
+
+@login_required(login_url='/login')
+def view_file(request):
+    # recuperer les informations de l'utilisateur connecté
+    user = request.user
+    if user:
+        nom = user.nom
+        prenom = user.prenom
+        img = user.image.name
+        return render(request, 'view_file.html', {'nom': nom, 'prenom': prenom, 'img': img})
+    else:
+        return redirect('login')
+
+
+@login_required(login_url='/login')
+@permission_required('labfile.can_view_site')
+def file_mod(request):
+    # recuperer les informations de l'utilisateur connecté
+    user = request.user
+    if user:
+        nom = user.nom
+        prenom = user.prenom
+        img = user.image.name
+        return render(request, 'admin/file_mod.html', {'nom': nom, 'prenom': prenom, 'img': img})
+    else:
+        return redirect('login')
+
+
+# gestion des profils
+@login_required(login_url='/login')
+def profile(request):
+    # recuperer les informations de l'utilisateur connecté
+    user = request.user
+    if user:
+        nom = user.nom
+        prenom = user.prenom
+        img = user.image.name
+        email = user.email
+        return render(request, 'profile.html', {'nom': nom, 'prenom': prenom, 'img': img, 'email': email})
+    else:
+        return redirect('login')
+
+
+@login_required(login_url='/login')
+def profile_mod(request):
+    # recuperer les informations de l'utilisateur connecté
+    user = request.user
+    if user:
+        nom = user.nom
+        prenom = user.prenom
+        img = user.image.name
+        email = user.email
+        return render(request, 'profile_mod.html', {'nom': nom, 'prenom': prenom, 'img': img, 'email': email})
+    else:
+        return redirect('login')
+
+
+@login_required(login_url='/login')
+@permission_required('labfile.can_view_dashboard', raise_exception=True)
 def dashboard(request):
-    return render(request, 'admin/dashboard.html')
+    # recuperer les informations de l'utilisateur connecté
+    user = request.user
+    if user:
+        nom = user.nom
+        prenom = user.prenom
+        img = user.image.name
+        return render(request, 'admin/dashboard.html', {'nom': nom, 'prenom': prenom, 'img': img})
+    else:
+        return redirect('login')
+
+
 
 @login_required(login_url='/login')
 def user_admin(request):
     return render(request, 'admin/user_admin.html')
 
 @login_required(login_url='/login')
-def profile(request):
-    return render(request, 'profile.html')
-
-@login_required(login_url='/login')
-def add_file(request):
-    return render(request, 'admin/add_file.html')
-
-@login_required(login_url='/login')
-def view_file(request):
-    return render(request, 'view_file.html')
-
-@login_required(login_url='/login')
-def file_mod(request):
-    return render(request, 'admin/file_mod.html')
-
-@login_required(login_url='/login')
 def add_user(request):
     return render(request, 'admin/add_user.html')
-
-@login_required(login_url='/login')
-def profile_mod(request):
-    return render(request, 'profile_mod.html')

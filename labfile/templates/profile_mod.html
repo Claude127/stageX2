@@ -1,141 +1,151 @@
 {% extends 'layout.html' %}
 
-{% block title %}Fichiers{% endblock %}
+{% block title %}modification-profil{% endblock %}
 {% load static %}
 {% block link %}  <link rel="stylesheet" type="text/css" href="{% static 'css/profile-mod.css' %}">{% endblock %}
 
 {% block content %}
 
-<div class="sidebar ">
-  <div class="logo-container">
-    <div class="logo">
-      <ion-icon name="eye" class="i"></ion-icon>
-      <h3>Lab2View</h3>
-    </div>
-    <i class='bx bx-menu' id="btn" ></i>
-  </div>
 
-  <ul class="list">
+{% if user.is_authenticated %}
 
 
-    <li class="list-item" id="dash" >
-      <a href="{% url 'dashboard' %}">
-        <i class='bx bxs-dashboard'></i>
-        <span class="links-name"  >Tableau de bord</span>
-      </a>
-      <span class="tooltip" >Tableau de bord</span>
-    </li>
-
-    <li class="list-item" >
-      <a href="{% url 'file' %}">
-        <ion-icon name="file-tray-stacked-outline" class="in"></ion-icon>
-        <span class="links-name" id="fich">Fichiers</span>
-      </a>
-      <span class="tooltip">Fichiers</span>
-    </li>
-
-    <li class="list-item" id="list-users" >
-      <a href="{% url 'user_admin' %}">
-        <i class='bx bxs-user-detail'></i>
-        <span class="links-name" >Liste-Utilisateurs</span>
-      </a>
-      <span class="tooltip">Liste-Utilisateurs</span>
-    </li>
-
-    <li class="list-item active" >
-      <a href="{% url 'profile' %}">
-        <i class='bx bx-user'></i>
-        <span class="links-name">Profil</span>
-      </a>
-      <span class="tooltip">Profil</span>
-    </li>
-  </ul>
-</div>
-
-  <div class="main-content">
-    <header>
-          <div class="title">
-            <h1>Modifier le profil</h1>
+      <div class="sidebar ">
+        <div class="logo-container">
+          <div class="logo">
+            <ion-icon name="eye" class="i"></ion-icon>
+            <h3>Lab2View</h3>
           </div>
+          <i class='bx bx-menu' id="btn" ></i>
+        </div>
 
-          <div class="user">
-            <a href="{% url 'login' %}">
-              <i class='bx bx-log-out'>
-                <span class="tooltip">log-out</span>
-              </i>
 
+        <ul class="list">
+
+        {% if user.role.nom == 'ADMIN' %}
+            <li class="list-item" id="dash" >
+              <a href="{% url 'dashboard' %}">
+                <i class='bx bxs-dashboard'></i>
+                <span class="links-name"  >Tableau de bord</span>
+              </a>
+              <span class="tooltip" >Tableau de bord</span>
+            </li>
+        {% endif %}
+
+          <li class="list-item" >
+            <a href="{% url 'file' %}">
+              <ion-icon name="file-tray-stacked-outline" class="in"></ion-icon>
+              <span class="links-name" id="fich">Fichiers</span>
             </a>
+            <span class="tooltip">Fichiers</span>
+          </li>
+
+        {% if user.role.nom == 'ADMIN' %}
+             <li class="list-item" id="list-users" >
+              <a href="{% url 'admin:index' %}">
+                <ion-icon name="id-card-outline" class="in"></ion-icon>
+                <span class="links-name" >Espace Admin</span>
+              </a>
+              <span class="tooltip">Espace Admin</span>
+            </li>
+        {% endif %}
+
+          <li class="list-item active" >
+            <a href="{% url 'profile' %}">
+              <i class='bx bx-user'></i>
+              <span class="links-name">Profil</span>
+            </a>
+            <span class="tooltip">Profil</span>
+          </li>
+        </ul>
+      </div>
+
+        <div class="main-content">
+          <header>
+                <div class="title">
+                  <h1>Modifier le profil</h1>
+                </div>
+
+                <div class="user">
+                  <a href="{% url 'logout' %}">
+                    <i class='bx bx-log-out'>
+                      <span class="tooltip">log-out</span>
+                    </i>
+
+                  </a>
 
 
 
-            <div class="bg-img"></div>
-            <div class="nom-u">DJIOJIP Rowane</div>
+                  <div class="bg-img"><img src="{{ MEDIA_URL }}{{ img }}" alt="profil"></div>
+                  <div class="nom-u">{{ prenom }} {{ nom }}</div>
+                </div>
+
+          </header>
+
+        <main>
+        <div class="box">
+          <div class="edit-img">
+            <img src="{{ MEDIA_URL }}{{ img }}" alt="profil">
+            <input type="file" name="" id="file" accept="image/*">
+            <label for="file">Editer la photo</label>
           </div>
+          <div class="edit-form">
 
-    </header>
-
-  <main>
-  <div class="box">
-    <div class="edit-img">
-      <img src="{% static 'img/5816231.jpg' %}" alt="profile">
-      <input type="file" name="" id="file" accept="image/*">
-      <label for="file">Editer la photo</label>
-    </div>
-    <div class="edit-form">
-
-      <div class="mb-3">
-        <label for="name" class="form-label">Nom :</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Entrez votre nom" required>
-      </div>
-
-      <div class="mb-3">
-        <label for="surname" class="form-label">Prenom :</label>
-        <input type="text" class="form-control" id="surname" name="surname" placeholder="Entrez votre prenom" required>
-      </div>
-
-
-      <div class="mb-3">
-        <label for="email" class="form-label">Email :</label>
-        <input type="email" class="form-control" id="Email" name="email" placeholder="Entrez votre email" required>
-      </div>
-
-
-      <div class="mb-3">
-        <label for="ville" class="form-label">Ville :</label>
-        <input type="text" class="form-control" id="ville" name="ville" placeholder="Entrez votre ville" required>
-      </div>
-
-      <div class="wrapper">
-        <div class="collapsible">
-          <input class="check" type="checkbox" id="collapsible-head">
-          <label class="maj" for="collapsible-head">Mot de passe</label>
-          <div class="collapisble-text">
             <div class="mb-3">
-              <label for="an-password" class="form-label">Ancien mot de passe :</label>
-              <input type="password" class="form-control" id="an-password" name="password" placeholder="Entrez votre ancien mot de passe" required>
+              <label for="name" class="form-label">Nom :</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Entrez votre nom" required>
             </div>
 
             <div class="mb-3">
-              <label for="password" class="form-label">nouveau mot de passe :</label>
-              <input type="password" class="form-control" id="password" name="password" placeholder="Entrez votre nouveau mot de passe" required>
+              <label for="surname" class="form-label">Prenom :</label>
+              <input type="text" class="form-control" id="surname" name="surname" placeholder="Entrez votre prenom" required>
             </div>
+
 
             <div class="mb-3">
-              <label for="new-password" class="form-label">confirmez votre mot de passe :</label>
-              <input type="password" class="form-control" id="new-password" name="password" placeholder="confirmez votre mot de passe" required>
+              <label for="email" class="form-label">Email :</label>
+              <input type="email" class="form-control" id="Email" name="email" placeholder="Entrez votre email" required>
             </div>
 
+
+            <div class="mb-3">
+              <label for="ville" class="form-label">Ville :</label>
+              <input type="text" class="form-control" id="ville" name="ville" placeholder="Entrez votre ville" required>
+            </div>
+
+            <div class="wrapper">
+              <div class="collapsible">
+                <input class="check" type="checkbox" id="collapsible-head">
+                <label class="maj" for="collapsible-head">Mot de passe</label>
+                <div class="collapisble-text">
+                  <div class="mb-3">
+                    <label for="an-password" class="form-label">Ancien mot de passe :</label>
+                    <input type="password" class="form-control" id="an-password" name="password" placeholder="Entrez votre ancien mot de passe" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="password" class="form-label">nouveau mot de passe :</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Entrez votre nouveau mot de passe" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="new-password" class="form-label">confirmez votre mot de passe :</label>
+                    <input type="password" class="form-control" id="new-password" name="password" placeholder="confirmez votre mot de passe" required>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="btn-valid">
+              <a href="{% url 'profile' %}" class="btn" id="annuler">Annuler</a>
+              <a href="{% url 'profile' %}" class="btn">Modifier</a>
+
+            </div>
           </div>
         </div>
+        </main>
       </div>
-      <div class="btn-valid">
-        <a href="{% url 'profile' %}" class="btn" id="annuler">Annuler</a>
-        <a href="{% url 'profile' %}" class="btn">Modifier</a>
 
-      </div>
-    </div>
-  </div>
-  </main>
-</div>
+{% endif %}
 
 {% endblock %}

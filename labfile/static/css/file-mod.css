@@ -275,14 +275,19 @@ header{
 .user .bg-img{
     height: 38px;
     width: 38px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-image: url("/static/img/5816231.jpg");
-    border-radius: 50%;
-
+    margin-right: .2rem;
 }
 
-.user .nom{
+.user .bg-img img{
+    height: 38px;
+    width: 38px;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.user .nom-u{
    background: #E3F4FE;
     color: black;
     border-radius: 30px;

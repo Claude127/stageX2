@@ -18,7 +18,7 @@ class Action(models.Model):
 class Role(models.Model):
     NOM_CHOICES = (
         ("ADMIN", 'admin'),
-        ("STAFF", 'staff'),
+        ("PERSONNEL", 'personnel'),
         ("STAGIAIRE", 'stagiaire')
     )
 
@@ -51,14 +51,20 @@ class Utilisateur(AbstractBaseUser, PermissionsMixin):
 
     def has_perm(self, perm, obj=None):
         # specifie s'il a une permission specifique
-        return True
+        if perm:
+            return True
+        else:
+            return False
 
     def has_module_perms(self, app_label):
         # Specifie s'il a les permissions de voir l'application('app_label')
         return True
 
-
-
+    class Meta:
+        permissions = [
+            ('can_view_site', 'can view the site'),
+            ('can_view_dashboard', 'can view the dashboard'),
+        ]
 
 
 class Document(models.Model):
