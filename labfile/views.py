@@ -85,7 +85,7 @@ def file(request):
 
 
 @login_required(login_url='/login')
-@permission_required('labfile.can_view_site')
+@permission_required('labfile.can_view_site', raise_exception=True)
 def add_file(request):
     # recuperer les informations de l'utilisateur connecté
     user = request.user
@@ -111,7 +111,7 @@ def view_file(request):
 
 
 @login_required(login_url='/login')
-@permission_required('labfile.can_view_site')
+@permission_required('labfile.can_view_site', raise_exception=True)
 def file_mod(request):
     # recuperer les informations de l'utilisateur connecté
     user = request.user
