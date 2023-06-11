@@ -178,5 +178,16 @@ def user_admin(request):
 
 
 @login_required(login_url='/login')
-def add_user(request):
-    return render(request, 'admin/add_user.html')
+def search(request):
+    # fonction de recherche
+    if request.method == 'POST':
+        searched = request.POST.get('searched')
+        files =Document.objects.filter(nom__contains=searched)
+        user = request.user
+        if user:
+            nom = user.nom
+            prenom = user.prenom
+            img = user.image.name
+            return render(request, 'search.html', {'nom': nom, 'prenom': prenom, 'img': img, 'searched': searched, 'files': files})
+    else:
+        return redirect('login')

@@ -1,8 +1,8 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from .views import file, dashboard, user_admin, profile, add_file, view_file, file_mod, add_user, profile_mod, \
-    login_user, logout_user
+from .views import file, dashboard, user_admin, profile, add_file, view_file, file_mod, profile_mod, \
+    login_user, logout_user, search
 
 urlpatterns = [
 
@@ -31,8 +31,8 @@ urlpatterns = [
         # page pour se deconnecter
         path('logout/', logout_user, name='logout'),
 
-
-    path('add_user/', add_user, name='add_user'),
+    #rechercher des fichiers
+    path('search/', search, name='search-file'),
     path('users/', user_admin, name='user_admin'),
 
 

@@ -355,7 +355,11 @@ main .page-header{
 }
 .page-header .search{
     position: relative;
-    left:120px;
+    left:110px;
+    display:flex;
+    justify-content:center
+    align-items:center;
+
 }
 
 .page-header .search input{
@@ -380,6 +384,16 @@ main .page-header{
     z-index: 99;
    line-height: 20px;
     margin: 5px;
+}
+
+.page-header .search .go{
+    border-radius: 30px;
+    border: 1px solid;
+    padding:2px;
+    background-color:#E3F4FE;
+    position:relative;
+    bottom:2px;
+
 }
 
 .files-content{
