@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 
+from .models import Document, Categorie
+
 
 # Create your views here.
 
@@ -32,11 +34,11 @@ def login_user(request):
 
             login(request, user)
             return response  # rediriger l'utilisateur vers la page souhaitée
-            print(user)
+
         else:
             messages.error(request, 'valeurs incorrectes, veuillez réessayer...')
             return redirect('login')
-            print(user)
+
 
     else:
         # verifier si l'utilisateur est deja connecté
@@ -75,11 +77,13 @@ def logout_user(request):
 @login_required(login_url='/login')
 def file(request):
     user = request.user
+    files = Document.objects.all()
+    cat = Categorie.objects.all()
     if user:
         nom = user.nom
         prenom = user.prenom
         img = user.image.name
-        return render(request, 'file.html', {'nom': nom, 'prenom': prenom, 'img': img})
+        return render(request, 'file.html', {'nom': nom, 'prenom': prenom, 'img': img, 'files': files, 'cats': cat})
     else:
         return redirect('login')
 
@@ -96,6 +100,7 @@ def add_file(request):
         return render(request, 'admin/add_file.html', {'nom': nom, 'prenom': prenom, 'img': img})
     else:
         return redirect('login')
+
 
 @login_required(login_url='/login')
 def view_file(request):
@@ -167,10 +172,10 @@ def dashboard(request):
         return redirect('login')
 
 
-
 @login_required(login_url='/login')
 def user_admin(request):
     return render(request, 'admin/user_admin.html')
+
 
 @login_required(login_url='/login')
 def add_user(request):

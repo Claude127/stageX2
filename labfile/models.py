@@ -49,8 +49,6 @@ class Utilisateur(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-
-
     class Meta:
         permissions = [
             ('can_view_site', 'can view the site'),
@@ -58,9 +56,16 @@ class Utilisateur(AbstractBaseUser, PermissionsMixin):
         ]
 
 
+class Categorie(models.Model):
+    nom = models.CharField(max_length=25)
+
+    def __str__(self):
+        return self.nom
+
+
 class Document(models.Model):
     nom = models.CharField(max_length=30)
-    categorie = models.CharField(max_length=30, null=True)
+    categorie = models.ForeignKey(Categorie, on_delete=models.CASCADE)
     emplacement = models.FileField(upload_to='fichiers')
     date_creation = models.DateField(auto_now_add=True)
     date_updated = models.DateField(auto_now=True)

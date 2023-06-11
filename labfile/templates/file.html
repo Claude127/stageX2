@@ -110,76 +110,46 @@
                   {% endif %}
 
                 </div>
-                <table>
-                  <thead>
-                  <tr>
-                    <th>Nom</th>
-                    <th>categories</th>
-                    <th>Actions</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td class="nom"> proces verbal N367</td>
-                    <td ><span class="category-filter">juridique</span></td>
-                    <td class="actions">
-                              <div class="action1"><a href="{% url 'view_file' %}"><ion-icon name="eye-outline" class="iv"></ion-icon></a></div>
-                            {% if user.role.nom == 'ADMIN' %}
-                              <div class="action3">
-                                <a href="{% url 'file_mod' %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>
-                              </div>
+                <table id="tableau">
+                      <thead>
+                      <tr>
+                        <th>Nom</th>
+                        <th>categories</th>
+                        <th>Actions</th>
+                      </tr>
+                      </thead>
+                     <tbody>
+                          {% for file in files %}
+                            <tr>
+                                <td class="nom">{{ file.nom }}</td>
+                                <td ><span class="category-filter">{{ file.categorie }}</span></td>
+                                <td class="actions">
+                                          <div class="action1"><a href="{% url 'view_file' %}"><ion-icon name="eye-outline" class="iv"></ion-icon></a></div>
+                                        {% if user.role.nom == 'ADMIN' %}
+                                          <div class="action3">
+                                            <a href="{% url 'file_mod' %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>
+                                          </div>
 
-                              <div class="action4">
-                                 <a href="#"><ion-icon name="trash-outline"class="iv" >
-                              </ion-icon></a>
-                              </div>
-                            {% elif  user.role.nom == 'PERSONNEL' %}
-                              <div class="action3">
-                                <a href="{% url 'file_mod' %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>
-                              </div>
-                            {% endif %}
-
-
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="nom"> rapport de stage -Ghomsi Rayan</td>
-                    <td ><span class="category-filter">rapport de stage</span></td>
-                    <td class="actions">
-                      <div class="action1"><a href="{% url 'view_file' %}"><ion-icon name="eye-outline" class="iv"></ion-icon></a></div>
-                      <div class="action3"><a href="{% url 'file_mod' %}"><ion-icon name="create-outline" class="iv"></ion-icon></a></div>
-                      <div class="action4"><a href="#"><ion-icon name="trash-outline"class="iv" ></ion-icon></a></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="nom"> design -client Rose</td>
-                    <td ><span class="category-filter">infographie</span></td>
-                    <td class="actions">
-                      <div class="action1"><a href="{% url 'view_file' %}"><ion-icon name="eye-outline" class="iv"></ion-icon></a></div>
-                      <div class="action3"><a href="{% url 'file_mod' %}"><ion-icon name="create-outline" class="iv"></ion-icon></a></div>
-                      <div class="action4"><a href="#"><ion-icon name="trash-outline"class="iv" ></ion-icon></a></div>
-                    </td>
-                  </tr>
-                  <tr class="nom">
-                    <td> memoire -etude d'un erd </td>
-                    <td ><span class="category-filter">memoire</span></td>
-                    <td class="actions">
-                      <div class="action1"><a href="{% url 'view_file' %}"><ion-icon name="eye-outline" class="iv"></ion-icon></a></div>
-                      <div class="action3"><a href="{% url 'file_mod' %}"><ion-icon name="create-outline" class="iv"></ion-icon></a></div>
-                      <div class="action4"><a href="#"><ion-icon name="trash-outline"class="iv" ></ion-icon></a></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="nom">charge procedurale N405</td>
-                    <td ><span class="category-filter">juridirque</span></td>
-                    <td class="actions">
-                      <div class="action1"><a href="{% url 'view_file' %}"><ion-icon name="eye-outline" class="iv"></ion-icon></a></div>
-                      <div class="action3"><a href="{% url 'file_mod' %}"><ion-icon name="create-outline" class="iv"></ion-icon></a></div>
-                      <div class="action4"><a href="#"><ion-icon name="trash-outline"class="iv" ></ion-icon></a></div>
-                    </td>
-                  </tr>
-                  </tbody>
+                                          <div class="action4">
+                                             <a href="#"><ion-icon name="trash-outline"class="iv" >
+                                          </ion-icon></a>
+                                          </div>
+                                        {% elif  user.role.nom == 'PERSONNEL' %}
+                                          <div class="action3">
+                                            <a href="{% url 'file_mod' %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>
+                                          </div>
+                                        {% endif %}
+                                </td>
+                            </tr>
+                          {% endfor %}
+                    </tbody>
                 </table>
+                  <!--     la pagination utlise des fleches en unicode             -->
+                      <div id="pagination">
+                          <a href="#" class="prev-next prev"></a>
+                          <a href="#" class="page"></a>
+                          <a href="#" class="prev-next next"></a>
+                      </div>
               </div>
 
               <div class="filter">
@@ -188,12 +158,9 @@
                     <span class="word">Trier par : </span>
                   </div>
                   <ul class="filter-list">
-                    <li class="list-filter"><a href="#">juridique</a></li>
-                    <li class="list-filter"><a href="#">Rapport de stage</a></li>
-                    <li class="list-filter"><a href="#">Memoire</a></li>
-                    <li class="list-filter"><a href="#">Infographie</a></li>
-                    <li class="list-filter"><a href="#">recents</a></li>
-                    <li class="list-filter"><a href="#">anciens</a></li>
+                      {% for cat in cats %}
+                        <li class="list-filter"><a href="#">{{ cat.nom }}</a></li>
+                    {% endfor %}
                   </ul>
               </div>
 
@@ -204,6 +171,70 @@
 
 
       </div>
+
+
+<script>
+
+var tableau = document.getElementById("tableau");
+var tbody = tableau.getElementsByTagName("tbody")[0];
+var rows = tbody.getElementsByTagName("tr");
+var pageCount = 4; // Nombre d'Ã©lÃ©ments par page
+var currentPage = 1; // Page actuelle
+
+function showPage(page) {
+  currentPage = page;
+  var startIndex = (page - 1) * pageCount;
+  var endIndex = startIndex + pageCount;
+  for (var i = 0; i < rows.length; i++) {
+    var row = rows[i];
+    if (i < startIndex || i >= endIndex) {
+      row.style.display = "none";
+    } else {
+      row.style.display = "";
+    }
+  }
+  updatePagination();
+}
+
+var pagination = document.getElementById("pagination");
+var prevLink = pagination.getElementsByClassName("prev")[0];
+var pageLink = pagination.getElementsByClassName("page")[0];
+var nextLink = pagination.getElementsByClassName("next")[0];
+
+function updatePagination() {
+  var totalPages = Math.ceil(rows.length / pageCount);
+  pageLink.innerHTML = currentPage;
+  pageLink.className = "page active";
+  if (currentPage == 1) {
+    prevLink.className = "prev disabled";
+  } else {
+    prevLink.className = "prev";
+  }
+  if (currentPage == totalPages) {
+    nextLink.className = "next disabled";
+  } else {
+    nextLink.className = "next";
+  }
+}
+
+prevLink.addEventListener("click", function(e) {
+  e.preventDefault();
+  if (currentPage > 1) {
+    showPage(currentPage - 1);
+  }
+});
+
+nextLink.addEventListener("click", function(e) {
+  e.preventDefault();
+  var totalPages = Math.ceil(rows.length / pageCount);
+  if (currentPage < totalPages) {
+    showPage(currentPage + 1);
+  }
+});
+
+showPage(1);
+</script>
+
 
 {% endif %}
 

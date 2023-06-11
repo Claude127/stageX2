@@ -456,6 +456,47 @@ tbody tr:nth-child(even){
     background: #E3F4FE;
 }
 
+
+#pagination {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#pagination a {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #E3F4FE;
+  color: #333;
+  text-decoration: none;
+  border: none;
+  margin-right: 5px;
+  border-radius: 20px;
+}
+
+#pagination a.active {
+  background-color: #ddd;
+  color: #333;
+}
+
+#pagination a.prev:before {
+  content: "\2190";
+}
+
+#pagination a.next:after {
+  content: "\2192";
+}
+
+#pagination a.prev:before, #pagination a.next:after {
+  display: inline-block;
+  margin-right: 5px;
+  font-size: 20px;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+
+
 .nom{
     font-weight: 700;
 }

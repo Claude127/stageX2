@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import Utilisateur, Role, Action, Document
+from .models import Utilisateur, Role, Action, Categorie, Document
 
 
 class DocumentAdmin(admin.ModelAdmin):
@@ -89,3 +89,4 @@ admin.site.register(Utilisateur, UserAdmin)
 admin.site.register(Role)
 admin.site.register(Action)
 admin.site.register(Document, DocumentAdmin)
+admin.site.register(Categorie)
