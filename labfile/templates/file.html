@@ -136,10 +136,12 @@
                                           </div>
 
                                           <div class="action4">
-                                              <form action="{% url 'delete_file' file.id %}" method="POST">
+                                                <a href="#" onclick="if (confirm('Voulez-vous vraiment supprimer ce fichier ?')) { document.getElementById('delete-file-form').submit(); }">
+                                                  <ion-icon name="trash-outline" class="iv"></ion-icon>
+                                                </a>
+                                                <form id="delete-file-form" action="{% url 'delete_file' file.id %}" method="POST">
                                                   {% csrf_token %}
-                                                    <button type="button"><ion-icon name="trash-outline"class="iv"></ion-icon></button>
-                                            </form>
+                                                </form>
                                           </div>
                                         {% elif  user.role.nom == 'PERSONNEL' %}
                                            <div class="action3">

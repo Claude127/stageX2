@@ -137,7 +137,7 @@ def delete_file(request, file_id):
         fs = FileSystemStorage()
         fs.delete(file.emplacement.name)
         file.delete()
-        return render(request, 'file.html', {'nom': nom, 'prenom': prenom, 'img': img})
+        return redirect('file')
     else:
         return render(request, 'file.html', {'nom': nom, 'prenom': prenom, 'img': img})
 
