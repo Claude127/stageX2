@@ -66,7 +66,7 @@ class Categorie(models.Model):
 class Document(models.Model):
     nom = models.CharField(max_length=30)
     categorie = models.ForeignKey(Categorie, on_delete=models.CASCADE)
-    emplacement = models.FileField(upload_to='fichiers')
+    emplacement = models.FileField(upload_to='fichiers/')
     date_creation = models.DateField(auto_now_add=True)
     date_updated = models.DateField(auto_now=True)
     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)

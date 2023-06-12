@@ -83,28 +83,31 @@
           <main>
           <div class="box">
             <div class="edit-form">
+                  <form action="{% url 'add_file' %}" method="POST" enctype="multipart/form-data">
+                      {% csrf_token %}
 
-              <div class="mb-3">
-                <label for="name" class="form-label">nom :</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Entrez le nom du fichier" required>
-              </div>
+                      <div class="mb-3">
+                              <label for="name" class="form-label">nom :</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Entrez le nom du fichier" required>
+                      </div>
 
-              <div class="mb-3">
-                <label for="category" class="form-label">Categorie :</label>
-                <input type="text" class="form-control" id="category" name="category" placeholder="Entrez la categorie " required>
-              </div>
+                      <div class="mb-3">
+                        <label for="category" class="form-label">Categorie :</label>
+                        <input type="text" class="form-control" id="category" name="categorie" placeholder="Entrez la categorie " required>
+                      </div>
+
+                      <div class="mb-3e">
+                        <label  class="form-label">Emplacement de votre fichier:</label>
+                        <input type="file"   name="emplac" required>
+                      </div>
 
 
-              <div class="mb-3e">
-                <label  class="form-label">Emplacement de votre fichier:</label>
-                <input type="file"   name="emplac" required>
-              </div>
-            </div>
+                    <div class="btn-valid">
+                      <a href="{% url 'file' %}" class="btn" id="annuler">Annuler</a>
+                        <button class="btn">Ajouter</button>
+                     </div>
 
-            <div class="btn-valid">
-              <a href="{% url 'file' %}" class="btn" id="annuler">Annuler</a>
-              <a href="{% url 'file' %}" class="btn">Ajouter</a>
-
+                  </form>
             </div>
           </div>
         </main>

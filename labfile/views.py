@@ -98,15 +98,29 @@ def file(request):
 @login_required(login_url='/login')
 @permission_required('labfile.can_view_site', raise_exception=True)
 def add_file(request):
-    # recuperer les informations de l'utilisateur connecté
-    user = request.user
-    if user:
-        nom = user.nom
-        prenom = user.prenom,
-        img = user.image.name
-        return render(request, 'admin/add_file.html', {'nom': nom, 'prenom': prenom, 'img': img})
+    if request.method == 'POST':
+
+
+        #traiter les requetes
+        name = request.POST.get('name')
+        categorie = request.POST.get('categorie')
+        cat_id = Categorie.objects.get(nom=categorie)
+        emplac = request.FILES.get('emplac')
+        user_id = request.user
+        file = Document(nom=name, categorie=cat_id, emplacement=emplac, utilisateur=user_id)
+        # sauvegarder les infos dans la bd
+        file.save()
+        return redirect('file')
+
     else:
-        return redirect('login')
+        user = request.user
+        # recuperer les informations de l'utilisateur connecté
+        if user:
+            nom = user.nom
+            prenom = user.prenom
+            img = user.image.name
+            return render(request, 'admin/add_file.html', {'nom': nom, 'prenom': prenom, 'img': img})
+
 
 
 @login_required(login_url='/login')
@@ -119,13 +133,11 @@ def view_file(request, file_id):
     file_path = Path(settings.MEDIA_ROOT, str(file.emplacement))
 
     # # detecter le jeu de caracteres du fichier
-    with open(file_path, 'rb') as f:
-        file_type = magic.from_buffer(f.read(), mime=True)
+    # with open(file_path, 'rb') as f:
+    #     file_type = magic.from_buffer(f.read(), mime=True)
 
     # extraire le texte du fichier
-    file_contents = textract.process(file_path, method=file_type)
-
-
+    file_contents = textract.process(str(file_path))
 
     if user:
         nom = user.nom
