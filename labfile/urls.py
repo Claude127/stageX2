@@ -12,7 +12,7 @@ urlpatterns = [
         #page pour ajouter un fichier
         path('add_file/', add_file, name='add_file'),
         #page pour voir un fichier
-        path('view_file/', view_file, name='view_file'),
+        path('view-file/<int:file_id>/', view_file, name='view-file'),
         #page pour modifier un fichier
         path('file_mod/', file_mod, name='file_mod'),
         #page pour voir le dashboard

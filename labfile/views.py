@@ -1,8 +1,15 @@
+from pathlib import Path
+
+import magic
+import textract
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
+from django.urls import path
 
 from .models import Document, Categorie
 
@@ -103,14 +110,29 @@ def add_file(request):
 
 
 @login_required(login_url='/login')
-def view_file(request):
+def view_file(request, file_id):
     # recuperer les informations de l'utilisateur connecté
     user = request.user
+    file = Document.objects.get(pk=file_id)
+
+    # definir le chemin d'acces au fichier
+    file_path = Path(settings.MEDIA_ROOT, str(file.emplacement))
+
+    # # detecter le jeu de caracteres du fichier
+    with open(file_path, 'rb') as f:
+        file_type = magic.from_buffer(f.read(), mime=True)
+
+    # extraire le texte du fichier
+    file_contents = textract.process(file_path, method=file_type)
+
+
+
     if user:
         nom = user.nom
         prenom = user.prenom
         img = user.image.name
-        return render(request, 'view_file.html', {'nom': nom, 'prenom': prenom, 'img': img})
+        return render(request, 'view_file.html', {'nom': nom, 'prenom': prenom, 'img': img, 'file': file,
+                                                  'file_contents': file_contents})
     else:
         return redirect('login')
 
@@ -182,12 +204,13 @@ def search(request):
     # fonction de recherche
     if request.method == 'POST':
         searched = request.POST.get('searched')
-        files =Document.objects.filter(nom__contains=searched)
+        files = Document.objects.filter(nom__contains=searched)
         user = request.user
         if user:
             nom = user.nom
             prenom = user.prenom
             img = user.image.name
-            return render(request, 'search.html', {'nom': nom, 'prenom': prenom, 'img': img, 'searched': searched, 'files': files})
+            return render(request, 'search.html',
+                          {'nom': nom, 'prenom': prenom, 'img': img, 'searched': searched, 'files': files})
     else:
         return redirect('login')

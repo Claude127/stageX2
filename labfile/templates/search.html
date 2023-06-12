@@ -88,7 +88,7 @@
            <main>
 
                {% for file in files %}
-               <a href="{% url 'file'%}">
+               <a href="{% url 'view-file' file.id %}">
                    {{ file }} - {{ file.categorie }} <br/>
                </a>
                {% endfor %}

@@ -129,7 +129,7 @@
                                 <td class="nom">{{ file.nom }}</td>
                                 <td ><span class="category-filter">{{ file.categorie }}</span></td>
                                 <td class="actions">
-                                          <div class="action1"><a href="{% url 'view_file' %}"><ion-icon name="eye-outline" class="iv"></ion-icon></a></div>
+                                          <div class="action1"><a href="{% url 'view-file' file.id  %}"><ion-icon name="eye-outline" class="iv"></ion-icon></a></div>
                                         {% if user.role.nom == 'ADMIN' %}
                                           <div class="action3">
                                             <a href="{% url 'file_mod' %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>
