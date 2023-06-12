@@ -19,7 +19,7 @@
 
         <ul class="list">
 
-      {% if user.role.name == 'ADMIN' %}
+      {% if user.role.nom == 'ADMIN' %}
           <li class="list-item" id="dash" >
             <a href="{% url 'dashboard' %}">
               <i class='bx bxs-dashboard'></i>
@@ -88,7 +88,7 @@
            <main>
 
                {% for file in files %}
-               <a href="{% url 'view-file' file.id %}">
+               <a href="{{ MEDIA_URL }}{{ file.emplacement }} download}">
                    {{ file }} - {{ file.categorie }} <br/>
                </a>
                {% endfor %}
