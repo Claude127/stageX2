@@ -14,7 +14,7 @@ urlpatterns = [
         #page pour voir un fichier
         path('view-file/<int:file_id>/', view_file, name='view-file'),
         #page pour modifier un fichier
-        path('file_mod/', file_mod, name='file_mod'),
+        path('file_mod/<int:file_id>/', file_mod, name='file_mod'),
         #page pour voir le dashboard
         path('dashboard/', dashboard, name='dashboard'),
 

@@ -100,8 +100,7 @@ def file(request):
 def add_file(request):
     if request.method == 'POST':
 
-
-        #traiter les requetes
+        # traiter les requetes
         name = request.POST.get('name')
         categorie = request.POST.get('categorie')
         cat_id = Categorie.objects.get(nom=categorie)
@@ -120,7 +119,6 @@ def add_file(request):
             prenom = user.prenom
             img = user.image.name
             return render(request, 'admin/add_file.html', {'nom': nom, 'prenom': prenom, 'img': img})
-
 
 
 @login_required(login_url='/login')
@@ -151,16 +149,27 @@ def view_file(request, file_id):
 
 @login_required(login_url='/login')
 @permission_required('labfile.can_view_site', raise_exception=True)
-def file_mod(request):
-    # recuperer les informations de l'utilisateur connecté
-    user = request.user
-    if user:
-        nom = user.nom
-        prenom = user.prenom
-        img = user.image.name
-        return render(request, 'admin/file_mod.html', {'nom': nom, 'prenom': prenom, 'img': img})
+def file_mod(request, file_id):
+    file = Document.objects.get(pk=file_id)
+    if request.method == 'POST':
+        nom = request.POST['name']
+        categorie = request.POST['categorie']   #faire correspondre la categorie a son id
+        cat_id = Categorie.objects.get(nom=categorie)
+
+        #attribuons de nouvelles valeurs a l'element
+
+        file.nom = nom
+        file.categorie = cat_id
+
+        file.save()
+        return redirect('file')
     else:
-        return redirect('login')
+        user = request.user
+        if user:
+            nom = user.nom
+            prenom = user.prenom
+            img = user.image.name
+            return render(request, 'admin/file_mod.html', {'nom': nom, 'prenom': prenom, 'img': img})
 
 
 # gestion des profils

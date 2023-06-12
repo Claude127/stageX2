@@ -19,15 +19,15 @@
 
           <ul class="list">
 
-        {% if user.role.name == 'ADMIN' %}
-            <li class="list-item" id="dash" >
-              <a href="{% url 'dashboard' %}">
-                <i class='bx bxs-dashboard'></i>
-                <span class="links-name"  >Tableau de bord</span>
-              </a>
-              <span class="tooltip" >Tableau de bord</span>
-            </li>
-        {% endif %}
+            {% if user.role.nom == 'ADMIN' %}
+                <li class="list-item" id="dash" >
+                  <a href="{% url 'dashboard' %}">
+                    <i class='bx bxs-dashboard'></i>
+                    <span class="links-name"  >Tableau de bord</span>
+                  </a>
+                  <span class="tooltip" >Tableau de bord</span>
+                </li>
+            {% endif %}
 
             <li class="list-item active" >
               <a href="{% url 'file' %}">
@@ -87,30 +87,30 @@
                 <div class="box">
                     <div class="edit-form">
 
-                        <div class="mb-3">
-                            <label for="name" class="form-label">nom :</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Entrez le nom du fichier" required>
-                        </div>
+                        <form  method="POST">
 
-                        <div class="mb-3">
-                            <label for="category" class="form-label">Categorie :</label>
-                            <input type="text" class="form-control" id="category" name="category" placeholder="Entrez la categorie " required>
-                        </div>
+                            {% csrf_token %}
 
+                             <div class="mb-3">
+                                <label for="name" class="form-label">nom :</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Entrez le nom du fichier" required>
+                            </div>
 
-                        <div class="mb-3e">
-                            <a href="#">Acceder au fichier</a>
-                        </div>
-                    </div>
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Categorie :</label>
+                                <input type="text" class="form-control" id="category" name="categorie" placeholder="Entrez la categorie " required>
+                            </div>
 
-                    <div class="btn-valid">
-                        <a href="{% url 'file' %}" class="btn" id="annuler">Annuler</a>
-                        <a href="{% url 'file' %}" class="btn">Ajouter</a>
+                            <div class="btn-valid">
+                                <a href="{% url 'file' %}" class="btn" id="annuler">Annuler</a>
+                                <button  class="btn">Ajouter</button>
+                            </div>
 
-                    </div>
+                    </form>
                 </div>
-            </main>
-        </div>
+            </div>
+        </main>
+    </div>
 
 {% endif %}
 

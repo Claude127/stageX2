@@ -132,7 +132,7 @@
                                           <div class="action1"><a href="{{ MEDIA_URL }}{{ file.emplacement }}" download ><ion-icon name="download-outline" class="iv"></ion-icon></a></div>
                                         {% if user.role.nom == 'ADMIN' %}
                                           <div class="action3">
-                                            <a href="{% url 'file_mod' %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>
+                                            <a href="{% url 'file_mod' file.id %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>
                                           </div>
 
                                           <div class="action4">
