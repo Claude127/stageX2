@@ -60,7 +60,7 @@
           <div class="main-content">
             <header>
                   <div class="title">
-                    <h1>Modifier un fichier</h1>
+                    <h1>Modifier {{ file.nom }}</h1>
                   </div>
 
                   <div class="user">
@@ -93,17 +93,17 @@
 
                              <div class="mb-3">
                                 <label for="name" class="form-label">nom :</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Entrez le nom du fichier" required>
+                                <input type="text" class="form-control" id="name" name="name"  value="{{ file.nom }}"  placeholder="Entrez le nom du fichier" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="category" class="form-label">Categorie :</label>
-                                <input type="text" class="form-control" id="category" name="categorie" placeholder="Entrez la categorie " required>
+                                <input type="text" class="form-control" id="category" name="categorie" value="{{ file.categorie.nom }}"  placeholder="Entrez la categorie " required>
                             </div>
 
                             <div class="btn-valid">
                                 <a href="{% url 'file' %}" class="btn" id="annuler">Annuler</a>
-                                <button  class="btn">Ajouter</button>
+                                <button  class="btn">Modifier</button>
                             </div>
 
                     </form>

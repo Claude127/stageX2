@@ -5,6 +5,7 @@ import textract
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.decorators import login_required, permission_required
+from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
@@ -122,29 +123,23 @@ def add_file(request):
 
 
 @login_required(login_url='/login')
-def view_file(request, file_id):
-    # recuperer les informations de l'utilisateur connecté
+def delete_file(request, file_id):
     user = request.user
-    file = Document.objects.get(pk=file_id)
 
-    # definir le chemin d'acces au fichier
-    file_path = Path(settings.MEDIA_ROOT, str(file.emplacement))
+    nom = user.nom
+    prenom = user.prenom
+    img = user.image.name
 
-    # # detecter le jeu de caracteres du fichier
-    # with open(file_path, 'rb') as f:
-    #     file_type = magic.from_buffer(f.read(), mime=True)
+    # traitement du fichier de suppression
+    if request.method == 'POST':
+        file = Document.objects.get(pk=file_id)
 
-    # extraire le texte du fichier
-    file_contents = textract.process(str(file_path))
-
-    if user:
-        nom = user.nom
-        prenom = user.prenom
-        img = user.image.name
-        return render(request, 'view_file.html', {'nom': nom, 'prenom': prenom, 'img': img, 'file': file,
-                                                  'file_contents': file_contents})
+        fs = FileSystemStorage()
+        fs.delete(file.emplacement.name)
+        file.delete()
+        return render(request, 'file.html', {'nom': nom, 'prenom': prenom, 'img': img})
     else:
-        return redirect('login')
+        return render(request, 'file.html', {'nom': nom, 'prenom': prenom, 'img': img})
 
 
 @login_required(login_url='/login')
@@ -153,10 +148,10 @@ def file_mod(request, file_id):
     file = Document.objects.get(pk=file_id)
     if request.method == 'POST':
         nom = request.POST['name']
-        categorie = request.POST['categorie']   #faire correspondre la categorie a son id
+        categorie = request.POST['categorie']  # faire correspondre la categorie a son id
         cat_id = Categorie.objects.get(nom=categorie)
 
-        #attribuons de nouvelles valeurs a l'element
+        # attribuons de nouvelles valeurs a l'element
 
         file.nom = nom
         file.categorie = cat_id
@@ -169,7 +164,7 @@ def file_mod(request, file_id):
             nom = user.nom
             prenom = user.prenom
             img = user.image.name
-            return render(request, 'admin/file_mod.html', {'nom': nom, 'prenom': prenom, 'img': img})
+            return render(request, 'admin/file_mod.html', {'nom': nom, 'prenom': prenom, 'img': img, 'file': file})
 
 
 # gestion des profils

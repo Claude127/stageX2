@@ -136,12 +136,14 @@
                                           </div>
 
                                           <div class="action4">
-                                             <a href="#"><ion-icon name="trash-outline"class="iv" >
-                                          </ion-icon></a>
+                                              <form action="{% url 'delete_file' file.id %}" method="POST">
+                                                  {% csrf_token %}
+                                                    <button type="button"><ion-icon name="trash-outline"class="iv"></ion-icon></button>
+                                            </form>
                                           </div>
                                         {% elif  user.role.nom == 'PERSONNEL' %}
-                                          <div class="action3">
-                                            <a href="{% url 'file_mod' %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>
+                                           <div class="action3">
+                                                <a href="{% url 'file_mod' file.id %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>
                                           </div>
                                         {% endif %}
                                 </td>
