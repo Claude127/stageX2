@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 from .views import file, dashboard, user_admin, profile, add_file, file_mod, profile_mod, \
-    login_user, logout_user, search, delete_file
+    login_user, logout_user, search, delete_file, sort_files
 
 urlpatterns = [
 
@@ -15,6 +15,8 @@ urlpatterns = [
         path('delete-file/<int:file_id>/', delete_file, name='delete_file'),
         #page pour modifier un fichier
         path('file_mod/<int:file_id>/', file_mod, name='file_mod'),
+        #page pour afficher des produits par categorie
+        path('sort_files/<int:category_id>/', sort_files, name='sort_files'),
         #page pour voir le dashboard
         path('dashboard/', dashboard, name='dashboard'),
 

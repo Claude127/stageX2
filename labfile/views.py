@@ -230,3 +230,16 @@ def search(request):
                           {'nom': nom, 'prenom': prenom, 'img': img, 'searched': searched, 'files': files})
     else:
         return redirect('login')
+
+
+def sort_files(request, category_id):
+    category = Categorie.objects.get(pk=category_id)
+    files = Document.objects.filter(categorie=category)
+    user = request.user
+    if user:
+        nom = user.nom
+        prenom = user.prenom
+        img = user.image.name
+
+        return render(request, 'sort_files.html',
+                      {'categorie': category, 'files': files, 'nom': nom, 'prenom': prenom, 'img': img})
