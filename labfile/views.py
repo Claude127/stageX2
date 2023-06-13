@@ -196,19 +196,18 @@ def profile_mod(request):
 
         if not user.check_password(old_password):
             messages.error(request, 'Ancien mot de passe invalide .')
-        if new_password1:
-            if new_password1 != new_password2:
-                messages.error(request, 'les mots de passes ne correspondent pas')
-            else:
-                user.nom = nom
-                user.prenom = prenom
-                user.email = email
-                if image:
-                    user.image = image
-                user.set_password(new_password1)
-            user.save()
-            update_session_auth_hash(request, user)
-            return redirect('profile')
+        elif new_password1 != new_password2:
+            messages.error(request, 'les mots de passes ne correspondent pas')
+        else:
+            user.nom = nom
+            user.prenom = prenom
+            user.email = email
+            if image:
+                user.image = image
+            user.set_password(new_password1)
+        user.save()
+        update_session_auth_hash(request, user)
+        return redirect('profile')
     else:
         user = request.user
         if user:
