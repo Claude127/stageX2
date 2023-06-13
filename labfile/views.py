@@ -259,6 +259,7 @@ def search(request):
 def sort_files(request, category_id):
     category = Categorie.objects.get(pk=category_id)
     files = Document.objects.filter(categorie=category)
+    cat = Categorie.objects.all()
     user = request.user
     if user:
         nom = user.nom
@@ -266,4 +267,4 @@ def sort_files(request, category_id):
         img = user.image.name
 
         return render(request, 'sort_files.html',
-                      {'categorie': category, 'files': files, 'nom': nom, 'prenom': prenom, 'img': img})
+                      {'categorie': category, 'files': files, 'nom': nom, 'prenom': prenom, 'img': img, 'cats': cat})

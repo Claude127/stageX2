@@ -170,6 +170,7 @@
                       {% for cat in cats %}
                         <li class="list-filter"><a href="{% url 'sort_files' cat.id %}">{{ cat.nom }}</a></li>
                     {% endfor %}
+                        <li class="list-filter"><a href="{% url 'file' %}">All</a></li>
                   </ul>
               </div>
 
