@@ -8,11 +8,11 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate, logout, update_session_auth_hash
 from django.contrib import messages
 from django.urls import path
 
-from .models import Document, Categorie
+from .models import Document, Categorie, Utilisateur
 
 
 # Create your views here.
@@ -52,7 +52,6 @@ def login_user(request):
         # verifier si l'utilisateur est deja connecté
         if 'email' in request.COOKIES:
             return redirect('file')
-
         # verifier si des cookies sont presents pour l'email et le mot de passe
 
         email = request.COOKIES.get('email')
@@ -184,16 +183,42 @@ def profile(request):
 
 @login_required(login_url='/login')
 def profile_mod(request):
-    # recuperer les informations de l'utilisateur connecté
-    user = request.user
-    if user:
-        nom = user.nom
-        prenom = user.prenom
-        img = user.image.name
-        email = user.email
-        return render(request, 'profile_mod.html', {'nom': nom, 'prenom': prenom, 'img': img, 'email': email})
+    if request.method == 'POST':
+        nom = request.POST['name']
+        prenom = request.POST['surname']
+        email = request.POST['email']
+        image = request.FILES.get('image')
+        old_password = request.POST['old-password']
+        new_password1 = request.POST['new-password1']
+        new_password2 = request.POST['new-password2']
+
+        user = request.user
+
+        if not user.check_password(old_password):
+            messages.error(request, 'Ancien mot de passe invalide .')
+        if new_password1:
+            if new_password1 != new_password2:
+                messages.error(request, 'les mots de passes ne correspondent pas')
+            else:
+                user.nom = nom
+                user.prenom = prenom
+                user.email = email
+                if image:
+                    user.image = image
+                user.set_password(new_password1)
+            user.save()
+            update_session_auth_hash(request, user)
+            return redirect('profile')
     else:
-        return redirect('login')
+        user = request.user
+        if user:
+            nom = user.nom
+            prenom = user.prenom
+            img = user.image.name
+            email = user.email
+            password = user.password
+            return render(request, 'profile_mod.html',
+                          {'nom': nom, 'prenom': prenom, 'img': img, 'email': email, 'password': password})
 
 
 @login_required(login_url='/login')
