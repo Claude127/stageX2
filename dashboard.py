@@ -38,14 +38,11 @@ df['mois'] = df['order_date'].dt.month_name()
 
 colors = ['#37C1ED', '#939393', '#71CDE8', '#139BAB', '#707070', '#E8F2F3']
 
-
-cumulfig =px.area(df,
-                  x='mois',
-                  y='Revenue_projet',
-                  color_discrete_sequence=colors,
-                  facet_col_wrap=2)
-
-
+cumulfig = px.area(df,
+                   x='mois',
+                   y='Revenue_projet',
+                   color_discrete_sequence=colors,
+                   facet_col_wrap=2)
 
 cumulfig.update_layout(
     title="Revenus par produit",
@@ -140,7 +137,8 @@ yearlist = [
 # Definir la fonction pour calculer les effectifs du personnel present par mois
 
 def count_employees(ep, year, month):
-    periode = pd.Timestamp(year=year, month=month, day=calendar.monthrange(year, month)[1])    #periode designe la fin du mois
+    periode = pd.Timestamp(year=year, month=month,
+                           day=calendar.monthrange(year, month)[1])  # periode designe la fin du mois
     present_employees = ep[
         (ep['date_emploi'] <= periode) & ((ep['date_demission'].isnull()) | (ep['date_demission'] >= periode))]
 
@@ -213,16 +211,17 @@ table_header_class = 'table-header'
 table_data_class = 'table-data'
 table_row_odd_class = 'table-row-odd'
 
-#ajout de la pagination ( utilise la biblio dcc)
+# ajout de la pagination ( utilise la biblio dcc)
 pagination = dcc.Slider(
 
     id='table_pagination',
     min=0,
-    max=2,
+    max=1,
     step=1,
     value=0,
     marks={0: 'page 1 ', 1: 'page 2'}
 )
+
 
 @app.callback(
     Output('count_table', 'children'),
@@ -235,9 +234,10 @@ def update_count_table(selected_year, page):
     table_rows2 = [html.Tr([
         html.Td(calendar.month_name[month], className=table_data_class),
         html.Td(employees_month, className=table_data_class),
-    ], className=table_row_odd_class if month % 2 == 0 else '') for month, employees_month in zip(months, employees_months)]
+    ], className=table_row_odd_class if month % 2 == 0 else '') for month, employees_month in
+        zip(months, employees_months)]
 
-    #pagination
+    # pagination
     start = page * 6
     end = (page + 1) * 6
     return table_rows2[start:end]
@@ -259,28 +259,30 @@ app.layout = html.Div(
                         id='list_dropdown',
                         options=projectlist,
                         value=df["poduct_name"].iloc[0],
-
+                        className='form-control'
                     ),
                     html.Label('selectionnez une annee'),
                     dcc.Dropdown(
                         id='year_dropdown',
                         options=yearlist,
-                        value=default_year
+                        value=default_year,
+                        className='form-control'
                     ),
                     dcc.Graph(id='graph', figure=cumulfig)
                 ]
             ), dbc.Col(
                 [
                     html.Label('selectionnez une annee'),
-                     dcc.Dropdown(
-                         id='year2_dropdown',
-                         options=yearlist,
-                         value=default_year
-                 ),
-                 dcc.Graph(id='pie_graph', figure=piefig)
-                 ]
+                    dcc.Dropdown(
+                        id='year2_dropdown',
+                        options=yearlist,
+                        value=default_year,
+                        className='form-control'
+                    ),
+                    dcc.Graph(id='pie_graph', figure=piefig)
+                ]
             ), dbc.Col(
-                [html.H1('Classement du Personnel par performance'),
+                [html.H6('Classement du Personnel par performance'),
                  html.Table([
                      html.Thead([
                          html.Tr([
@@ -318,10 +320,9 @@ app.layout = html.Div(
 
                      # ajout de la pagination
                      html.Div([
-                        html.Label('Selectionnez la page:'),
-                                             pagination,
+                         html.Label('Selectionnez la page:'),
+                         pagination,
                      ], style={'margin': '10px'}),
-
 
                      # creer le tableau pour afficher les effectifs du personnel par present par mois
                      html.Table([
@@ -333,7 +334,6 @@ app.layout = html.Div(
                          ]),
                          html.Tbody(id='count_table', className='table-bordered'),
                      ], className='table table-striped')
-
 
                      ])
             ]),
