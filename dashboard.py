@@ -1,3 +1,5 @@
+import calendar
+
 from dash import html, dcc, Dash
 import dash_bootstrap_components as dbc
 import plotly.express as px
@@ -15,12 +17,17 @@ em = pd.read_csv('claude_csv/note_projet.csv')
 
 sa = pd.read_csv('claude_csv/projects.csv', encoding='ISO-8859-1')
 
+ep = pd.read_csv('claude_csv/employees.csv')
+
 # agreger les donnees par mois et par projet
 df = fl.groupby([pd.Grouper(key='order_date', freq='M'), 'poduct_name']).sum().reset_index()
 # agreger et sommer les montants par projet
 dp = fl.groupby('poduct_name')['Revenue_projet'].sum()
 # trier les donnees points du datarame
 em = em.sort_values('nombre_points', ascending=False)
+# convertir les dates en objet datetime pour leur exploitation
+ep['date_emploi'] = pd.to_datetime(ep['date_emploi'])
+ep['date_demission'] = pd.to_datetime(ep['date_demission'])
 
 # construction de composants
 header_component = html.H1("Visualiser vos données")
@@ -117,6 +124,24 @@ yearlist = [
 ]
 
 
+# graphe 5 : presenter l'effectif du personnel par mois
+
+# Definir la fonction pour calculer les effectifs du personnel present par mois
+
+def count_employees(ep, year, month):
+    periode = pd.Timestamp(year=year, month=month, day=calendar.monthrange(year, month)[1])    #periode designe la fin du mois
+    present_employees = ep[
+        (ep['date_emploi'] <= periode) & ((ep['date_demission'].isnull()) | (ep['date_demission'] >= periode))]
+
+    return len(present_employees)
+
+
+# creer une liste pour les mois et les annees
+
+months = range(1, 13)
+years = range(ep['date_emploi'].min().year, ep['date_emploi'].max().year + 1)
+
+
 # callback pour mettre le graphe 1 a jour en fonction du projet selectionne et du l'annee selectionnee
 
 @app.callback(
@@ -173,6 +198,43 @@ def update_pie(year2):
     return piefig
 
 
+# callback pour mettre a jour le graphe 5 en fonction de l'annee
+
+# declaration des classes bootstrap utilisees pour customizer le tableau
+table_header_class = 'table-header'
+table_data_class = 'table-data'
+table_row_odd_class = 'table-row-odd'
+
+#ajout de la pagination ( utilise la biblio dcc)
+pagination = dcc.Slider(
+
+    id='table_pagination',
+    min=0,
+    max=2,
+    step=1,
+    value=0,
+    marks={0: 'page 1 ', 1: 'page 2'}
+)
+
+@app.callback(
+    Output('count_table', 'children'),
+    [Input('year3_dropdown', 'value'), Input('table_pagination', 'value')]
+)
+def update_count_table(selected_year, page):
+    # calculer les effectifs du personnel present pour chaque mois de l'annee
+    employees_months = [count_employees(ep, selected_year, month) for month in months]
+    # creer une liste de lignes pour le tableau
+    table_rows2 = [html.Tr([
+        html.Td(calendar.month_name[month], className=table_data_class),
+        html.Td(employees_month, className=table_data_class),
+    ], className=table_row_odd_class if month % 2 == 0 else '') for month, employees_month in zip(months, employees_months)]
+
+    #pagination
+    start = page * 6
+    end = (page + 1) * 6
+    return table_rows2[start:end]
+
+
 # design du layout de l'application
 app.layout = html.Div(
     [
@@ -199,11 +261,12 @@ app.layout = html.Div(
                     dcc.Graph(id='graph', figure=cumulfig)
                 ]
             ), dbc.Col(
-                [html.Label('selectionnez une annee'),
-                 dcc.Dropdown(
-                     id='year2_dropdown',
-                     options=yearlist,
-                     value=default_year
+                [   html.H1('Performance des produits par une annee'),
+                    html.Label('selectionnez une annee'),
+                     dcc.Dropdown(
+                         id='year2_dropdown',
+                         options=yearlist,
+                         value=default_year
                  ),
                  dcc.Graph(id='pie_graph', figure=piefig)
                  ]
@@ -234,10 +297,38 @@ app.layout = html.Div(
                  ], className='table')
                  ]
             ),
-                dbc.Col()]
-        ),
-    ]
-)
+                dbc.Col(
+                    [html.H1('Effectifs du personnel par mois'),
+
+                     # ajouter la liste deroulante pour selectionner l'annee.
+                     dcc.Dropdown(
+                         id='year3_dropdown',
+                         options=[{'label': str(year), 'value': year} for year in years],
+                         value=years[-1]
+                     ),
+
+                     # ajout de la pagination
+                     html.Div([
+                        html.Label('Selectionnez la page:'),
+                                             pagination,
+                     ], style={'margin': '10px'}),
+
+
+                     # creer le tableau pour afficher les effectifs du personnel par present par mois
+                     html.Table([
+                         html.Thead([
+                             html.Tr([
+                                 html.Th('Mois', className=table_header_class),
+                                 html.Th('Effectifs du personnel present', className=table_header_class)
+                             ])
+                         ]),
+                         html.Tbody(id='count_table', className='table-bordered'),
+                     ], className='table table-striped')
+
+
+                     ])
+            ]),
+    ])
 
 # Demarrer l'application
 if __name__ == '__main__':
