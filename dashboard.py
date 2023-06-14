@@ -34,15 +34,18 @@ header_component = html.H1("Visualiser vos données")
 
 # graphe1:evolution des revenus d'un projet par annee
 
-cumulfig = go.FigureWidget()
+df['mois'] = df['order_date'].dt.month_name()
 
-for name, group in df.groupby("poduct_name"):
-    cumulfig.add_scatter(
-        x=group["order_date"].dt.strftime("%b"),
-        y=group["Revenue_projet"],
-        mode="lines",
-        name=name
-    )
+colors = ['#37C1ED', '#939393', '#71CDE8', '#139BAB', '#707070', '#E8F2F3']
+
+
+cumulfig =px.area(df,
+                  x='mois',
+                  y='Revenue_projet',
+                  color_discrete_sequence=colors,
+                  facet_col_wrap=2)
+
+
 
 cumulfig.update_layout(
     title="Revenus par produit",
@@ -50,16 +53,22 @@ cumulfig.update_layout(
     yaxis_title="Revenu (en XAF)",
     xaxis=dict(
         tickformat="%b"
-    )
+    ),
+    showlegend=False,
+    width=550,
+    height=400
 )
 
 # graphe 2: performances des differents produits par annee
+
+colors = ['#37C1ED', '#939393', '#71CDE8', '#139BAB', '#707070', '#E8F2F3']
 
 piefig = go.FigureWidget(
     px.pie(
         labels=dp.index,
         values=dp.values,
-        names=dp.index
+        names=dp.index,
+        color_discrete_sequence=colors
     )
 )
 
@@ -69,8 +78,10 @@ piefig.update_layout(
         yanchor="bottom",
         y=1.02,
         xanchor="right",
-        x=1
-    )
+        x=1,
+    ),
+    width=500,
+    height=450
 )
 
 # graphe 3: classement du personnels par nombres de points dans l'entreprise
@@ -152,17 +163,13 @@ def update_figure(projet, year):
     filter_df = df[df["poduct_name"] == projet]
     if year:
         filter_df = filter_df[filter_df["order_date"].dt.year == year]
-    cumulfig.update_layout(title=f"Revenus pour le projet {projet}")
 
-    cumulfig.data = []
-
-    for name, group in filter_df.groupby("poduct_name"):
-        cumulfig.add_scatter(
-            x=group["order_date"].dt.strftime("%b"),
-            y=group["Revenue_projet"],
-            mode="lines",
-            name=name
-        )
+        cumulfig = px.area(filter_df,
+                           x='mois',
+                           y='Revenue_projet',
+                           color_discrete_sequence=colors,
+                           facet_col_wrap=2)
+        cumulfig.update_layout(title=f"Revenus pour le projet {projet}")
 
     return cumulfig
 
@@ -183,7 +190,8 @@ def update_pie(year2):
         px.pie(
             labels=dp.index,
             values=dp.values,
-            names=dp.index
+            names=dp.index,
+            color_discrete_sequence=colors
         )
     )
     piefig.update_layout(
@@ -250,7 +258,8 @@ app.layout = html.Div(
                     dcc.Dropdown(
                         id='list_dropdown',
                         options=projectlist,
-                        value=df["poduct_name"].iloc[0]
+                        value=df["poduct_name"].iloc[0],
+
                     ),
                     html.Label('selectionnez une annee'),
                     dcc.Dropdown(
@@ -261,7 +270,7 @@ app.layout = html.Div(
                     dcc.Graph(id='graph', figure=cumulfig)
                 ]
             ), dbc.Col(
-                [   html.H1('Performance des produits par une annee'),
+                [
                     html.Label('selectionnez une annee'),
                      dcc.Dropdown(
                          id='year2_dropdown',
