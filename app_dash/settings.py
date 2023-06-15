@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'labfile',
+    'django_plotly_dash.apps.DjangoPlotlyDashConfig',
+    'channels',
+    'channels_redis',
     'django_seed',
 ]
 
@@ -75,8 +78,12 @@ DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.profiling.ProfilingPanel',
 ]
 
+#utiliser les cadres documents HTML pour les tableaux dash
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
 
 ROOT_URLCONF = 'app_dash.urls'
+#permet de redefinir le model utilisateur
 AUTH_USER_MODEL = 'labfile.Utilisateur'
 
 TEMPLATES = [

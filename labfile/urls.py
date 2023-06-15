@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
+from . import dashboard
 from .views import file, dashboard, user_admin, profile, add_file, file_mod, profile_mod, \
     login_user, logout_user, search, delete_file, sort_files
 

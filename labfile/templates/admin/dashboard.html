@@ -2,7 +2,7 @@
 
 {% block title %}dashboard{% endblock %}
 {% load static %}
-{% block link %}  <link rel="stylesheet" type="text/css" href="{% static 'css/fichiers.css' %}">{% endblock %}
+{% block link %}  <link rel="stylesheet" type="text/css" href="{% static 'css/dash.css' %}">{% endblock %}
 
 {% block content %}
 
@@ -86,6 +86,13 @@
 
         </header>
       </div>
+    <main>
+        {%load plotly_dash %}
+
+         <div class="{% plotly_class name='labf' %} card" style="height: 100%; width: 100%"  id="da">
+             {% plotly_app name='labf' ratio=0.65 %}
+          </div>
+    </main>
 
 {% endif %}
 

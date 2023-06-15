@@ -1,5 +1,5 @@
 import calendar
-
+from django_plotly_dash import DjangoDash
 from dash import html, dcc, Dash
 import dash_bootstrap_components as dbc
 import plotly.express as px
@@ -8,16 +8,16 @@ import plotly.graph_objects as go
 import pandas as pd
 
 # initialisation de l'application
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP])
+app = DjangoDash('labf', external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP])
 
 # lecture des donnees
-fl = pd.read_csv('claude_csv/projet.csv', parse_dates=['order_date'])
+fl = pd.read_csv('labfile/claude_csv/projet.csv', parse_dates=['order_date'])
 
-em = pd.read_csv('claude_csv/note_projet.csv')
+em = pd.read_csv('labfile/claude_csv/note_projet.csv')
 
-sa = pd.read_csv('claude_csv/projects.csv', encoding='ISO-8859-1')
+sa = pd.read_csv('labfile/claude_csv/projects.csv', encoding='ISO-8859-1')
 
-ep = pd.read_csv('claude_csv/employees.csv')
+ep = pd.read_csv('labfile/claude_csv/employees.csv')
 
 # agreger les donnees par mois et par projet
 df = fl.groupby([pd.Grouper(key='order_date', freq='M'), 'poduct_name']).sum().reset_index()
@@ -272,11 +272,6 @@ def update_count_table(selected_year, page):
 app.layout = html.Div(
     [
         dbc.Row(
-            [header_component
-
-             ]
-        ),
-        dbc.Row(
             [dbc.Col(
                 [
 
@@ -391,6 +386,4 @@ app.layout = html.Div(
             ])
     ])
 
-# Demarrer l'application
-if __name__ == '__main__':
-    app.run_server(debug=True)
+
