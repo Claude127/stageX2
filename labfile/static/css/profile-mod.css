@@ -346,6 +346,14 @@ main{
     align-items: center;
 }
 
+.message-container{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    font-weight:bolder;
+}
+
+
 .box .edit-img input{
     display: none;
 }
@@ -497,7 +505,7 @@ main{
 }
 
 .edit-form .btn-valid{
-    margin-top: 40px;
+    margin-top: 100px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -513,6 +521,7 @@ main{
     width: 130px;
     box-shadow: 2px 3px 2px rgb(0, 0, 0, .2);
     border:2px solid #D9EAF0;
+    margin: 50px
 }
 
 .edit-form .btn-valid #annuler {

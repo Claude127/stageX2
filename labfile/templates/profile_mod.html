@@ -41,7 +41,16 @@
             <span class="tooltip">Fichiers</span>
           </li>
 
-        {% if user.role.nom == 'ADMIN' %}
+          <li class="list-item active" >
+            <a href="{% url 'profile' %}">
+              <i class='bx bx-user'></i>
+              <span class="links-name">Profil</span>
+            </a>
+            <span class="tooltip">Profil</span>
+          </li>
+
+
+             {% if user.role.nom == 'ADMIN' %}
              <li class="list-item" id="list-users" >
               <a href="{% url 'admin:index' %}">
                 <ion-icon name="id-card-outline" class="in"></ion-icon>
@@ -51,13 +60,8 @@
             </li>
         {% endif %}
 
-          <li class="list-item active" >
-            <a href="{% url 'profile' %}">
-              <i class='bx bx-user'></i>
-              <span class="links-name">Profil</span>
-            </a>
-            <span class="tooltip">Profil</span>
-          </li>
+
+
         </ul>
       </div>
 
@@ -85,6 +89,15 @@
 
         <main>
         <div class="box">
+
+                  <div class="message-container">
+                          {% if messages %}
+                              {% for message in messages %}
+                                  {{message}}
+                              {% endfor %}
+                          {% endif%}
+                  </div>
+
                 <form method="POST" enctype="multipart/form-data">
 
                    {% csrf_token %}
@@ -130,7 +143,7 @@
 
                           <div class="mb-3">
                             <label for="new-password" class="form-label">confirmez votre mot de passe :</label>
-                            <input type="password" class="form-control" id="new-password" name="new-password2"  placeholder="confirmez votre mot de passe"
+                            <input type="password" class="form-control" id="new-password" name="new-password2"  placeholder="confirmez votre mot de passe">
                           </div>
                          </div>
                         </div>
@@ -140,13 +153,7 @@
                     <button class="btn">Modifier</button>
                   </div>
 
-                     <div class="message-container">
-                          {% if messages %}
-                              {% for message in messages %}
-                                  {{message}}
-                              {% endfor %}
-                          {% endif%}
-                     </div>
+
           </div>
         </form>
         </div>

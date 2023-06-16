@@ -26,3 +26,6 @@ urlpatterns = [
     path("__debug__/", include("debug_toolbar.urls")),
 
 ]
+
+
+admin.site.site_header = "LABFILE ADMINISTRATION"
