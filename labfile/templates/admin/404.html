@@ -1,0 +1,105 @@
+{% extends 'layout.html' %}
+
+{% block title %}view_file{% endblock %}
+{% load static %}
+{% block link %}  <link rel="stylesheet" type="text/css" href="{% static 'css/view-file.css' %}">{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+
+
+      <div class="sidebar ">
+        <div class="logo-container">
+          <div class="logo">
+            <ion-icon name="eye" class="i"></ion-icon>
+            <h3>Lab2View</h3>
+          </div>
+          <i class='bx bx-menu' id="btn" ></i>
+        </div>
+
+        <ul class="list">
+
+      {% if user.role.name == 'ADMIN' %}
+          <li class="list-item" id="dash" >
+            <a href="{% url 'dashboard' %}">
+              <i class='bx bxs-dashboard'></i>
+              <span class="links-name"  >Tableau de bord</span>
+            </a>
+            <span class="tooltip" >Tableau de bord</span>
+          </li>
+      {% endif %}
+
+          <li class="list-item active" >
+            <a href="{% url 'file' %}">
+              <ion-icon name="file-tray-stacked-outline" class="in"></ion-icon>
+              <span class="links-name" id="fich">Fichiers</span>
+            </a>
+            <span class="tooltip">Fichiers</span>
+          </li>
+
+          <li class="list-item" >
+            <a href="{% url 'profile' %}">
+              <i class='bx bx-user'></i>
+              <span class="links-name">Profil</span>
+            </a>
+            <span class="tooltip">Profil</span>
+          </li>
+
+
+      {% if user.role.nom == 'ADMIN' %}
+           <li class="list-item" id="list-users" >
+            <a href="{% url 'admin:index' %}">
+              <ion-icon name="id-card-outline" class="in"></ion-icon>
+              <span class="links-name" >Espace Admin</span>
+            </a>
+            <span class="tooltip">Espace Admin</span>
+            </li>
+      {% endif %}
+
+
+        </ul>
+      </div>
+
+        <div class="main-content">
+          <header>
+
+
+                <div class="user">
+                  <a href="{% url 'logout' %}">
+                    <i class='bx bx-log-out'>
+                      <span class="tooltip">log-out</span>
+                    </i>
+
+                  </a>
+
+
+
+                  <div class="bg-img">
+                  <img src="{{ MEDIA_URL }}{{ img }}" alt="profil">
+                </div>
+                  <div class="nom">{{ prenom }} {{ nom }}</div>
+                </div>
+
+          </header>
+           <main>
+                <div class="error">
+
+                    <h1>Error 404</h1>
+                    <p>page not found !!!</p>
+                </div>
+
+
+                <div class="btn-valid">
+                               <a  class='btn' href="{% url 'file' %}"> Retourner a l'acceuil </a>
+                  </div>
+
+
+          </main>
+        </div>
+
+{% endif %}
+
+
+    {% endblock %}

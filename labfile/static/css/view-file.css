@@ -392,3 +392,34 @@ main{
     opacity: 0.8;
     letter-spacing: 1px;
 }
+
+
+.btn-valid a{
+    text-decoration: none;
+    color: black;
+}
+
+.btn-valid a:hover{
+    opacity: 0.8;
+    letter-spacing: 1px;
+}
+
+.btn-valid{
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.btn-valid .btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: rgb(80, 199, 241);
+    border-radius: 20px;
+    height: 30px;
+    width: 130px;
+    box-shadow: 2px 3px 2px rgb(0, 0, 0, .2);
+    border:2px solid #D9EAF0;
+    margin: 50px
+}

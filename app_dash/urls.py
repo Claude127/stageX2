@@ -16,16 +16,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import handler404
+
 
 urlpatterns = [
     path('', include("labfile.urls")),
     path('admin/', admin.site.urls),
-    path('django_plotly_dash/', include('django_plotly_dash.urls')),
+    path('django_plotly_dash/',
+         include('django_plotly_dash.urls')),
     path('jet', include('jet.urls', 'jet')),
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path("__debug__/", include("debug_toolbar.urls")),
 
 ]
 
+handler404 = 'labfile.views.error404
 
 admin.site.site_header = "LABFILE ADMINISTRATION"
+
+

@@ -285,3 +285,7 @@ def sort_files(request, category_id):
 
         return render(request, 'sort_files.html',
                       {'categorie': category, 'files': files, 'nom': nom, 'prenom': prenom, 'img': img, 'cats': cat})
+
+
+def error404(request, exception):
+    return render(request, '404.html')
