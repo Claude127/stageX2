@@ -85,14 +85,15 @@ piefig.update_layout(
 
 em['nombre_points'] = em['nombre_points'].apply(lambda x: round(x, 2))
 
-#essai
+
+# essai
 def point_row(nombre_points):
     if nombre_points >= 80:
         pts_style = {'color': '#34bbf8'}
     elif nombre_points >= 50:
         pts_style = {'color': '#3C7483FF'}
     else:
-       pts_style = {'color': '#949495'}
+        pts_style = {'color': '#949495'}
 
     return pts_style
 
@@ -108,7 +109,8 @@ for i in range(min(5, len(em))):
     table_rows.append(html.Tr([
         html.Td(em.iloc[i]['first_name'], className=table_data_class),
         html.Td(em.iloc[i]['lastname'], className=table_data_class),
-        html.Td(em.iloc[i]['nombre_points'], className=table_data_class, style=point_row(em.iloc[i]['nombre_points'])), ]
+        html.Td(em.iloc[i]['nombre_points'], className=table_data_class,
+                style=point_row(em.iloc[i]['nombre_points'])), ]
         , className=row_class))
 
 # graphe 4: suivi des activites ; table qui presente les activites et leurs statuts
@@ -122,14 +124,15 @@ table_data_class = 'table-data'
 table_row_odd_class = 'table-row-odd'
 
 
-#fonction pour appliquer un style en fonction du statut
+# fonction pour appliquer un style en fonction du statut
 def statut_row(statut):
     if statut == 'termine':
-        status_style = {'background-color': '#34bbf8', 'opacity': 0.7, 'border-radius' : '20px', 'padding': '.2rem 1rem'}
+        status_style = {'background-color': '#34bbf8', 'opacity': 0.7, 'border-radius': '20px', 'padding': '.2rem 1rem'}
     elif statut == 'en cours':
-        status_style = {'background-color': 'rgba(156, 162, 162, 0.73)', 'opacity': 0.7, 'border-radius' : '20px', 'padding': '.2rem 1rem'}
+        status_style = {'background-color': 'rgba(156, 162, 162, 0.73)', 'opacity': 0.7, 'border-radius': '20px',
+                        'padding': '.2rem 1rem'}
     else:
-        status_style = {'background-color': 'red', 'opacity': 0.7, 'border-radius' : '20px', 'padding': '.2rem 1rem'}
+        status_style = {'background-color': 'red', 'opacity': 0.7, 'border-radius': '20px', 'padding': '.2rem 1rem'}
 
     return html.Span(statut, style=status_style)
 
@@ -258,7 +261,7 @@ def update_count_table(selected_year, page):
     # creer une liste de lignes pour le tableau
     table_rows2 = [html.Tr([
         html.Td(calendar.month_name[month], className=table_data_class),
-        html.Td(employees_month, className=table_data_class, style={ 'text-align': 'center', 'color': '#3C7483FF'}),
+        html.Td(employees_month, className=table_data_class, style={'text-align': 'center', 'color': '#3C7483FF'}),
     ], className=table_row_odd_class if month % 2 == 0 else '') for month, employees_month in
         zip(months, employees_months)]
 
@@ -345,7 +348,8 @@ app.layout = html.Div(
                          html.Thead([
                              html.Tr([
                                  html.Th('Mois', className=table_header_class),
-                                 html.Th('Effectifs du personnel present', className=table_header_class, style={ 'text-align': 'center'})
+                                 html.Th('Effectifs du personnel present', className=table_header_class,
+                                         style={'text-align': 'center'})
                              ])
                          ]),
                          html.Tbody(id='count_table', className='table-bordered'),
@@ -384,6 +388,4 @@ app.layout = html.Div(
                  ]
             )
             ])
-    ])
-
-
+    ], style={"width": '99%','min-height': '100vh'})

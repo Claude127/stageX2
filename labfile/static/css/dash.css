@@ -334,22 +334,14 @@ header{
     opacity: 1;
 }
 
-main{
-    margin-top: 70px;
-    min-height: 90%;
-    padding: 1rem;
-
-}
-
 main #da{
     position: absolute;
     max-width: calc(100% - 80px);
     min-width: calc(100% - 80px);
-    overflow-x:hidden ;
     margin-top: 70px;
     margin-left: 80px;
+    min-height:100vh;
     padding: 1rem;
-    min-height: 100vh;
     transition: .5s;
 
 }
@@ -359,3 +351,5 @@ main #da.active{
     margin-left: 240px;
 
 }
+
+
