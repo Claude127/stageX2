@@ -32,9 +32,11 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+
     'jet.dashboard',
     'jet',
     'debug_toolbar',
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,6 +52,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -59,7 +62,7 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-#page de connexion
+# page de connexion
 LOGIN_URL = 'login/'
 
 DEBUG_TOOLBAR_PANELS = [
@@ -78,18 +81,17 @@ DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.profiling.ProfilingPanel',
 ]
 
-#utiliser les cadres documents HTML pour les tableaux dash
+# utiliser les cadres documents HTML pour les tableaux dash
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-
 ROOT_URLCONF = 'app_dash.urls'
-#permet de redefinir le model utilisateur
+# permet de redefinir le model utilisateur
 AUTH_USER_MODEL = 'labfile.Utilisateur'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "../labfile/templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -104,8 +106,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'app_dash.wsgi.application'
-
-
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -155,6 +155,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [BASE_DIR / 'labfile/static']
+
+STATIC_ROOT = BASE_DIR / 'labfile/static_cdn'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -198,3 +202,8 @@ JET_THEMES = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+
+
+

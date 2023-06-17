@@ -1,16 +1,19 @@
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from django.urls import path
+from django.urls import path, re_path
+from django.views.static import serve
+
 from . import dashboard
-from .views import file, dashboard, user_admin, profile, add_file, file_mod, profile_mod, login_user, logout_user, search, delete_file, sort_files
-
-
-
+from .views import file, dashboard, user_admin, profile, add_file, file_mod, profile_mod, login_user, logout_user, \
+    search, delete_file, sort_files
 
 urlpatterns = [
+    # utiliser pour charger les fichiers media une fois le debug =false
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 
-    # gestion des fichiera
+    # gestion des fichiers
     # page pour voir les fchiers
     path('files/', file, name='file'),
     # page pour ajouter un fichier
@@ -45,5 +48,3 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-

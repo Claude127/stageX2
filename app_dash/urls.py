@@ -30,8 +30,10 @@ urlpatterns = [
 
 ]
 
-handler404 = 'labfile.views.error404
+
+handler404='labfile.views.error404'
 
 admin.site.site_header = "LABFILE ADMINISTRATION"
+
 
 
