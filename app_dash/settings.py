@@ -63,7 +63,7 @@ MIDDLEWARE = [
 ]
 
 # page de connexion
-LOGIN_URL = 'login/'
+LOGIN_URL = '/login/'
 
 DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.history.HistoryPanel',

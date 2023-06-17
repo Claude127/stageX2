@@ -1,18 +1,10 @@
-from pathlib import Path
 
-import magic
-import textract
-from django.conf import settings
-from django.conf.urls.static import static
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.files.storage import FileSystemStorage
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout, update_session_auth_hash
 from django.contrib import messages
-from django.urls import path
-
-from .models import Document, Categorie, Utilisateur
+from .models import Document, Categorie
 
 
 # Create your views here.
@@ -49,25 +41,16 @@ def login_user(request):
 
 
     else:
-        # # verifier si l'utilisateur est deja connecté
-        # if 'email' in request.COOKIES:
-        #     return redirect('file')
-        #
-        # # verifier si des cookies sont presents pour l'email et le mot de passe
-        # else:
-        # email = request.COOKIES.get('email')
-        # password = request.COOKIES.get('password')
-
         # si des cookies sont presents se connecter automatiquement
         if 'email' and 'password' in request.COOKIES:
-            # email = request.COOKIES.get('email')
-            # password = request.COOKIES.get('password')
-            # user = authenticate(request, email=email, password=password)  # authentifier l'utilisateur
-            # if user is not None:
-            #     login(request, user)
+            email = request.COOKIES.get('email')
+            password = request.COOKIES.get('password')
+            user = authenticate(request, email=email, password=password)  # authentifier l'utilisateur
+            if user is not None:
+                login(request, user)
             return redirect('file')  # rediriger l'utilisateur vers la page souhaitée
 
-        return render(request, 'login.html')
+    return render(request, 'login.html')
 
 
 def logout_user(request):
@@ -83,7 +66,7 @@ def logout_user(request):
 
 
 # gestion des fichiers
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def file(request):
     user = request.user
     files = Document.objects.all()
@@ -97,7 +80,7 @@ def file(request):
         return redirect('login')
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 @permission_required('labfile.can_view_site', raise_exception=True)
 def add_file(request):
     if request.method == 'POST':
@@ -123,7 +106,7 @@ def add_file(request):
             return render(request, 'admin/add_file.html', {'nom': nom, 'prenom': prenom, 'img': img})
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def delete_file(request, file_id):
     user = request.user
 
@@ -143,7 +126,7 @@ def delete_file(request, file_id):
         return render(request, 'file.html', {'nom': nom, 'prenom': prenom, 'img': img})
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 @permission_required('labfile.can_view_site', raise_exception=True)
 def file_mod(request, file_id):
     file = Document.objects.get(pk=file_id)
@@ -169,7 +152,7 @@ def file_mod(request, file_id):
 
 
 # gestion des profils
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def profile(request):
     # recuperer les informations de l'utilisateur connecté
     user = request.user
@@ -183,7 +166,7 @@ def profile(request):
         return redirect('login')
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def profile_mod(request):
     if request.method == 'POST':
         nom = request.POST['name']
@@ -239,7 +222,7 @@ def profile_mod(request):
                           {'nom': nom, 'prenom': prenom, 'img': img, 'email': email, 'password': password})
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 @permission_required('labfile.can_view_dashboard', raise_exception=True)
 def dashboard(request):
     # recuperer les informations de l'utilisateur connecté
@@ -253,12 +236,12 @@ def dashboard(request):
         return redirect('login')
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def user_admin(request):
     return render(request, 'admin/user_admin.html')
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def search(request):
     # fonction de recherche
     if request.method == 'POST':
@@ -274,7 +257,7 @@ def search(request):
     else:
         return redirect('login')
 
-
+@login_required(login_url='/login/')
 def sort_files(request, category_id):
     category = Categorie.objects.get(pk=category_id)
     files = Document.objects.filter(categorie=category)
@@ -296,4 +279,4 @@ def error404(request, exception):
         prenom = user.prenom
         img = user.image.name
 
-    return render(request, '404.html', {'prenom':prenom, 'nom': nom, 'img':img})
+    return render(request, '404.html', {'prenom': prenom, 'nom': nom, 'img': img})
