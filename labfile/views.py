@@ -49,21 +49,23 @@ def login_user(request):
 
 
     else:
-        # verifier si l'utilisateur est deja connecté
-        if 'email' in request.COOKIES:
-            return redirect('file')
-        # verifier si des cookies sont presents pour l'email et le mot de passe
-
-        email = request.COOKIES.get('email')
-        password = request.COOKIES.get('password')
+        # # verifier si l'utilisateur est deja connecté
+        # if 'email' in request.COOKIES:
+        #     return redirect('file')
+        #
+        # # verifier si des cookies sont presents pour l'email et le mot de passe
+        # else:
+        # email = request.COOKIES.get('email')
+        # password = request.COOKIES.get('password')
 
         # si des cookies sont presents se connecter automatiquement
-        if email and password:
-
-            user = authenticate(request, email=email, password=password)  # authentifier l'utilisateur
-            if user is not None:
-                login(request, user)
-                return redirect('file')  # rediriger l'utilisateur vers la page souhaitée
+        if 'email' and 'password' in request.COOKIES:
+            # email = request.COOKIES.get('email')
+            # password = request.COOKIES.get('password')
+            # user = authenticate(request, email=email, password=password)  # authentifier l'utilisateur
+            # if user is not None:
+            #     login(request, user)
+            return redirect('file')  # rediriger l'utilisateur vers la page souhaitée
 
         return render(request, 'login.html')
 
@@ -288,4 +290,10 @@ def sort_files(request, category_id):
 
 
 def error404(request, exception):
-    return render(request, '404.html')
+    user = request.user
+    if user:
+        nom = user.nom
+        prenom = user.prenom
+        img = user.image.name
+
+    return render(request, '404.html', {'prenom':prenom, 'nom': nom, 'img':img})

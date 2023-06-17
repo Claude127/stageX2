@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block title %}view_file{% endblock %}
+{% block title %}error_404{% endblock %}
 {% load static %}
 {% block link %}  <link rel="stylesheet" type="text/css" href="{% static 'css/view-file.css' %}">{% endblock %}
 
@@ -83,20 +83,25 @@
                 </div>
 
           </header>
-           <main>
-                <div class="error">
+                <main>
 
-                    <h1>Error 404</h1>
-                    <p>page not found !!!</p>
-                </div>
+                    <div class="error">
+
+                        <h1>Erreur 404</h1>
+                        <p>Mauvaise Redirection !!! Cette page n'exixte pas :) </p>
+
+                        <img src="{% static 'img/undraw_Page_not_found_re_e9o6.png' %}"  alt="not found">
+
+                    </div>
 
 
-                <div class="btn-valid">
-                               <a  class='btn' href="{% url 'file' %}"> Retourner a l'acceuil </a>
-                  </div>
+                    <div class="btn-valid">
+                        <a  class='btn' href="{% url 'file' %}"> Retourner a l'acceuil </a>
+                    </div>
 
 
-          </main>
+                </main>
+
         </div>
 
 {% endif %}
