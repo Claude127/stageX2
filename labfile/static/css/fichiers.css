@@ -136,6 +136,7 @@ body{
     line-height: 50px;
 }
 
+
 .sidebar ul li #fich{
     margin-left: 20px;
 }
@@ -272,15 +273,22 @@ header{
     margin-left: .5rem;
 }
 
+
 .user .bg-img{
     height: 38px;
     width: 38px;
+    margin-right: .2rem;
+}
+
+.user .bg-img img{
+    height: 38px;
+    width: 38px;
+    border-radius: 50%;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("/static/img/5816231.jpg");
-    border-radius: 50%;
-
 }
+
+
 
 .user .nom-u{
      background: #E3F4FE;
@@ -347,7 +355,11 @@ main .page-header{
 }
 .page-header .search{
     position: relative;
-    left:120px;
+    left:110px;
+    display:flex;
+    justify-content:center
+    align-items:center;
+
 }
 
 .page-header .search input{
@@ -372,6 +384,16 @@ main .page-header{
     z-index: 99;
    line-height: 20px;
     margin: 5px;
+}
+
+.page-header .search .go{
+    border-radius: 30px;
+    border: 1px solid;
+    padding:2px;
+    background-color:#E3F4FE;
+    position:relative;
+    bottom:2px;
+
 }
 
 .files-content{
@@ -447,6 +469,47 @@ td{
 tbody tr:nth-child(even){
     background: #E3F4FE;
 }
+
+
+#pagination {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#pagination a {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #E3F4FE;
+  color: #333;
+  text-decoration: none;
+  border: none;
+  margin-right: 5px;
+  border-radius: 20px;
+}
+
+#pagination a.active {
+  background-color: #ddd;
+  color: #333;
+}
+
+#pagination a.prev:before {
+  content: "\2190";
+}
+
+#pagination a.next:after {
+  content: "\2192";
+}
+
+#pagination a.prev:before, #pagination a.next:after {
+  display: inline-block;
+  margin-right: 5px;
+  font-size: 20px;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+
 
 .nom{
     font-weight: 700;

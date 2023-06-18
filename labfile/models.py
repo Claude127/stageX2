@@ -18,7 +18,7 @@ class Action(models.Model):
 class Role(models.Model):
     NOM_CHOICES = (
         ("ADMIN", 'admin'),
-        ("STAFF", 'staff'),
+        ("PERSONNEL", 'personnel'),
         ("STAGIAIRE", 'stagiaire')
     )
 
@@ -49,22 +49,24 @@ class Utilisateur(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-    def has_perm(self, perm, obj=None):
-        # specifie s'il a une permission specifique
-        return True
-
-    def has_module_perms(self, app_label):
-        # Specifie s'il a les permissions de voir l'application('app_label')
-        return True
+    class Meta:
+        permissions = [
+            ('can_view_site', 'can view the site'),
+            ('can_view_dashboard', 'can view the dashboard'),
+        ]
 
 
+class Categorie(models.Model):
+    nom = models.CharField(max_length=25)
 
+    def __str__(self):
+        return self.nom
 
 
 class Document(models.Model):
     nom = models.CharField(max_length=30)
-    categorie = models.CharField(max_length=30, null=True)
-    emplacement = models.FileField(upload_to='fichiers')
+    categorie = models.ForeignKey(Categorie, on_delete=models.CASCADE)
+    emplacement = models.FileField(upload_to='fichiers/')
     date_creation = models.DateField(auto_now_add=True)
     date_updated = models.DateField(auto_now=True)
     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)

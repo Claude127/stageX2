@@ -29,11 +29,13 @@
     let sidebar =document.querySelector('.sidebar');
     let listItem = document.querySelectorAll('.list-item');
     let main =document.querySelector('.main-content');
+    let da =document.querySelector('#da');
 
     btn.onclick = function ()
     {
       sidebar.classList.toggle('active');
       main.classList.toggle('active');
+      da.classList.toggle('active');
     }
 
     function activeLink(){

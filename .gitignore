@@ -3,3 +3,4 @@ cl127
 app_dash/__pycache__/
 labfile/__pycache__/
 labfile/migrations/__pycache__/
+labfile/static_cdn

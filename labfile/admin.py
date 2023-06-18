@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import Utilisateur, Role, Action, Document
+from .models import Utilisateur, Role, Action, Categorie, Document
 
 
 class DocumentAdmin(admin.ModelAdmin):
@@ -21,7 +21,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = Utilisateur
-        fields = ['email', 'nom', 'prenom', 'image', 'role', 'date_creation']
+        fields = ['email', 'nom', 'prenom', 'image', 'role', 'groups', 'date_creation']
 
     def clean_password2(self):
         # verifie que les 2 entrees matchent
@@ -47,7 +47,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         mode = Utilisateur
-        fields = ['email', 'nom', 'prenom', 'password', 'role', 'is_active']
+        fields = ['email', 'nom', 'prenom', 'password', 'role', 'groups', 'is_active']
 
 
 class UserAdmin(BaseUserAdmin):
@@ -61,7 +61,7 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = [
         (None, {"fields": ['email', 'password', 'role']}),
         ("Informations personnelles", {"fields": ['nom', 'prenom', 'image']}),
-        ("Permissions", {"fields": ['is_staff', 'is_active']}),
+        ("Permissions", {"fields": ['is_staff', 'is_active', 'groups', "user_permissions"]}),
     ]
 
     # add fieldsets
@@ -72,7 +72,7 @@ class UserAdmin(BaseUserAdmin):
             {
                 "classes": ["wide"],
                 "fields": ["email", "nom", "prenom", "role", "image", "password1", "password2", "is_active",
-                           "is_staff"],
+                           "is_staff", "groups","user_permissions"],
             },
         ),
     ]
@@ -89,3 +89,4 @@ admin.site.register(Utilisateur, UserAdmin)
 admin.site.register(Role)
 admin.site.register(Action)
 admin.site.register(Document, DocumentAdmin)
+admin.site.register(Categorie)

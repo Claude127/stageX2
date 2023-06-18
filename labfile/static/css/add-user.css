@@ -275,11 +275,15 @@ header{
 .user .bg-img{
     height: 38px;
     width: 38px;
+    margin-right: .2rem;
+}
+
+.user .bg-img img{
+    height: 38px;
+    width: 38px;
+    border-radius: 50%;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("/static/img/5816231.jpg");
-    border-radius: 50%;
-
 }
 
 .user .nom-u{

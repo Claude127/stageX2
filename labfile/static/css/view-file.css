@@ -239,18 +239,10 @@ header{
     padding: 0rem 1rem;
     display:flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     box-shadow: 0px 5px 5px -5px rgb(0, 0, 0, .1);
 }
 
-.title{
-    display: flex;
-    align-items: center;
-}
-
-.title h1{
-    text-align: center;
-}
 
 .user{
     display: flex;
@@ -275,15 +267,19 @@ header{
 .user .bg-img{
     height: 38px;
     width: 38px;
+    margin-right: .2rem;
+}
+
+.user .bg-img img{
+    height: 38px;
+    width: 38px;
+    border-radius: 50%;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("/static/img/5816231.jpg");
-    border-radius: 50%;
-
 }
 
 .user .nom{
-   background: #E3F4FE;
+    background: #E3F4FE;
     color: black;
     border-radius: 30px;
     font-size: 1em;
@@ -335,56 +331,48 @@ main{
     width: calc(100% - 80px);
 }
 
-.file{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.error h1{
+    text-align: center;
+}
+.error p{
+    text-align: center;
 }
 
-.file .data{
-    margin-bottom: 20px;
+.error img{
+    width: 350px;
+    height: 300px;
+    background-position: center;
+    position: relative;
+    left:400px;
 }
 
-.file .data .cles{
-    font-size: 1.3rem;
-    font-weight: 700;
 
-}
-
-.file .data .valeurs{
-   margin-left: 30px;
-    margin-top: 15px;
-
-}
-.data #category{
-    padding: .2rem .7rem;
-    border-radius: 20px;
-    background: rgba(156, 162, 162, 0.6);
-
-}
-.data p{
-    border:2px solid black;
-    border-radius: 6px;
-    padding: .7rem;
-}
-
-.file a{
+.btn-valid a{
     text-decoration: none;
+    color: black;
+}
+
+.btn-valid a:hover{
+    opacity: 0.8;
+    letter-spacing: 1px;
+}
+
+.btn-valid{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.btn-valid .btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     background: rgb(80, 199, 241);
     border-radius: 20px;
     height: 30px;
-    width: 150px;
-    border: 2px solid rgb(115, 210, 244);
-    color: black;
-    position: relative;
-    left: 550px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 230px;
     box-shadow: 2px 3px 2px rgb(0, 0, 0, .2);
-}
-
-.file a:hover{
-    opacity: 0.8;
-    letter-spacing: 1px;
+    border:2px solid #D9EAF0;
+    margin: 10px;
 }

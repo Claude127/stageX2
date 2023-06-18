@@ -1,0 +1,252 @@
+{% extends 'layout.html' %}
+
+{% block title %}Fichiers-category{% endblock %}
+{% load static %}
+{% block link %}  <link rel="stylesheet" type="text/css" href="{% static 'css/fichiers.css' %}">{% endblock %}
+
+{% block content %}
+
+{%  if user.is_authenticated %}
+
+    <div class="sidebar ">
+      <div class="logo-container">
+        <div class="logo">
+          <ion-icon name="eye" class="i"></ion-icon>
+          <h3>Lab2View</h3>
+        </div>
+        <i class='bx bx-menu' id="btn" ></i>
+      </div>
+
+      <ul class="list">
+
+
+    {% if user.role.nom == 'ADMIN' %}
+        <li class="list-item" id="dash" >
+          <a href="{% url 'dashboard' %}">
+            <i class='bx bxs-dashboard'></i>
+            <span class="links-name"  >Tableau de bord</span>
+          </a>
+          <span class="tooltip" >Tableau de bord</span>
+        </li>
+    {% endif %}
+
+
+        <li class="list-item active" >
+          <a href="{% url 'file' %}">
+            <ion-icon name="file-tray-stacked-outline" class="in"></ion-icon>
+            <span class="links-name" id="fich">Fichiers</span>
+          </a>
+          <span class="tooltip">Fichiers</span>
+        </li>
+
+
+        <li class="list-item" >
+          <a href="{% url 'profile' %}">
+            <i class='bx bx-user'></i>
+            <span class="links-name">Profil</span>
+          </a>
+          <span class="tooltip">Profil</span>
+        </li>
+
+    {% if user.role.nom == 'ADMIN' %}
+         <li class="list-item" id="list-users" >
+          <a href="{% url 'admin:index' %}">
+            <ion-icon name="id-card-outline" class="in"></ion-icon>
+            <span class="links-name" >Espace Admin</span>
+          </a>
+          <span class="tooltip">Espace Admin</span>
+        </li>
+    {% endif %}
+
+      </ul>
+    </div>
+
+      <div class="main-content">
+        <header>
+              <div class="title">
+                <h1> Fichiers {{ categorie.nom }}</h1>
+              </div>
+
+              <div class="user">
+                <a href="{% url 'logout' %}">
+                  <i class='bx bx-log-out'>
+                    <span class="tooltip">log-out</span>
+                  </i>
+
+                </a>
+
+                <div class="bg-img">
+                  <img src="{{ MEDIA_URL }}{{ img }}" alt="profil">
+                </div>
+                <div class="nom-u">{{ prenom }} {{ nom }}</div>
+
+              </div>
+
+        </header>
+
+        <main>
+
+          <div class="page-header">
+
+            <h2 class="title">Welcome</h2>
+
+            <div class="search">
+                <form action="{% url 'search-file' %}" method="POST">
+                    {% csrf_token %}
+                    <i class='bx bx-search'></i>
+                    <input type="search"  name='searched' placeholder="Search...">
+                    <button class="go"> Go</button>
+                </form>
+
+            </div>
+
+          </div>
+
+          <section class="files-content">
+            <div class="files-grid">
+              <div class="files-card">
+                <div class="utils">
+                  <h3>Gestionnaires de fichiers</h3>
+
+                  {% if user.role.nom == 'ADMIN' %}
+                    <a  href="{% url 'add_file' %}" class="ajout">Ajouter un fichier </a>
+                  {% elif user.role.nom == 'PERSONNEL' %}
+                     <a  href="{% url 'add_file' %}" class="ajout">Ajouter un fichier </a>
+                  {% endif %}
+
+                </div>
+                <table id="tableau">
+                      <thead>
+                      <tr>
+                        <th>Nom</th>
+                        <th>categories</th>
+                        <th>Actions</th>
+                      </tr>
+                      </thead>
+                     <tbody>
+                          {% for file in files %}
+                            <tr>
+                                <td class="nom">{{ file.nom }}</td>
+                                <td ><span class="category-filter">{{ file.categorie }}</span></td>
+                                <td class="actions">
+                                          <div class="action1"><a href="{{ MEDIA_URL }}{{ file.emplacement }}" download ><ion-icon name="download-outline" class="iv"></ion-icon></a></div>
+                                        {% if user.role.nom == 'ADMIN' %}
+                                          <div class="action3">
+                                            <a href="{% url 'file_mod' file.id %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>
+                                          </div>
+
+                                          <div class="action4">
+                                                <a href="#" onclick="if (confirm('Voulez-vous vraiment supprimer ce fichier ?')) { document.getElementById('delete-file-form').submit(); }">
+                                                  <ion-icon name="trash-outline" class="iv"></ion-icon>
+                                                </a>
+                                                <form id="delete-file-form" action="{% url 'delete_file' file.id %}" method="POST">
+                                                  {% csrf_token %}
+                                                </form>
+                                          </div>
+                                        {% elif  user.role.nom == 'PERSONNEL' %}
+                                           <div class="action3">
+                                                <a href="{% url 'file_mod' file.id %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>
+                                          </div>
+                                        {% endif %}
+                                </td>
+                            </tr>
+                          {% empty %}
+                          <h4>No files found.</h4>
+                          {% endfor %}
+                    </tbody>
+                </table>
+                  <!--     la pagination utlise des fleches en unicode             -->
+                      <div id="pagination">
+                          <a href="#" class="prev-next prev"></a>
+                          <a href="#" class="page"></a>
+                          <a href="#" class="prev-next next"></a>
+                      </div>
+              </div>
+                 <div class="filter">
+                  <div class="items">
+                    <i class='bx bx-filter-alt' ></i>
+                    <span class="word">Trier par : </span>
+                  </div>
+                  <ul class="filter-list">
+                        {% for cat in cats %}
+                            <li class="list-filter"><a href="{% url 'sort_files' cat.id %}">{{ cat.nom }}</a></li>
+                        {% endfor %}
+                            <li class="list-filter"><a href="{% url 'file' %}">All</a></li>
+                  </ul>
+              </div>
+
+            </div>
+
+          </section>
+        </main>
+
+
+      </div>
+
+
+<script>
+
+var tableau = document.getElementById("tableau");
+var tbody = tableau.getElementsByTagName("tbody")[0];
+var rows = tbody.getElementsByTagName("tr");
+var pageCount = 4; // Nombre d'Ã©lÃ©ments par page
+var currentPage = 1; // Page actuelle
+
+function showPage(page) {
+  currentPage = page;
+  var startIndex = (page - 1) * pageCount;
+  var endIndex = startIndex + pageCount;
+  for (var i = 0; i < rows.length; i++) {
+    var row = rows[i];
+    if (i < startIndex || i >= endIndex) {
+      row.style.display = "none";
+    } else {
+      row.style.display = "";
+    }
+  }
+  updatePagination();
+}
+
+var pagination = document.getElementById("pagination");
+var prevLink = pagination.getElementsByClassName("prev")[0];
+var pageLink = pagination.getElementsByClassName("page")[0];
+var nextLink = pagination.getElementsByClassName("next")[0];
+
+function updatePagination() {
+  var totalPages = Math.ceil(rows.length / pageCount);
+  pageLink.innerHTML = currentPage;
+  pageLink.className = "page active";
+  if (currentPage == 1) {
+    prevLink.className = "prev disabled";
+  } else {
+    prevLink.className = "prev";
+  }
+  if (currentPage == totalPages) {
+    nextLink.className = "next disabled";
+  } else {
+    nextLink.className = "next";
+  }
+}
+
+prevLink.addEventListener("click", function(e) {
+  e.preventDefault();
+  if (currentPage > 1) {
+    showPage(currentPage - 1);
+  }
+});
+
+nextLink.addEventListener("click", function(e) {
+  e.preventDefault();
+  var totalPages = Math.ceil(rows.length / pageCount);
+  if (currentPage < totalPages) {
+    showPage(currentPage + 1);
+  }
+});
+
+showPage(1);
+</script>
+
+
+{% endif %}
+
+{% endblock %}
