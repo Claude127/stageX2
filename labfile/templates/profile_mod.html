@@ -81,7 +81,16 @@
 
 
 
-                  <div class="bg-img"><img src="{{ MEDIA_URL }}{{ img }}" alt="profil"></div>
+                  <div class="bg-img">
+                      <img src="
+                            {% if user.image %}
+                                {{ MEDIA_URL }}{{ img }}
+                            {% else %}
+                                {% static 'img/unknkown_user.png' %}
+                            {% endif %}
+                                "
+                           alt="profil">
+                  </div>
                   <div class="nom-u">{{ prenom }} {{ nom }}</div>
                 </div>
 
@@ -103,7 +112,14 @@
                    {% csrf_token %}
 
                   <div class="edit-img">
-                    <img src="{{ MEDIA_URL }}{{ img }}" alt="profil">
+                     <img src="
+                            {% if user.image %}
+                                {{ MEDIA_URL }}{{ img }}
+                            {% else %}
+                                {% static 'img/unknkown_user.png' %}
+                            {% endif %}
+                                "
+                           alt="profil">
                     <input type="file" name="image" id="file"  accept="image/*">
                     <label for="file">Editer la photo</label>
                   </div>

@@ -19,6 +19,8 @@ class UserCreationForm(forms.ModelForm):
                                 widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
 
+    image = forms.FileField(required=False)
+
     class Meta:
         model = Utilisateur
         fields = ['email', 'nom', 'prenom', 'image', 'role', 'groups', 'date_creation']
@@ -44,6 +46,8 @@ class UserCreationForm(forms.ModelForm):
 class UserChangeForm(forms.ModelForm):
     # formulaire pour les modifications d'utilisateur .il inclut tous les mots de passe de l'utilisateur mais affiche le mot de passe
     password = ReadOnlyPasswordHashField()
+
+    image = forms.FileField(required=False)
 
     class Meta:
         mode = Utilisateur

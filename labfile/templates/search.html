@@ -79,8 +79,15 @@
 
 
                   <div class="bg-img">
-                  <img src="{{ MEDIA_URL }}{{ img }}" alt="profil">
-                </div>
+                      <img src="
+                            {% if user.image %}
+                                {{ MEDIA_URL }}{{ img }}
+                            {% else %}
+                                {% static 'img/unknkown_user.png' %}
+                            {% endif %}
+                                "
+                           alt="profil">
+                  </div>
                   <div class="nom-u">{{ prenom }} {{ nom }}</div>
                 </div>
 
