@@ -7,10 +7,10 @@ from .models import Utilisateur, Role, Action, Categorie, Document
 
 
 class DocumentAdmin(admin.ModelAdmin):
-    list_display = ('nom', 'categorie')
-    search_fields = ('nom', 'categorie')
+    list_display = ('nom', 'categorie', 'is_lock')
+    search_fields = ('nom', 'categorie', 'is_lock')
     ordering = ('nom', 'categorie')
-    list_filter = ('nom', 'categorie')
+    list_filter = ('nom', 'categorie','is_lock')
 
 
 class UserCreationForm(forms.ModelForm):

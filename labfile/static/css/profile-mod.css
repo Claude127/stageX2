@@ -389,7 +389,6 @@ main{
     width: 175px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("/static/img/5816231.jpg");
     border-radius: 30px;
     box-shadow: 5px 5px 5px rgb(0, 0, 0, .1);
 }

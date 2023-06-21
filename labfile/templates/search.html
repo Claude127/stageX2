@@ -95,9 +95,26 @@
            <main>
 
                {% for file in files %}
-               <a href="{{ MEDIA_URL }}{{ file.emplacement }} download}">
-                   {{ file }} - {{ file.categorie }} <br/>
-               </a>
+
+                    {% if user.role.nom == 'STAGIAIRE' %}
+
+                                    {% if not file.is_lock %}
+
+                                               <a href="{{ MEDIA_URL }}{{ file.emplacement }} download}">
+                                                   {{ file }} - {{ file.categorie }} <br/>
+                                               </a>
+                                    {% endif %}
+                    {% else %}
+
+                         <a href="{{ MEDIA_URL }}{{ file.emplacement }} download}">
+                             {{ file }} - {{ file.categorie }} <br/>
+                         </a>
+
+                    {% endif %}
+
+                    {% empty %}
+                          <h4>No files found.</h4>
+
                {% endfor %}
           </main>
         </div>

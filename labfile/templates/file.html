@@ -132,31 +132,69 @@
                       </thead>
                      <tbody>
                           {% for file in files %}
-                            <tr>
-                                <td class="nom">{{ file.nom }}</td>
-                                <td ><span class="category-filter">{{ file.categorie }}</span></td>
-                                <td class="actions">
-                                          <div class="action1"><a href="{{ MEDIA_URL }}{{ file.emplacement }}" download ><ion-icon name="download-outline" class="iv"></ion-icon></a></div>
-                                        {% if user.role.nom == 'ADMIN' %}
-                                          <div class="action3">
-                                            <a href="{% url 'file_mod' file.id %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>
-                                          </div>
 
-                                          <div class="action4">
-                                                <a href="#" onclick="if (confirm('Voulez-vous vraiment supprimer ce fichier ?')) { document.getElementById('delete-file-form').submit(); }">
-                                                  <ion-icon name="trash-outline" class="iv"></ion-icon>
-                                                </a>
-                                                <form id="delete-file-form" action="{% url 'delete_file' file.id %}" method="POST">
-                                                  {% csrf_token %}
-                                                </form>
-                                          </div>
-                                        {% elif  user.role.nom == 'PERSONNEL' %}
-                                           <div class="action3">
-                                                <a href="{% url 'file_mod' file.id %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>
-                                          </div>
-                                        {% endif %}
-                                </td>
-                            </tr>
+                                {% if user.role.nom == 'STAGIAIRE' %}
+
+                                    {% if not file.is_lock %}
+
+                                        <tr>
+                                            <td class="nom">{{ file.nom }}</td>
+                                            <td ><span class="category-filter">{{ file.categorie }}</span></td>
+                                            <td class="actions">
+                                                      <div class="action1"><a href="{{ MEDIA_URL }}{{ file.emplacement }}" download ><ion-icon name="download-outline" class="iv"></ion-icon></a></div>
+                                                    {% if user.role.nom == 'ADMIN' %}
+                                                      <div class="action3">
+                                                        <a href="{% url 'file_mod' file.id %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>
+                                                      </div>
+
+                                                      <div class="action4">
+                                                            <a href="#" onclick="if (confirm('Voulez-vous vraiment supprimer ce fichier ?')) { document.getElementById('delete-file-form').submit(); }">
+                                                              <ion-icon name="trash-outline" class="iv"></ion-icon>
+                                                            </a>
+                                                            <form id="delete-file-form" action="{% url 'delete_file' file.id %}" method="POST">
+                                                              {% csrf_token %}
+                                                            </form>
+                                                      </div>
+                                                    {% elif  user.role.nom == 'PERSONNEL' %}
+                                                       <div class="action3">
+                                                            <a href="{% url 'file_mod' file.id %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>
+                                                      </div>
+                                                    {% endif %}
+                                            </td>
+                                        </tr>
+
+                                    {% endif %}
+                                {% else %}
+
+
+                                        <tr>
+                                            <td class="nom">{{ file.nom }}</td>
+                                            <td ><span class="category-filter">{{ file.categorie }}</span></td>
+                                            <td class="actions">
+                                                      <div class="action1"><a href="{{ MEDIA_URL }}{{ file.emplacement }}" download ><ion-icon name="download-outline" class="iv"></ion-icon></a></div>
+                                                    {% if user.role.nom == 'ADMIN' %}
+                                                      <div class="action3">
+                                                        <a href="{% url 'file_mod' file.id %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>
+                                                      </div>
+
+                                                      <div class="action4">
+                                                            <a href="#" onclick="if (confirm('Voulez-vous vraiment supprimer ce fichier ?')) { document.getElementById('delete-file-form').submit(); }">
+                                                              <ion-icon name="trash-outline" class="iv"></ion-icon>
+                                                            </a>
+                                                            <form id="delete-file-form" action="{% url 'delete_file' file.id %}" method="POST">
+                                                              {% csrf_token %}
+                                                            </form>
+                                                      </div>
+                                                    {% elif  user.role.nom == 'PERSONNEL' %}
+                                                       <div class="action3">
+                                                            <a href="{% url 'file_mod' file.id %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>
+                                                      </div>
+                                                    {% endif %}
+                                            </td>
+                                        </tr>
+
+                                {% endif %}
+
                           {% endfor %}
                     </tbody>
                 </table>
