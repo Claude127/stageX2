@@ -2,3 +2,6 @@ env
 .env
 labfile/static_cdn
 .gitignore
+app_dash/__pycache__/
+labfile/__pycache__/
+labfile/migrations/__pycache__/
