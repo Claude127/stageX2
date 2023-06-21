@@ -34,7 +34,7 @@ class Utilisateur(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     nom = models.CharField(max_length=30)
     prenom = models.CharField(max_length=25)
-    image = models.FileField(upload_to='phots', null=True)
+    image = models.FileField(upload_to='phots', null=True, blank=True)
     role = models.ForeignKey(Role, on_delete=models.CASCADE, null=True)
     date_creation = models.DateField(default=timezone.now)
     is_staff = models.BooleanField(default=False)

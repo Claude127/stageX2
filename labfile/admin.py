@@ -14,10 +14,12 @@ class DocumentAdmin(admin.ModelAdmin):
 
 
 class UserCreationForm(forms.ModelForm):
-    # formulaire creant de nouveaux utilisateurs . inluant tous les champs , plus les mots de passe repetes
+    # formulaire creant de nouveaux utilisateurs .Incluant tous les champs , plus les mots de passe repetes
     password1 = forms.CharField(label="Password",
                                 widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+
+    image = forms.FileField(required=False)
 
     class Meta:
         model = Utilisateur
@@ -29,7 +31,7 @@ class UserCreationForm(forms.ModelForm):
         password2 = self.cleaned_data.get("password2")
 
         if password1 and password2 and password1 != password2:
-            raise ValidationError("les mots de passes ne correxpondent pas")
+            raise ValidationError("les mots de passes ne correspondent pas")
         return password2
 
     def save(self, commit=True):
@@ -44,6 +46,8 @@ class UserCreationForm(forms.ModelForm):
 class UserChangeForm(forms.ModelForm):
     # formulaire pour les modifications d'utilisateur .il inclut tous les mots de passe de l'utilisateur mais affiche le mot de passe
     password = ReadOnlyPasswordHashField()
+
+    image = forms.FileField(required=False)
 
     class Meta:
         mode = Utilisateur
