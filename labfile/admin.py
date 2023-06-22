@@ -3,6 +3,8 @@ from django.contrib import admin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+
+
 from .models import Utilisateur, Role, Action, Categorie, Document
 
 
@@ -10,7 +12,7 @@ class DocumentAdmin(admin.ModelAdmin):
     list_display = ('nom', 'categorie', 'is_lock')
     search_fields = ('nom', 'categorie', 'is_lock')
     ordering = ('nom', 'categorie')
-    list_filter = ('nom', 'categorie','is_lock')
+    list_filter = ('nom', 'categorie', 'is_lock')
 
 
 class UserCreationForm(forms.ModelForm):
@@ -40,8 +42,6 @@ class UserCreationForm(forms.ModelForm):
         user.set_password(self.cleaned_data["password1"])
         if commit:
             user.save()
-
-
         return user
 
 
@@ -78,7 +78,7 @@ class UserAdmin(BaseUserAdmin):
             {
                 "classes": ["wide"],
                 "fields": ["email", "nom", "prenom", "role", "image", "password1", "password2", "is_active",
-                           "is_staff", "groups","user_permissions"],
+                           "is_staff", "groups", "user_permissions"],
             },
         ),
     ]

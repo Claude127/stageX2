@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 
+
 class CustomAccountManager(BaseUserManager):
 
     def create_user(self, email, nom, prenom, password=None, **extra_fields):
@@ -13,8 +14,8 @@ class CustomAccountManager(BaseUserManager):
         user = self.model(email=email, nom=nom, prenom=prenom, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
-        return user
 
+        return user
 
     def create_superuser(self, email, nom, prenom, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
