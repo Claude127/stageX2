@@ -90,8 +90,9 @@ def add_file(request):
         categorie = request.POST.get('categorie')
         cat_id = Categorie.objects.get(nom=categorie)
         emplac = request.FILES.get('emplac')
+        lock = request.POST.get('lock', False) == 'on'
         user_id = request.user
-        file = Document(nom=name, categorie=cat_id, emplacement=emplac, utilisateur=user_id)
+        file = Document(nom=name, categorie=cat_id, is_lock=lock, emplacement=emplac, utilisateur=user_id)
         # sauvegarder les infos dans la bd
         file.save()
         return redirect('file')

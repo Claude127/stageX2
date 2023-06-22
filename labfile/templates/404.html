@@ -21,15 +21,15 @@
 
         <ul class="list">
 
-      {% if user.role.name == 'ADMIN' %}
-          <li class="list-item" id="dash" >
-            <a href="{% url 'dashboard' %}">
-              <i class='bx bxs-dashboard'></i>
-              <span class="links-name"  >Tableau de bord</span>
-            </a>
-            <span class="tooltip" >Tableau de bord</span>
-          </li>
-      {% endif %}
+          {% if user.role.nom == 'ADMIN' %}
+              <li class="list-item" id="dash" >
+                <a href="{% url 'dashboard' %}">
+                  <i class='bx bxs-dashboard'></i>
+                  <span class="links-name"  >Tableau de bord</span>
+                </a>
+                <span class="tooltip" >Tableau de bord</span>
+              </li>
+          {% endif %}
 
           <li class="list-item active" >
             <a href="{% url 'file' %}">
