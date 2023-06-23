@@ -61,7 +61,7 @@ def logout_user(request):
     response.delete_cookie('email')
     response.delete_cookie('password')
     # retourner un message de validation et la page de connexion
-    messages.success(request, 'you were logged out :)')
+    messages.success(request, 'vous etes déconnectés :)')
     return response
 
 
