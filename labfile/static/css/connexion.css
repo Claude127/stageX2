@@ -277,6 +277,14 @@ i
         margin: 50px;
     }
 
+     section .glass .message-container{
+            background:transparent;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+
+    }
+
 
 
 
@@ -295,6 +303,14 @@ i
         margin: 20px;
     }
 
+      section .glass .message-container{
+
+            background:transparent;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+    }
+
 
 }
 @media (max-width:623px)
@@ -307,6 +323,15 @@ i
         padding: 50px;
         background: rgb(255 255 255 /0.8);
         margin: 60px;
+    }
+
+    section .glass .message-container{
+
+            background:transparent;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+
     }
 
 
