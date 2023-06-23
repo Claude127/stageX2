@@ -526,3 +526,75 @@ main{
 .edit-form .btn-valid #annuler {
     background: rgb(116, 115, 115);
 }
+
+
+
+
+/* ----------------- media queries---------------------------*/
+@media (max-width: 763px) {
+
+        .title h1{
+
+            font-size: 15px
+        }
+
+
+.edit-form .btn-valid .btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 20px;
+    height: 30px;
+    width: 500px;
+
+    margin: 50px
+}
+
+
+}
+
+@media (max-width: 422px)
+{
+
+
+
+    .title h1{
+
+            font-size: 15px
+        }
+
+
+.edit-form .btn-valid .btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 20px;
+    height: 30px;
+    width: 500px;
+
+    margin: 50px
+}
+
+
+
+}
+@media (max-width:623px) {
+
+ .title h1{
+
+            font-size: 15px
+        }
+
+
+.edit-form .btn-valid .btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 20px;
+    height: 30px;
+    width: 500px;
+
+    margin: 50px
+}
+
+}
