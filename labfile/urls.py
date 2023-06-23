@@ -19,7 +19,7 @@ urlpatterns = [
     # page pour ajouter un fichier
     path('add_file/', add_file, name='add_file'),
     # page pour voir un fichier
-    path('delete-file/<int:file_id>/', delete_file, name='delete_file'),
+    path('delete_file/<int:file_id>/', delete_file, name='delete_file'),
     # page pour modifier un fichier
     path('file_mod/<int:file_id>/', file_mod, name='file_mod'),
     # page pour afficher des produits par categorie

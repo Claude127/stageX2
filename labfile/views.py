@@ -1,7 +1,7 @@
 
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.files.storage import FileSystemStorage
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout, update_session_auth_hash
 from django.contrib import messages
 from .models import Document, Categorie
@@ -110,15 +110,14 @@ def add_file(request):
 @login_required(login_url='/login/')
 def delete_file(request, file_id):
     user = request.user
-
     nom = user.nom
     prenom = user.prenom
     img = user.image.name
 
+    file = get_object_or_404(Document, pk=file_id)
+
     # traitement du fichier de suppression
     if request.method == 'POST':
-        file = Document.objects.get(pk=file_id)
-
         fs = FileSystemStorage()
         fs.delete(file.emplacement.name)
         file.delete()
