@@ -5,17 +5,41 @@ services:
     container_name: labfile-mail
     ports:
       - "1080:1080"
-#    labfile-db:
-#      image: mysql:5.7.22
-#      container_name: labfile-db
-#      ports:
-#          - "3306:3306"
-#      environment:
-#          MYSQL_DATABASE: labfile_db
-#          MYSQL_ROOT_PASSWORD: password
-#      volumes:
-#          - dbdata:/var/lib/mysql
-#
-#volumes:
-#      dbdata:
-#          driver: local
+      - "1025:1025"
+
+  labfile-db:
+    image: mysql
+    container_name: labfile-db
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=labfile
+      - MYSQL_ROOT_PASSWORD=4705
+      - MYSQL_ROOT_HOST=%
+    volumes:
+      - ./db:/var/lib/mysql
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "exit | mysql -h localhost -P 3306 -u root -p$$MYSQL_ROOT_PASSWORD",
+        ]
+      interval: 5s
+      timeout: 20s
+      retries: 30
+
+  labfile-app:
+    build: .
+    container_name: labfile-app
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - /tmp/app/mysqld:/run/mysqld
+    depends_on:
+      labfile-db:
+        condition: service_healthy
+volumes:
+  dbdata:
+    driver: local
