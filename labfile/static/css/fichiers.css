@@ -597,3 +597,117 @@ tbody tr:nth-child(even){
     color: #34bbf8;
 
 }
+
+
+/* ----------------- media queries---------------------------*/
+@media (max-width: 763px) {
+
+    .files-content{
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        width:100%;
+    }
+
+    .files-grid{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .files-card table{
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .files-card{
+            overflow-x: auto;
+        }
+
+
+   .files-card .utils .ajout{
+
+    background: #6FCBFF;
+    border-radius: 20px;
+    height: 30px;
+    width: 190px;
+}
+
+    .filter{
+        margin-top: 20px;
+    }
+
+
+}
+
+@media (max-width: 422px)
+{
+
+.files-content{
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+         width:100%;
+    }
+
+    .files-grid{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .files-card table{
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .files-card{
+        overflow-x: auto;
+    }
+
+    .files-card .utils .ajout{
+
+    background: #6FCBFF;
+    border-radius: 20px;
+    height: 30px;
+    width: 190px;
+}
+
+    .filter{
+       margin-top: 20px;
+    }
+
+
+}
+@media (max-width:623px) {
+
+.files-content{
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+         width:100%;
+    }
+
+    .files-grid{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .files-card table{
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .files-card{
+        overflow-x: auto;
+    }
+
+.files-card .utils .ajout{
+
+    background: #6FCBFF;
+    border-radius: 20px;
+    height: 30px;
+    width: 190px;
+}
+
+    .filter{
+        margin-top: 20px;
+    }
+
+}

@@ -36,11 +36,19 @@
 
                 <div class="mb-3">
                     <label for="password" class="form-label">Mot de passe :</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder=" Entrez votre mot de passe"  required>
-                    <div class="eye-area">
-                        <div class="eye-box" onclick="mypassword()">
-                            <i class="fa-regular fa-eye" id="eye"></i>
-                            <i class="fa-regular fa-eye-slash" id="eye-slash"></i>
+                    <div class="custom_input">
+<!--                        input-->
+                        <div class="input ">
+                            <input type="password" class="" id="password" name="password" placeholder=" Entrez votre mot de passe"  required>
+                        </div>
+<!--                        right icon-->
+                        <div class="icon_container" onclick="mypassword(this)">
+                            <div class="see">
+                                <i class="fa-regular fa-eye" id="eye"></i>
+                            </div>
+                            <div class="hidden hide">
+                                <i class="fa-regular fa-eye-slash" id="eye-slash"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -71,23 +79,14 @@
 </section>
 
 <script>
-    function mypassword()
-    {
-        var a =document.getElementById('password');
-        var b =document.getElementById('eye');
-        var c =document.getElementById('eye-slash');
-
-        if (a.type === "password"){
-            a.type = "text"
-            b.style.opacity = "0";
-            c.style.opacity ="1";
-        }
-        else{
-            a.type = "password"
-            b.style.opacity="1";
-            c.style.opacity="0";
-        }
+        function mypassword(div) {
+        let icon_container = div.parentNode;
+        let input = icon_container.querySelector('.input>input');
+        input.setAttribute('type',(input.getAttribute('type')=='password'?'text':'password'))
+        div.querySelector('.hide').classList.toggle('hidden');
+        div.querySelector('.see').classList.toggle('hidden');
     }
+
 
 </script>
 
