@@ -10,7 +10,7 @@ This app is meant to visualize the fluctuations in the company activities and al
 
 ### Installation
 
-1. Run docker compose up --remove-orphans.
+1. Run `docker compose up --remove-orphans`.
 2. In another shell, run `docker exec -it labfile-app sh`.
 3. Inside the shell, run `python3 manage.py migrate`.
 4. Run `python3 manage.py seed labfile --number=15`. This command will help you populate the database to start using the app
