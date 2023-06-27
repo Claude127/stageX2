@@ -131,11 +131,9 @@
                       </tr>
                       </thead>
                      <tbody>
+                          {% for file in files %}
 
-
-                            {% if user.role.nom == 'STAGIAIRE' %}
-
-                                    {% for file in files %}
+                                {% if user.role.nom == 'STAGIAIRE' %}
 
                                         {% if not file.is_lock %}
 
@@ -157,10 +155,9 @@
                                             </tr>
 
                                         {% endif %}
-                                    {% endfor %}
-                            {% else %}
 
-                                 {% for file in files %}
+                                {% else %}
+
                                         <tr>
                                             <td class="nom">{{ file.nom }}</td>
                                             <td ><span class="category-filter">{{ file.categorie }}</span></td>
@@ -172,12 +169,11 @@
                                                       </div>
 
                                                       <div class="action4">
-
-                                                            <form id="delete-file-form" action="{% url 'delete_file' file.id %}" method="POST">
-                                                              {% csrf_token %}
-                                                                 <a href="#" onclick="if (confirm('Voulez-vous vraiment supprimer ce fichier ?')) { document.getElementById('delete-file-form').submit(); }">
+                                                            <a href="#" onclick="if (confirm('Voulez-vous vraiment supprimer ce fichier {{file.id}} ?')) { document.getElementById('delete-file-form').submit(); }">
                                                               <ion-icon name="trash-outline" class="iv"></ion-icon>
                                                             </a>
+                                                            <form id="delete-file-form" action="{% url 'delete_file' file.id %}" method="POST">
+                                                              {% csrf_token %}
                                                             </form>
                                                       </div>
                                                     {% elif  user.role.nom == 'PERSONNEL' %}
@@ -187,9 +183,12 @@
                                                     {% endif %}
                                             </td>
                                         </tr>
-                                {% endfor %}
 
-                            {% endif %}
+                                {% endif %}
+
+                          {% endfor %}
+
+
 
 
                     </tbody>

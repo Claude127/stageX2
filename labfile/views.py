@@ -113,9 +113,7 @@ def delete_file(request, file_id):
     nom = user.nom
     prenom = user.prenom
     img = user.image.name
-
-    file = get_object_or_404(Document, pk=file_id)
-
+    file = Document.objects.get(pk=file_id)
     # traitement du fichier de suppression
     if request.method == 'POST':
         fs = FileSystemStorage()
