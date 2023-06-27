@@ -378,6 +378,12 @@ main{
 margin-left: 15px;
 }
 
+.mod-dat{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
 main .mod{
     text-decoration: none;
     background: #6FCBFF;;
@@ -387,8 +393,6 @@ main .mod{
     border: 2px solid rgb(115, 210, 244);
     color: black;
     font-weight: 700;
-    position: relative;
-    left: 550px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -398,4 +402,42 @@ main .mod{
 main .mod:hover{
     opacity: 0.8;
     letter-spacing: 1px;
+}
+
+
+
+/* ----------------- media queries---------------------------*/
+@media (max-width: 763px) {
+
+
+    .mod-dat{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 422px)
+{
+
+
+
+    .mod-dat{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+}
+@media (max-width:623px) {
+
+
+
+
+    .mod-dat{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
