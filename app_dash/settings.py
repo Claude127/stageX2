@@ -99,7 +99,6 @@ TEMPLATES = [
                 "django.template.context_processors.media",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-
             ],
         },
     },
@@ -183,7 +182,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "localhost"
+EMAIL_HOST = "labfile-mail"
 EMAIL_PORT = 1025
 EMAIL_USE_TLS = False
 EMAIL_HOST_USER = "lab2view@gmail.com"
