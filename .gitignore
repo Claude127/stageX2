@@ -1,6 +1,7 @@
 cl127
 .env
-app_dash/__pycache__/
-labfile/__pycache__/
-labfile/migrations/__pycache__/
+.idea
 labfile/static_cdn
+*.pyo
+*.pyc
+
