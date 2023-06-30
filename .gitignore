@@ -2,5 +2,8 @@ cl127
 .env
 .idea
 labfile/static_cdn
-*.pyo
-*.pyc
+app_dash/__pycache__/
+labfile/__pycache__/
+labfile/migrations/__pycache__/
+db
+~$Presentation1.pptx
