@@ -31,12 +31,21 @@
           </li>
       {% endif %}
 
-          <li class="list-item active" >
+          <li class="list-item" >
             <a href="{% url 'file' %}">
               <ion-icon name="file-tray-stacked-outline" class="in"></ion-icon>
               <span class="links-name" id="fich">Fichiers</span>
             </a>
             <span class="tooltip">Fichiers</span>
+          </li>
+
+
+          <li class="list-item active" >
+            <a href="{% url 'profile' %}">
+              <i class='bx bx-user'></i>
+              <span class="links-name">Profil</span>
+            </a>
+            <span class="tooltip">Profil</span>
           </li>
 
       {% if user.role.nom == 'ADMIN' %}
@@ -50,13 +59,6 @@
       {% endif %}
 
 
-          <li class="list-item" >
-            <a href="{% url 'profile' %}">
-              <i class='bx bx-user'></i>
-              <span class="links-name">Profil</span>
-            </a>
-            <span class="tooltip">Profil</span>
-          </li>
         </ul>
       </div>
 
