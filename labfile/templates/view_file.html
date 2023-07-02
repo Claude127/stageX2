@@ -1,8 +1,8 @@
 {% extends 'layout.html' %}
 
-{% block title %}view_file{% endblock %}
+{% block title %}Politique de confidentialité et contraintes d'utilisation{% endblock %}
 {% load static %}
-{% block link %}  <link rel="stylesheet" type="text/css" href="{% static 'css/view-file.css' %}">{% endblock %}
+{% block link %}  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">{% endblock %}
 
 {% block content %}
 
@@ -21,7 +21,7 @@
 
         <ul class="list">
 
-      {% if user.role.name == 'ADMIN' %}
+      {% if user.role.nom == 'ADMIN' %}
           <li class="list-item" id="dash" >
             <a href="{% url 'dashboard' %}">
               <i class='bx bxs-dashboard'></i>
@@ -63,7 +63,7 @@
         <div class="main-content">
           <header>
                 <div class="title">
-                  <h1>Contenu du fichier</h1>
+                  <h1>Politique de confidentialité</h1>
                 </div>
 
                 <div class="user">
@@ -84,8 +84,51 @@
 
           </header>
            <main>
-                <h2>{{ file.nom }}</h2>
-               <p>{{ file_contents }}</p>
+                            <p>Nous sommes engagés à protéger votre vie privée et à respecter vos choix concernant la collecte et l'utilisation de vos informations personnelles. Cette page décrit notre politique de confidentialité et nos contraintes d'utilisation pour l'application de visualisation de performances des projets  et de gestion de fichiers. Veuillez la lire attentivement avant d'utiliser notre application.</p>
+
+                            <h2>Collecte des informations</h2>
+                            <p>Nous collectons les informations suivantes lorsque vous utilisez notre application :</p>
+                            <ul>
+                              <li>Votre nom et votre adresse e-mail (si vous créez un compte)</li>
+                              <li>Les fichiers que vous téléchargez dans notre application</li>
+                              <li>Les informations relatives à vos projets, y compris les noms, les descriptions, les dates de début et de fin, les membres de l'équipe </li>
+                            </ul>
+
+                            <h2>Utilisation des informations</h2>
+                            <p>Nous utilisons les informations que nous collectons pour :</p>
+                            <ul>
+                              <li>Vous permettre d'utiliser notre application</li>
+                              <li>Améliorer notre application et nos services</li>
+                              <li>Vous contacter en cas de besoin</li>
+                              <li>Résoudre tout problème que vous pourriez rencontrer</li>
+                            </ul>
+
+                            <h2>Partage des informations</h2>
+                            <p>Nous ne partageons pas vos informations personnelles avec des tiers, sauf dans les cas suivants :</p>
+                            <ul>
+                              <li>Lorsque cela est nécessaire pour fournir nos services</li>
+                              <li>Lorsque cela est exigé par la loi</li>
+                              <li>Lorsque cela est nécessaire pour protéger nos droits ou nos biens</li>
+                            </ul>
+
+                            <h2>Cookies</h2>
+                            <p>Nous utilisons des cookies pour :</p>
+                            <ul>
+                              <li>Vous identifier lorsque vous vous connectez à notre application</li>
+                              <li>Enregistrer vos préférences d'utilisation de notre application</li>
+                              <li>Améliorer notre application et nos services</li>
+                            </ul>
+
+                            <h2>Sécurité des informations</h2>
+                            <p>Nous prenons des mesures de sécurité raisonnables pour protéger vos informations personnelles contre la perte, l'utilisation abusive et l'accès non autorisé, la divulgation, la modification et la destruction.</p>
+
+                            <h2>Modifications de la politique de confidentialité et des contraintes d'utilisation</h2>
+                            <p>Nous pouvons mettre à jour notre politique de confidentialité et nos contraintes d'utilisation de temps en temps. Nous vous informerons de toute modification importante en affichant un avis sur notre site Web. Nous vous encourageons à consulter régulièrement cette page pour rester informé de nos pratiques en matière de confidentialité.</p>
+                          </main>
+
+                          <footer>
+                            <p>Tous droits réservés © 2023</p>
+                          </footer>
           </main>
         </div>
 

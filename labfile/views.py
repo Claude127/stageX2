@@ -66,6 +66,19 @@ def logout_user(request):
 
 
 # gestion des fichiers
+
+@login_required(login_url='/login/')
+def pol_conf(request):
+    user = request.user
+    if user:
+        nom = user.nom
+        prenom = user.prenom
+        img = user.image.name
+        email = user.email
+        return render(request, 'view_file.html',
+                      {'nom': nom, 'prenom': prenom, 'img': img, 'email': email})
+
+
 @login_required(login_url='/login/')
 def file(request):
     user = request.user

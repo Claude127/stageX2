@@ -7,7 +7,7 @@ from django.views.static import serve
 
 from . import dashboard
 from .views import file, dashboard, user_admin, profile, add_file, file_mod, profile_mod, login_user, logout_user, \
-    search, delete_file, sort_files
+    search, delete_file, sort_files, pol_conf
 
 urlpatterns = [
     # utiliser pour charger les fichiers media une fois le debug =false
@@ -16,6 +16,9 @@ urlpatterns = [
     # gestion des fichiers
     # page pour voir les fchiers
     path('files/', file, name='file'),
+
+    # page pour voir les fchiers
+    path('pol_conf/', pol_conf, name='pol_conf'),
     # page pour ajouter un fichier
     path('add_file/', add_file, name='add_file'),
     # page pour voir un fichier
