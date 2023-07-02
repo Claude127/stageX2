@@ -168,14 +168,22 @@
                                                         <a href="{% url 'file_mod' file.id %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>
                                                       </div>
 
-                                                      <div class="action4">
-                                                            <a href="#" onclick="if (confirm('Voulez-vous vraiment supprimer ce fichier {{file.id}} ?')) { document.getElementById('delete-file-form').submit(); }">
-                                                              <ion-icon name="trash-outline" class="iv"></ion-icon>
-                                                            </a>
-                                                            <form id="delete-file-form" action="{% url 'delete_file' file.id %}" method="POST">
-                                                              {% csrf_token %}
-                                                            </form>
-                                                      </div>
+<!--                                                     <div class="action4">-->
+<!--                                                          <form id="delete-file-form" action="{% url 'delete_file' file.id %}" method="POST">-->
+<!--                                                            {% csrf_token %}-->
+<!--                                                            <button type="submit" onclick="return confirm('Voulez-vous vraiment supprimer ce fichier ?')">-->
+<!--                                                              <ion-icon name="trash-outline" class="iv"></ion-icon>-->
+<!--                                                            </button>-->
+<!--                                                          </form>-->
+<!--                                                    </div>-->
+
+                                                        <div class="action4">
+                                                          <a href="{% url 'delete_file' file.id %}" onclick="return confirm('Voulez-vous vraiment supprimer ce fichier ?')">
+                                                            <ion-icon name="trash-outline" class="iv"></ion-icon>
+                                                          </a>
+                                                        </div>
+
+
                                                     {% elif  user.role.nom == 'PERSONNEL' %}
                                                        <div class="action3">
                                                             <a href="{% url 'file_mod' file.id %}"><ion-icon name="create-outline" class="iv"></ion-icon></a>

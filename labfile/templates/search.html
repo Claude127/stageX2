@@ -100,13 +100,13 @@
 
                                     {% if not file.is_lock %}
 
-                                               <a href="{{ MEDIA_URL }}{{ file.emplacement }} download}">
+                                               <a href="{{ MEDIA_URL }}{{ file.emplacement }}" download >
                                                    {{ file }} - {{ file.categorie }} <br/>
                                                </a>
                                     {% endif %}
                     {% else %}
 
-                         <a href="{{ MEDIA_URL }}{{ file.emplacement }} download}">
+                         <a href="{{ MEDIA_URL }}{{ file.emplacement }}" download >
                              {{ file }} - {{ file.categorie }} <br/>
                          </a>
 

@@ -109,19 +109,15 @@ def add_file(request):
 
 @login_required(login_url='/login/')
 def delete_file(request, file_id):
-    user = request.user
-    nom = user.nom
-    prenom = user.prenom
-    img = user.image.name
+
     file = Document.objects.get(pk=file_id)
+
     # traitement du fichier de suppression
-    if request.method == 'POST':
-        fs = FileSystemStorage()
-        fs.delete(file.emplacement.name)
-        file.delete()
-        return redirect('file')
-    else:
-        return render(request, 'file.html', {'nom': nom, 'prenom': prenom, 'img': img})
+    file.delete()
+    fs = FileSystemStorage()
+    fs.delete(file.emplacement.name)
+
+    return redirect('file')
 
 
 @login_required(login_url='/login/')

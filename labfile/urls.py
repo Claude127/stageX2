@@ -25,7 +25,7 @@ urlpatterns = [
     # page pour afficher des produits par categorie
     path('sort_files/<int:category_id>/', sort_files, name='sort_files'),
     # page pour voir le dashboard
-    path('dashboard/', dashboard, name='dashboard'),
+    path('dashboard', dashboard, name='dashboard'),
 
     # gestion des profils
     # page pour voir le profil
@@ -36,7 +36,7 @@ urlpatterns = [
     # account_user
     # page pour se connecter
     path('login/', login_user, name='login'),
-    path('', login_user, name='login'),
+    path('', file, name='login'),
     # page pour se deconnecter
     path('logout/', logout_user, name='logout'),
 

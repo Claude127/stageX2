@@ -17,7 +17,7 @@ services:
       - MYSQL_ROOT_PASSWORD=4705
       - MYSQL_ROOT_HOST=%
     volumes:
-      - ./db:/var/lib/mysql
+      - dbdata:/var/lib/mysql:rw
     healthcheck:
       test:
         [
